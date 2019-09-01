@@ -9,14 +9,14 @@ RSpec.describe Seller, type: :model do
     it { should have_many(:guitars) }
 
     it 'Should not create a username if it already exists' do
-      User.create(username: 'first', password: 'abc123')
-      second = User.create(username: 'first', password: 'abc123')
+      Seller.create(username: 'first', password: 'abc123')
+      second = Seller.create(username: 'first', password: 'abc123')
 
       expect(second.valid?).to eq(false)
     end
 
     it 'Should not create a username with a password less than 5 characters' do
-      user = User.create(username: 'first', password: 'abc')
+      user = Seller.create(username: 'first', password: 'abc')
 
       expect(user.valid?).to eq(false)
     end
