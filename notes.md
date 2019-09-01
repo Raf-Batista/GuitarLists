@@ -78,3 +78,14 @@ Guitar
   Create
   Update
   Delete
+
+
+
+
+
+
+
+
+
+
+  Write tests for models
