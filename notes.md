@@ -53,8 +53,8 @@ Seller
   validates username
   validates password
   has many guitars
-  has rating ( implement this later )
-  has guitars sold
+  has rating ( implement this later ) ****
+  has guitars sold                    ****
 
 Guitar
   validates model
