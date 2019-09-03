@@ -81,6 +81,11 @@ Guitar
 
 
 
+write tests for Guitars #index request
+write tests for seller #show request
+write tests for Guitar #show request
+
+
 
 
 

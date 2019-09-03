@@ -18,12 +18,12 @@ RSpec.describe GuitarsController, type: :request do
 
       it 'should returns correct number of guitars' do
         json_response = JSON.parse(response.body)
-        expect(json_response.size).to eq(3)
+        expect(json_response.size).to eq(6)
       end
 
       it 'should only returns correct attributes' do
         json_response = JSON.parse(response.body)
-        expect(json_response[0].keys).to_not match["created_at", "updated_at"]
+        expect(json_response[0].keys).to_not match(["created_at", "updated_at"])
       end
     end
 end
