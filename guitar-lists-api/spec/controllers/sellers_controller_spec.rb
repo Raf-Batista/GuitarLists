@@ -24,5 +24,17 @@ RSpec.describe SellersController, type: :request do
         json_response = JSON.parse(response.body)
         expect(json_response[0].keys).to_not match(["password_digest", "created_at", "updated_at"])
       end
+
+      it 'should return an array of guitars' do
+        json_response = JSON.parse(response.body)
+        expect(json_response[0][:guitars].class).to eq('Array')
+      end
+
+      it 'should return correct number of guitars' do
+        json_response = JSON.parse(response.body)
+        expect(json_response[0][:guitars].size).to eq(2)
+      end
+
     end
+
 end
