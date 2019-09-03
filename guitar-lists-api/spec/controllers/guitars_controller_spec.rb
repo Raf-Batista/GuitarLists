@@ -25,5 +25,10 @@ RSpec.describe GuitarsController, type: :request do
         json_response = JSON.parse(response.body)
         expect(json_response[0].keys).to_not match(["created_at", "updated_at"])
       end
+
+      it 'should return sellerId' do
+        json_response = JSON.parse(response.body)
+        expect(json_response[0]["seller_id"]).to be_truthy
+      end
     end
 end
