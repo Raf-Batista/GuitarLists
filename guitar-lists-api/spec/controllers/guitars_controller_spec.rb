@@ -23,7 +23,7 @@ RSpec.describe GuitarsController, type: :request do
 
       it 'should only returns correct attributes' do
         json_response = JSON.parse(response.body)
-        expect(json_response[0].keys).to_not match(["created_at", "updated_at"])
+        expect(json_response[0].keys).to match(["id", "model", "seller_id", "price", "condition", "location", "spec"])
       end
 
       it 'should return sellerId' do
@@ -49,10 +49,19 @@ RSpec.describe GuitarsController, type: :request do
         json_response = JSON.parse(response.body)
         expect(json_response["id"]).to eq(Guitar.first.id)
       end
+
       it "returns a guitar's seller" do
         get 'http://localhost:3000/guitars/1'
         json_response = JSON.parse(response.body)
         expect(json_response["seller_id"]).to eq(Seller.first.id)
       end
+
+      it "does not return created_at or updated_at" do
+        get 'http://localhost:3000/guitars/1'
+        json_response = JSON.parse(response.body)
+    #    binding.pry
+        expect(json_response.keys).to match(["id", "model", "seller_id", "price", "condition", "location", "spec"])
+      end
+
     end
 end

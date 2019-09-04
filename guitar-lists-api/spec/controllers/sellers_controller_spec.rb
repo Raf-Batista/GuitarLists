@@ -27,11 +27,6 @@ RSpec.describe SellersController, type: :request do
         expect(json_response[0].keys).to match(["id", "username", "guitars"])
       end
 
-      it 'should not return password_digest, created_at, and updated_at' do
-        json_response = JSON.parse(response.body)
-        expect(json_response[0].keys).to_not match(["password_digest", "created_at", "updated_at"])
-      end
-
       it 'should return an array of guitars' do
         json_response = JSON.parse(response.body)
         expect(json_response[0]["guitars"].class).to eq(Array)
@@ -60,7 +55,7 @@ RSpec.describe SellersController, type: :request do
     it 'does not return created_at and updated_at' do
       get "http://localhost:3000/sellers/#{Seller.first.id}"
       json_response = JSON.parse(response.body)
-      expect(json_response.keys).to not_match(["created_at", "updated_at"])
+      expect(json_response.keys).to match(["id", "username", "guitars"])
     end
 
     it 'returns an array of guitars' do
