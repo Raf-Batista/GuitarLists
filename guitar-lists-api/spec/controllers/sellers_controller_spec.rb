@@ -69,4 +69,32 @@ RSpec.describe SellersController do
     end
   end
 
+  describe 'Create Sellers' do
+    it 'successfully creates a seller ' do
+      post :create, params: {username: 'test', password: 'test123'}
+      expect(Seller.all.size).to eq(1)
+    end
+  end
+
+  describe 'Update Sellers' do
+    it 'successfully updates username' do
+      Seller.create(username: 'before', password: 'test123')
+      post :create, params: {id: 1, username: 'after'}
+      expect(Seller.first.username).to eq('after')
+    end
+
+    it 'successfully updates password' do
+      Seller.create(username: 'before', password: 'test123')
+      post :create, params: {id: 1, password: 'password_has_changed'}
+      expect(Seller.first.authenticate('password_has_changed')).to be_truthy
+    end
+  end
+
+  describe 'Delete Sellers' do
+    it 'successfully deletes a seller' do
+      Seller.create(username: 'test', password: 'test123')
+      get :delete, params: {id: 1}
+      expect(Seller.all.size).to eq(0)
+    end
+  end
 end
