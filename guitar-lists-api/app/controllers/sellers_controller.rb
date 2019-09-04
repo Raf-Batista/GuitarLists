@@ -27,9 +27,14 @@ class SellersController < ApplicationController
         },
         except: [:created_at, :updated_at, :password_digest])
   end
-  
+
     def create
-      Seller.create(seller_params)
+      @seller = Seller.new(seller_params)
+      if @seller.save
+        render json: @seller
+      else
+        render json: {errors: @seller.errors.to_h} # return errors as a hash
+      end
     end
 
     private

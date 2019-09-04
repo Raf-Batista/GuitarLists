@@ -80,6 +80,13 @@ RSpec.describe SellersController do
       json_response = JSON.parse(response.body)
       expect(json_response["username"]).to eq('test')
     end
+
+    it 'renders user error message when creating seller that exists' do
+      Seller.create(username: 'test', password: 'test123')
+      post :create, params: { seller: {username: 'test', password: 'test123'} }
+      json_response = JSON.parse(response.body)
+      expect(json_response["errors"]["username"]).to eq('has already been taken')
+    end
   end
 
   describe 'Update Sellers' do
