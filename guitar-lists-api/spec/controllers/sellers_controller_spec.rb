@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SellersController, type: :request do
 
-    describe "Get #index" do
+    describe "Renders Seller" do
       let!(:sellers) do
         3.times do |index|
           seller = Seller.create(username: "test#{index+1}", password: "test123")
@@ -38,7 +38,7 @@ RSpec.describe SellersController, type: :request do
       end
   end
 
-  describe '#show'do
+  describe 'Renders single Seller' do
   let!(:seller) do
     seller = Seller.create(username: "test", password: "test123")
     seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
@@ -70,4 +70,5 @@ RSpec.describe SellersController, type: :request do
       expect(json_response["guitars"].size).to eq(2)
     end
   end
+
 end

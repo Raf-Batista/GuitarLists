@@ -19,6 +19,12 @@ class SellersController < ApplicationController
 
   def show
     @seller = Seller.find(params[:id])
-    render json: @seller.to_json(include: {guitars: {except: [:created_at, :updated_at]}},except: [:created_at, :updated_at, :password_digest])
+    render json: @seller.to_json(
+      include: {
+        guitars: {
+          except: [:created_at, :updated_at]
+          }
+        },
+        except: [:created_at, :updated_at, :password_digest])
   end
 end
