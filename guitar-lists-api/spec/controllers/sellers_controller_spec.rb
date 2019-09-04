@@ -71,8 +71,14 @@ RSpec.describe SellersController do
 
   describe 'Create Sellers' do
     it 'successfully creates a seller ' do
-      post :create, params: {username: 'test', password: 'test123'}
+      post :create, params: { seller: {username: 'test', password: 'test123'} }
       expect(Seller.all.size).to eq(1)
+    end
+
+    it 'renders newly created seller ' do
+      post :create, params: { seller: {username: 'test', password: 'test123'} }
+      json_response = JSON.parse(response.body)
+      expect(json_response["username"]).to eq('test')
     end
   end
 
@@ -88,6 +94,14 @@ RSpec.describe SellersController do
       post :create, params: {id: 1, password: 'password_has_changed'}
       expect(Seller.first.authenticate('password_has_changed')).to be_truthy
     end
+
+    it 'renders updated seller' do
+      Seller.create(username: 'before', password: 'test123')
+      post :create, params: {id: 1, username: 'after'}
+      json_response = JSON.parse(response.body)
+      expect(json_response["username"]).to eq('after')
+    end
+
   end
 
   describe 'Delete Sellers' do

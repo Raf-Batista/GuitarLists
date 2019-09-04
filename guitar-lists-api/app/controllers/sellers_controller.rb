@@ -27,4 +27,5 @@ class SellersController < ApplicationController
         },
         except: [:created_at, :updated_at, :password_digest])
   end
+
 end
