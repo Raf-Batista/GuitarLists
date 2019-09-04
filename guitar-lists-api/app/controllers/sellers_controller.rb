@@ -27,5 +27,14 @@ class SellersController < ApplicationController
         },
         except: [:created_at, :updated_at, :password_digest])
   end
+  
+    def create
+      Seller.create(seller_params)
+    end
 
+    private
+
+    def seller_params
+      params.require(:seller).permit(:username, :password)
+    end
 end
