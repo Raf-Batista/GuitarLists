@@ -31,4 +31,28 @@ RSpec.describe GuitarsController, type: :request do
         expect(json_response[0]["seller_id"]).to be_truthy
       end
     end
+
+    describe 'Get #show' do
+      let!(:guitar) do
+        seller = Seller.create(username: "test", password: "test123")
+        seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+        seller.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+      end
+
+      it 'return HTTP success' do
+        get 'http://localhost:3000/guitars/1'
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns a guitar' do
+        get 'http://localhost:3000/guitars/1'
+        json_response = JSON.parse(response.body)
+        expect(json_response["id"]).to eq(Guitar.first.id)
+      end
+      it "returns a guitar's seller" do
+        get 'http://localhost:3000/guitars/1'
+        json_response = JSON.parse(response.body)
+        expect(json_response["seller_id"]).to eq(Seller.first.id)
+      end
+    end
 end
