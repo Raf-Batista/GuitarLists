@@ -7,13 +7,18 @@ class SellersController < ApplicationController
       include: {
         #JSON will return guitars that belong to sellers
         guitars: {
-          #JSON will not return these attributes for guitars
+          #JSON will not return these attributes that belong to guitars
           except: [:created_at, :updated_at]
           }
         },
-        #JSON will not return these attributes for sellers
+        #JSON will not return these attributes that belong to sellers
         except: [:created_at, :updated_at, :password_digest]
         ),
       status: 200
+  end
+
+  def show
+    @seller = Seller.find(params[:id])
+    render json: @seller.to_json(include: {guitars: {except: [:created_at, :updated_at]}},except: [:created_at, :updated_at, :password_digest])
   end
 end

@@ -49,7 +49,7 @@ RSpec.describe SellersController, type: :request do
       # spec didn't work using symbols with params
       # get :show, params: {id: Seller.first.id}
       get "http://localhost:3000/sellers/#{Seller.first.id}"
-      excpect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:success)
     end
 
     it 'does not return created_at and updated_at' do
@@ -60,11 +60,13 @@ RSpec.describe SellersController, type: :request do
 
     it 'returns an array of guitars' do
       get "http://localhost:3000/sellers/#{Seller.first.id}"
+      json_response = JSON.parse(response.body)
       expect(json_response["guitars"].class).to eq(Array)
     end
 
     it 'returns an correct number of guitars' do
       get "http://localhost:3000/sellers/#{Seller.first.id}"
+      json_response = JSON.parse(response.body)
       expect(json_response["guitars"].size).to eq(2)
     end
   end
