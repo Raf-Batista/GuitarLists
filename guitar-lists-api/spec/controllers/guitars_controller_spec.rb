@@ -41,26 +41,41 @@ RSpec.describe GuitarsController do #, type: :request do
       before(:example) {get :show, params: {id: 1}}
 
       it 'return HTTP success' do
-        get :show, params: {id: 1}
         expect(response).to have_http_status(:success)
       end
 
       it 'returns a guitar' do
-        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
         expect(json_response["id"]).to eq(Guitar.first.id)
       end
 
       it "returns a guitar's seller" do
-        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
         expect(json_response["seller_id"]).to eq(Seller.first.id)
       end
 
       it "does not return created_at or updated_at" do
-        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
         expect(json_response.keys).to match(["id", "model", "seller_id", "price", "condition", "location", "spec"])
+      end
+    end
+
+    describe 'Updates guitar' do
+
+      before(:example) do
+        seller = Seller.create(username: "test", password: "test123")
+        seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
+      end
+
+      it 'successfully updates a guitar' do
+        post :update, params: { id: 1, guitar: {model: 'after_update'} }
+        expect(Guitar.first.model).to eq('after_update')
+      end
+
+      it 'successfully updates multiple attributes' do
+        post :update, params: { id: 1, guitar: {model: 'after_update', spec: 'after_spec'} }
+        expect(Guitar.first.model).to eq('after_update')
+        expect(Guitar.first.spec).to eq('after_spec')
       end
     end
 end
