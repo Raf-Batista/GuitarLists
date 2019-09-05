@@ -37,6 +37,12 @@ class SellersController < ApplicationController
       end
     end
 
+    def update
+      @seller = Seller.find(params[:id])
+      @seller.update(seller_params)
+      render json: @seller
+    end
+
     private
 
     def seller_params
