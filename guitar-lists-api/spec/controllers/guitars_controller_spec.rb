@@ -10,7 +10,7 @@ RSpec.describe GuitarsController do #, type: :request do
         end
       end
 
-      before(:example) { get :index }
+      before(:example) { get :index, params: {seller_id: 1} }
 
       it 'returns HTTP success' do
         expect(response).to have_http_status(:success)
@@ -36,9 +36,9 @@ RSpec.describe GuitarsController do #, type: :request do
       let!(:guitar) do
         seller = Seller.create(username: "test", password: "test123")
         seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
-        seller.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       end
-      before(:example) {get :show, params: {id: 1}}
+
+      before(:example) { get :show, params: {seller_id: 1, id: 1} }
 
       it 'return HTTP success' do
         expect(response).to have_http_status(:success)
@@ -70,7 +70,7 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'successfully creates a guitar' do
-        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        post :create, params: {seller_id: 1, id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
         expect(Seller.first.guitars.first).to eq(Guitars.first)
       end
       it 'Renders JSON data after creating a guitar' do
