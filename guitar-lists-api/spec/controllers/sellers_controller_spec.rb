@@ -98,19 +98,19 @@ RSpec.describe SellersController do
   describe 'Update Sellers' do
     it 'successfully updates username' do
       Seller.create(username: 'before', password: 'test123')
-      patch :update, params: { seller: {id: 1, username: 'after'} }
+      patch :update, params: { id: 1, seller: {username: 'after'} }
       expect(Seller.first.username).to eq('after')
     end
 
     it 'successfully updates password' do
       Seller.create(username: 'before', password: 'test123')
-      patch :update, params: {seller: {id: 1, password: 'password_has_changed'} }
+      patch :update, params: { id: 1, seller: {password: 'password_has_changed'} }
       expect(Seller.first.authenticate('password_has_changed')).to be_truthy
     end
 
     it 'renders updated seller' do
       Seller.create(username: 'before', password: 'test123')
-      patch :update, params: { seller: {id: 1, username: 'after'} }
+      patch :update, params: { id: 1, seller: {username: 'after'} }
       json_response = JSON.parse(response.body)
       expect(json_response["username"]).to eq('after')
     end
