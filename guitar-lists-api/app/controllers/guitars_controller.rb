@@ -11,7 +11,11 @@ class GuitarsController < ApplicationController
 
   def update
     @guitar = Guitar.find(params[:id])
-    @guitar.update(guitar_params)
+    if @guitar.update(guitar_params)
+      render json: @guitar
+    else
+      render json: {errors: @guitar.errors.full_messages}
+    end
   end
 
   private

@@ -87,7 +87,7 @@ RSpec.describe GuitarsController do #, type: :request do
       it "renders 'model can't be blank' error message" do
         post :update, params: { id: 1, guitar: {model: ''} }
         json_response = JSON.parse(response.body)
-        expect(json_response["errors"]).to eq("Model can't be blank")
+        expect(json_response["errors"][0]).to eq("Model can't be blank")
       end
     end
 end
