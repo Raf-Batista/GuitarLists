@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GuitarsController, type: :request do
+RSpec.describe GuitarsController do #, type: :request do
     describe 'Get #index' do
       let!(:sellers) do
         3.times do |index|
@@ -10,7 +10,7 @@ RSpec.describe GuitarsController, type: :request do
         end
       end
 
-      before(:example) { get '/guitars' }
+      before(:example) { get :index }
 
       it 'returns HTTP success' do
         expect(response).to have_http_status(:success)
@@ -38,30 +38,29 @@ RSpec.describe GuitarsController, type: :request do
         seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
         seller.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       end
+      before(:example) {get :show, params: {id: 1}}
 
       it 'return HTTP success' do
-        get 'http://localhost:3000/guitars/1'
+        get :show, params: {id: 1}
         expect(response).to have_http_status(:success)
       end
 
       it 'returns a guitar' do
-        get 'http://localhost:3000/guitars/1'
+        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
         expect(json_response["id"]).to eq(Guitar.first.id)
       end
 
       it "returns a guitar's seller" do
-        get 'http://localhost:3000/guitars/1'
+        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
         expect(json_response["seller_id"]).to eq(Seller.first.id)
       end
 
       it "does not return created_at or updated_at" do
-        get 'http://localhost:3000/guitars/1'
+        get :show, params: {id: 1}
         json_response = JSON.parse(response.body)
-    #    binding.pry
         expect(json_response.keys).to match(["id", "model", "seller_id", "price", "condition", "location", "spec"])
       end
-
     end
 end
