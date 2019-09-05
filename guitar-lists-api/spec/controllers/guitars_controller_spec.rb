@@ -60,6 +60,29 @@ RSpec.describe GuitarsController do #, type: :request do
       end
     end
 
+    describe 'Creates a guitar' do
+      before(:example) do
+        Seller.create(username: "test", password: "test123")
+      end
+
+      after(:example) do
+        Guitar.delete_all
+      end
+
+      it 'successfully creates a guitar' do
+        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        expect(Seller.first.guitars.first).to eq(Guitars.first)
+      end
+      it 'Renders JSON data after creating a guitar' do
+        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        expect(Seller.first.guitars.first).to eq(Guitars.first)
+      end
+      it 'Renders error message when creating guitar unsuccessful' do
+        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        expect(Seller.first.guitars.first).to eq(Guitars.first)
+      end
+    end
+
     describe 'Updates guitar' do
 
       before(:example) do
