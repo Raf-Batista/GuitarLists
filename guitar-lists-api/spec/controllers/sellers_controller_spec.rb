@@ -120,8 +120,21 @@ RSpec.describe SellersController do
   describe 'Delete Sellers' do
     it 'successfully deletes a seller' do
       Seller.create(username: 'test', password: 'test123')
-      get :delete, params: {id: 1}
+      delete :destroy, params: {id: 1}
       expect(Seller.all.size).to eq(0)
+    end
+
+    it 'renders a JSON message after deleting a seller' do
+      Seller.create(username: 'test', password: 'test123')
+      delete :destroy, params: {id: 1}
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]).to eq('Your account has been deleted')
+    end
+    it "renders a JSON message when trying to delete seller that doesn't exist" do
+      Seller.delete_all
+      delete :destroy, params: {id: 1}
+      json_response = JSON.parse(response.body)
+      expect(json_response["message"]).to eq('There was an error')
     end
   end
 end

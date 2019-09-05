@@ -43,6 +43,14 @@ class SellersController < ApplicationController
       render json: @seller
     end
 
+    def destroy
+      if Seller.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
+        render json: {message: 'Your account has been deleted'}
+      else
+        render json: {message: 'There was an error'}
+      end
+    end
+
     private
 
     def seller_params
