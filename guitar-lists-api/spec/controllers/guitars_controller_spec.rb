@@ -77,5 +77,17 @@ RSpec.describe GuitarsController do #, type: :request do
         expect(Guitar.first.model).to eq('after_update')
         expect(Guitar.first.spec).to eq('after_spec')
       end
+
+      it 'renders JSON data after updating' do
+        post :update, params: { id: 1, guitar: {model: 'after_update'} }
+        json_response = JSON.parse(response.body)
+        expect(json_response["model"]).to eq('after_update')
+      end
+
+      it "renders 'model can't be blank' error message" do
+        post :update, params: { id: 1, guitar: {model: ''} }
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to eq("Model can't be blank")
+      end
     end
 end
