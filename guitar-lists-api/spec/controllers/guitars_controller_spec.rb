@@ -70,16 +70,22 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'successfully creates a guitar' do
-        post :create, params: {seller_id: 1, id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
-        expect(Seller.first.guitars.first).to eq(Guitars.first)
+        post :create, params: {seller_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        expect(Seller.first.guitars.first).to eq(Guitar.first)
       end
       it 'Renders JSON data after creating a guitar' do
-        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
-        expect(Seller.first.guitars.first).to eq(Guitars.first)
+        post :create, params: {seller_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+
+        json_response = JSON.parse(response.body)
+        expect(json_response["model"]).to eq("new_guitar")
+        expect(json_response["spec"]).to eq("new_spec")
       end
+
       it 'Renders error message when creating guitar unsuccessful' do
-        post :create, params: {id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
-        expect(Seller.first.guitars.first).to eq(Guitars.first)
+        post :create, params: {seller_id: 1, guitar: {model: '', spec: '', price: 5, condition: 'new', location: 'somewhere'}}
+        json_response = JSON.parse(response.body)
+        expect(json_response[0]).to eq("Model can't be blank")
+        expect(json_response[1]).to eq("Spec can't be blank")
       end
     end
 
