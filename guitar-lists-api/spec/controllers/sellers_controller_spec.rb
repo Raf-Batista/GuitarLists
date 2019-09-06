@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SellersController do
 
-    describe "Renders Seller" do
+    describe 'Get #index' do
       let!(:sellers) do
         3.times do |index|
           seller = Seller.create(username: "test#{index+1}", password: "test123")
@@ -38,7 +38,7 @@ RSpec.describe SellersController do
       end
   end
 
-  describe 'Renders single Seller' do
+  describe 'Get #show' do
     let!(:seller) do
       seller = Seller.create(username: "test", password: "test123")
       seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
@@ -69,7 +69,7 @@ RSpec.describe SellersController do
     end
   end
 
-  describe 'Create Sellers' do
+  describe 'Post #create' do
     it 'successfully creates a seller ' do
       post :create, params: { seller: {username: 'test', password: 'test123'} }
       expect(Seller.all.size).to eq(1)
@@ -96,7 +96,7 @@ RSpec.describe SellersController do
     end
   end
 
-  describe 'Update Sellers' do
+  describe 'Patch #update' do
     it 'successfully updates username' do
       Seller.create(username: 'before', password: 'test123')
       patch :update, params: { id: 1, seller: {username: 'after'} }
@@ -118,7 +118,7 @@ RSpec.describe SellersController do
 
   end
 
-  describe 'Delete Sellers' do
+  describe 'Delete #destroy' do
     it 'successfully deletes a seller' do
       Seller.create(username: 'test', password: 'test123')
       delete :destroy, params: {id: 1}

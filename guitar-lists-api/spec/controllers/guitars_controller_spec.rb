@@ -60,7 +60,7 @@ RSpec.describe GuitarsController do #, type: :request do
       end
     end
 
-    describe 'Creates a guitar' do
+    describe 'Post #create' do
       before(:example) do
         Seller.create(username: "test", password: "test123")
       end
@@ -89,7 +89,7 @@ RSpec.describe GuitarsController do #, type: :request do
       end
     end
 
-    describe 'Updates guitar' do
+    describe 'Patch #update' do
 
       before(:example) do
         seller = Seller.create(username: "test", password: "test123")
@@ -120,7 +120,7 @@ RSpec.describe GuitarsController do #, type: :request do
       end
     end
 
-    describe 'Deletes guitar' do
+    describe 'Delete #destroy' do
 
       it 'can successfully delete a guitar' do
         seller = Seller.create(username: "test", password: "test123")
