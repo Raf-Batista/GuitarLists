@@ -102,7 +102,14 @@ RSpec.describe GuitarsController do #, type: :request do
       before(:example) do
         seller = Seller.create(username: "test", password: "test123")
         seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
+        session[:seller_id] = Seller.last.id
       end
+
+      after(:example) do
+        Guitar.delete_all
+        session.clear
+      end
+
 
       it 'successfully updates a guitar' do
         patch :update, params: { seller_id: 1, id: 1, guitar: {model: 'after_update'} }
