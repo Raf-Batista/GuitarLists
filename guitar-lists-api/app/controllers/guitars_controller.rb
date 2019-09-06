@@ -10,8 +10,12 @@ class GuitarsController < ApplicationController
   end
 
   def create
-    @guitar = Guitar.new(guitar_params)
-    @guitar.seller = Seller.find(params[:seller_id])
+    if params[:seller_id].to_i != session[:seller_id]
+      render json: {errors: 'You are not logged in'} and return
+    else
+      @guitar = Guitar.new(guitar_params)
+      @guitar.seller = Seller.find(params[:seller_id])
+    end
     if @guitar.save
       render json: @guitar
     else

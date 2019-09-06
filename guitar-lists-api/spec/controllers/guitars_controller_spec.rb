@@ -63,10 +63,12 @@ RSpec.describe GuitarsController do #, type: :request do
     describe 'Post #create' do
       before(:example) do
         Seller.create(username: "test", password: "test123")
+        session[:seller_id] = Seller.last.id
       end
 
       after(:example) do
         Guitar.delete_all
+        session.clear
       end
 
       it 'successfully creates a guitar' do
@@ -86,6 +88,12 @@ RSpec.describe GuitarsController do #, type: :request do
         json_response = JSON.parse(response.body)
         expect(json_response[0]).to eq("Model can't be blank")
         expect(json_response[1]).to eq("Spec can't be blank")
+      end
+
+      it 'will not create a guitar if not logged in' do
+        post :create, params: {seller_id: 100, guitar: {model: '', spec: '', price: 5, condition: 'new', location: 'somewhere'}}
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to eq("You are not logged in")
       end
     end
 
