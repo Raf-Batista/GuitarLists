@@ -31,6 +31,7 @@ class SellersController < ApplicationController
     def create
       @seller = Seller.new(seller_params)
       if @seller.save
+        session[:seller_id] = @seller.id
         render json: @seller
       else
         render json: {errors: @seller.errors.full_messages}
