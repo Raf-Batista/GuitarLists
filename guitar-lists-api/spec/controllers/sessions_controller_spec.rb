@@ -27,9 +27,10 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "GET #destroy" do
-    it "returns http success" do
+    it "clears the session" do
+      session[:user_id] = 1
       get :destroy
-      expect(response).to have_http_status(:success)
+      expect(session[:user_id]).to eq(nil)
     end
   end
 
