@@ -75,6 +75,11 @@ RSpec.describe SellersController do
       expect(Seller.all.size).to eq(1)
     end
 
+    it 'logs in a seller after create ' do
+      post :create, params: { seller: {username: 'test', password: 'test123'} }
+      expect(session[:user_id]).to eq(1)
+    end
+
     it 'renders newly created seller ' do
       post :create, params: { seller: {username: 'test', password: 'test123'} }
       json_response = JSON.parse(response.body)
