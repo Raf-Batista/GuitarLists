@@ -40,8 +40,12 @@ class SellersController < ApplicationController
 
     def update
       @seller = Seller.find(params[:id])
-      @seller.update(seller_params)
-      render json: @seller
+      if @seller.id == session[:seller_id]
+        @seller.update(seller_params)
+        render json: @seller
+      else
+        render json: {errors: "You are not logged in"}
+      end
     end
 
     def destroy

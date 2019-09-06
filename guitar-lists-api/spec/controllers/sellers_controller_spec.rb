@@ -102,28 +102,34 @@ RSpec.describe SellersController do
   end
 
   describe 'Patch #update' do
+    before(:example) {session.clear}
+    
     it 'successfully updates username' do
       Seller.create(username: 'before', password: 'test123')
+      session[:seller_id] = Seller.first.id
       patch :update, params: { id: 1, seller: {username: 'after'} }
       expect(Seller.first.username).to eq('after')
     end
 
     it 'successfully updates password' do
       Seller.create(username: 'before', password: 'test123')
+      session[:seller_id] = Seller.first.id
       patch :update, params: { id: 1, seller: {password: 'password_has_changed'} }
       expect(Seller.first.authenticate('password_has_changed')).to be_truthy
     end
 
     it 'renders updated seller' do
       Seller.create(username: 'before', password: 'test123')
+      session[:seller_id] = Seller.first.id
       patch :update, params: { id: 1, seller: {username: 'after'} }
       json_response = JSON.parse(response.body)
       expect(json_response["username"]).to eq('after')
     end
 
-    it 'Will not updates username if logged in as a different seller' do
+    it 'Will not update username if not logged in as seller' do
       Seller.create(username: 'first', password: 'test123')
       Seller.create(username: 'second', password: 'test123')
+      session[:seller_id] = Seller.last.id
       patch :update, params: { id: 1, seller: {username: 'username_has_been_changed'} }, session: { user_id: 2 }
 
       json_response = JSON.parse(response.body)
