@@ -25,7 +25,9 @@ class GuitarsController < ApplicationController
 
   def update
     @guitar = Guitar.find(params[:id])
-    if @guitar.update(guitar_params)
+    if @guitar.seller_id != session[:seller_id]
+        render json: {errors: 'You are not logged in'} and return
+    elsif @guitar.update(guitar_params)
       render json: @guitar
     else
       render json: {errors: @guitar.errors.full_messages}

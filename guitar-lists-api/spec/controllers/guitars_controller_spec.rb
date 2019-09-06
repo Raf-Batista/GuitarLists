@@ -110,7 +110,6 @@ RSpec.describe GuitarsController do #, type: :request do
         session.clear
       end
 
-
       it 'successfully updates a guitar' do
         patch :update, params: { seller_id: 1, id: 1, guitar: {model: 'after_update'} }
         expect(Guitar.first.model).to eq('after_update')
@@ -132,6 +131,13 @@ RSpec.describe GuitarsController do #, type: :request do
         patch :update, params: { seller_id: 1, id: 1, guitar: {model: ''} }
         json_response = JSON.parse(response.body)
         expect(json_response["errors"][0]).to eq("Model can't be blank")
+      end
+
+      it 'will not update if not logged in as the seller of the guitar' do
+        session[:seller_id] = 100
+        patch :update, params: { seller_id: 1, id: 1, guitar: {model: ''} }
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to eq("You are not logged in")
       end
     end
 
