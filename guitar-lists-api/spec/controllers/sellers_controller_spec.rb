@@ -116,6 +116,16 @@ RSpec.describe SellersController do
       expect(json_response["username"]).to eq('after')
     end
 
+    it 'Will not updates username if logged in as a different seller' do
+      Seller.create(username: 'first', password: 'test123')
+      Seller.create(username: 'second', password: 'test123')
+      patch :update, params: { id: 1, seller: {username: 'username_has_been_changed'} }, session: { user_id: 2 }
+
+      json_response = JSON.parse(response.body)
+      expect(Seller.first.username).to eq('first')
+      expect(json_response["errors"]).to eq('You are not logged in')
+    end
+
   end
 
   describe 'Delete #destroy' do

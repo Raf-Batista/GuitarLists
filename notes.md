@@ -79,11 +79,11 @@ Guitar
   Update
   Delete
 
+  Create login route
+  login seller when creating  an account
+  allow seller to update and delete if logged in as seller
 
-
-write tests for Guitars #index request
-write tests for seller #show request
-write tests for Guitar #show request
+  allow guitar update and delete if logged in as owner of guitar
 
 
 
