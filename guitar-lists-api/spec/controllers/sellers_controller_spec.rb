@@ -85,13 +85,14 @@ RSpec.describe SellersController do
       Seller.create(username: 'test', password: 'test123')
       post :create, params: { seller: {username: 'test', password: 'test123'} }
       json_response = JSON.parse(response.body)
-      expect(json_response["errors"]["username"]).to eq('Username has already been taken. Please login or choose a different username')
+
+      expect(json_response["errors"][0]).to eq('Username has already been taken')
     end
 
     it 'renders password error message when password is too short' do
       post :create, params: { seller: {username: 'test', password: 'test'} }
       json_response = JSON.parse(response.body)
-      expect(json_response["errors"]["password"]).to eq('Password should be 5 or more characters')
+      expect(json_response["errors"][0]).to eq('Password is too short (minimum is 5 characters)')
     end
   end
 

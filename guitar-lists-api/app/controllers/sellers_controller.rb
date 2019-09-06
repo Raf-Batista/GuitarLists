@@ -33,7 +33,7 @@ class SellersController < ApplicationController
       if @seller.save
         render json: @seller
       else
-        render json: {errors: @seller.errors.to_h} # return errors as a hash
+        render json: {errors: @seller.errors.full_messages}
       end
     end
 
