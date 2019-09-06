@@ -14,7 +14,7 @@ RSpec.describe SessionsController, type: :controller do
       get :create, params: {username: 'test', password: 'test123'}
       json_response = JSON.parse(response.body)
       expect(json_response["loggedIn"]).to eq(true)
-      expect(json_response["user_id"]).to eq(1)
+      expect(json_response["userId"]).to eq(1)
     end
 
     it "returns JSON with loggedIn false if user did not log in" do
