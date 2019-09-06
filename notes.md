@@ -79,11 +79,7 @@ Guitar
   Update
   Delete
 
-  Create login route
-  login seller when creating  an account
-  allow seller to update and delete if logged in as seller
-
-  allow guitar update and delete if logged in as owner of guitar
+Refactor controllers 
 
 
 
