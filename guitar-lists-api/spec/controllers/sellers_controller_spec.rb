@@ -77,7 +77,7 @@ RSpec.describe SellersController do
 
     it 'logs in a seller after create ' do
       post :create, params: { seller: {username: 'test', password: 'test123'} }
-      expect(session[:user_id]).to eq(1)
+      expect(session[:seller_id]).to eq(1)
     end
 
     it 'renders newly created seller ' do
