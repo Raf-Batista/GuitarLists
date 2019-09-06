@@ -119,4 +119,23 @@ RSpec.describe GuitarsController do #, type: :request do
         expect(json_response["errors"][0]).to eq("Model can't be blank")
       end
     end
+
+    describe 'Deletes guitar' do
+
+      it 'can successfully delete a guitar' do
+        seller = Seller.create(username: "test", password: "test123")
+        seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
+        delete :destroy, params: { id: 1 }
+        expect(Guitar.all.size).to eq(0)
+      end
+
+      it "renders an error when deleting a guitar that doesn't exist" do
+        seller = Seller.create(username: "test", password: "test123")
+        seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
+        delete :destroy, params: { id: 100 }
+        expect(Guitar.all.size).to eq(1)
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to eq("There was an error")
+      end
+    end
 end
