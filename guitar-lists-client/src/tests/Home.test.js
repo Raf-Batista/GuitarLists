@@ -16,10 +16,10 @@ describe('renders home page correctly', () => {
 	});
 
 	await page.goto('http://localhost:3001/');
-	await page.waitForSelector('.App-title');
+	await page.waitForSelector('.title');
 
 	const html = await page.$eval('.title', e => e.innerHTML);
-	expect(html).toBe('Welcome to GuitarLists!');
+	expect(html).toBe('Welcome to GuitarLists');
 
 	browser.close();
   }, 16000);
