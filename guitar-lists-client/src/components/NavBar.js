@@ -7,6 +7,9 @@ class NavBar extends Component {
         <NavLink exact activeClassName = 'active-link' className = 'home' to='/'>
           Home
         </NavLink>
+        <NavLink exact activeClassName = 'active-link' className = 'about' to='/about'>
+          About
+        </NavLink>
       </div>
     )
   }
