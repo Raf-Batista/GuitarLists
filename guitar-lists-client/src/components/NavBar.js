@@ -4,21 +4,22 @@ import { NavLink, withRouter } from 'react-router-dom';
 class NavBar extends Component {
   render(){
     return(
-      <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <React.Fragment>
+        <nav class="navbar navbar-dark bg-dark ">
         <NavLink exact activeClassName = 'active-link' className = 'home navbar-brand' to='/'>
           <i class="fas fa-guitar"></i>
           GuitarLists
         </NavLink>
-        <ul class="navbar-nav mr-auto">
-          <li>
-            <NavLink exact activeClassName = 'active-link' className = 'about' to='/about'>
+          <div class="nav mr-auto">
+            <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
-          </li>
-        </ul>
+            <NavLink exact activeClassName = 'active-link' className = 'login nav-link' to='/login'>
+              Login
+            </NavLink>
+            </div>
         </nav>
-      </div>
+      </React.Fragment>
     )
   }
 }
