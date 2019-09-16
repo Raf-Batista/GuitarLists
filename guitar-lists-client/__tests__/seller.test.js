@@ -15,8 +15,8 @@ describe(
 
     it('should sign up a Users', async () => {
       await page.waitFor('.signup')
-      await page.type('input.username', 'test')
-      await page.type('input.password', 'test')
+      await page.type('input[name=username]', 'test')
+      await page.type('input[name=password]', 'test123')
       await page.click('submit')
 
       let text = await page.evaluate(() => document.body.textContent)
@@ -26,11 +26,23 @@ describe(
 
     it('should redirect to the sellers page', async () => {
       await page.waitFor('.signup')
-      await page.type('input.username', 'test')
-      await page.type('input.password', 'test')
+      await page.type('input[name=username]', 'test')
+      await page.type('input[name=password]', 'test123')
       await page.click('submit')
 
       expect(page.url).toMatch('http://localhost:3001/sellers/1')
+
+    })
+
+    it('should login a Users', async () => {
+      await page.waitFor('.login')
+      await page.click('.login')
+      await page.type('input[name=username]', 'test')
+      await page.type('input[name=password]', 'test123')
+      await page.click('input[type=submit]')
+
+      let text = await page.evaluate(() => document.body.textContent)
+      expect(text).toContain('Welcome test')
 
     })
   },
