@@ -24,7 +24,7 @@ describe(
 
     })
 
-    it('should redirect to the sellers page', async () => {
+    it('should redirect to the sellers page after signing up', async () => {
       await page.waitFor('.signup')
       await page.type('input[name=username]', 'test')
       await page.type('input[name=password]', 'test123')
