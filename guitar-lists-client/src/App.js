@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import Home from './components/Home';
 import About from './components/About'
 import Session from './components/Session'
+import SellersContainer from './containers/SellersContainer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/about' component={About}/>
         <Route exact path='/login' component={Session}/>
       </Switch>
+      <SellersContainer />
     </div>
   );
 }
