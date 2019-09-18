@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'redux'
+import { connect } from 'react-redux'
 import fetchGuitars from '../actions/fetchGuitars';
 
-class GuitarsContainer {
+class GuitarsContainer extends Component {
   constructor(props) {
     super(props)
   }
@@ -17,7 +17,7 @@ class GuitarsContainer {
 }
 
 const mapStateToProps = (state) => {
-  return { guitars: state }
+  return { guitars: state.guitars }
 }
 
 export default connect(mapStateToProps, { fetchGuitars })(GuitarsContainer)

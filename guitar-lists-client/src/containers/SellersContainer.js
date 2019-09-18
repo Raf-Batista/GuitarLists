@@ -12,14 +12,14 @@ class SellersContainer extends Component {
 
   render(){
     return(
-      <p>hey</p>
+      <p></p>
     )
 
   }
 }
 
 const mapStateToProps = (state) => {
-  return { sellers: state }
+  return { sellers: state.sellers }
 }
 
 export default connect(mapStateToProps, { fetchSellers })(SellersContainer)

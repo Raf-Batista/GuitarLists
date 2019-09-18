@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :sellers do
     resources :guitars
   end
+  resources :guitars, only: [:index]
 end
