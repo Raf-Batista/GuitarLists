@@ -6,6 +6,7 @@ import Home from './components/Home';
 import About from './components/About'
 import Session from './components/Session'
 import SellersContainer from './containers/SellersContainer';
+import GuitarsContainer from './containers/GuitarsContainer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path='/login' component={Session}/>
       </Switch>
       <SellersContainer />
+      <GuitarsContainer />
     </div>
   );
 }

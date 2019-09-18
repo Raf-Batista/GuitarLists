@@ -22,4 +22,4 @@ const mapStateToProps = (state) => {
   return { sellers: state }
 }
 
-export default connect(mapStateToProps, {fetchSellers})(SellersContainer)
+export default connect(mapStateToProps, { fetchSellers })(SellersContainer)
