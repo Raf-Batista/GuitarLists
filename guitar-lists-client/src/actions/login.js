@@ -15,6 +15,7 @@ const login = (userInfo) => {
       }
 
     })
+    .catch(error => console.log(error))
   }
 }
 
