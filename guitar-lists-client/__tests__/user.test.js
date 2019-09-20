@@ -13,11 +13,24 @@ describe(
       await page.close()
     })
 
-    it('should sign up a Users', async () => {
+    it('should sign up a User', async () => {
       await page.waitFor('.signup')
       await page.type('input[name=username]', 'test')
       await page.type('input[name=password]', 'test123')
-      await page.click('submit')
+      await page.click('input[type=submit')
+      await page.setRequestInterception(true);
+      page.on('request', request => {
+          if (request.url === 'http://localhost:3001/users') {
+              request.respond({
+                  content: 'application/json',
+                  headers: {"Access-Control-Allow-Origin": "*"},
+                  body: JSON.stringify({user: {username: 'test', password: 'password'}})
+              });
+          }
+          else {
+              request.continue();
+          }
+      });
 
       let text = await page.evaluate(() => document.body.textContent)
       expect(text).toContain('Welcome test')

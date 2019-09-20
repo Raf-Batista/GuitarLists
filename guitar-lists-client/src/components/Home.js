@@ -30,7 +30,7 @@ class Home extends Component {
         <h1>Welcome to GuitarLists</h1>
         <div>
           <h2>Sign Up</h2>
-          <form onSubmit={this.handleOnSubmit}>
+          <form onSubmit={this.handleOnSubmit} className="signup">
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" value={ this.state.username } onChange={this.handleOnChange}/>
 
