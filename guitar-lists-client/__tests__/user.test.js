@@ -17,7 +17,7 @@ describe(
       await page.waitFor('.signup')
       await page.type('input[name=username]', 'test')
       await page.type('input[name=password]', 'test123')
-      await page.click('input[type=submit')
+      await page.click('input[type=submit]')
       await page.setRequestInterception(true);
       page.on('request', request => {
           if (request.url === 'http://localhost:3001/users') {
