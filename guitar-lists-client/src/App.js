@@ -8,7 +8,8 @@ import Session from './components/Session'
 import UsersContainer from './containers/UsersContainer';
 import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
-import signup from './actions/signup'
+import signup from './actions/signup';
+import login from './actions/login';
 
 class App extends Component {
   render(){
@@ -18,7 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={routeProps => <Home session={this.props.session} signup = {this.props.signup} {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/login' component={Session}/>
+          <Route exact path='/login' render={routeProps => <Session session={this.props.session} login = {this.props.login} {...routeProps}/>}/>/>
         </Switch>
         <UsersContainer />
         <GuitarsContainer />
@@ -31,4 +32,4 @@ const mapStateToProps = (state) => {
   return {session: state.session}
 }
 
-export default connect(mapStateToProps, {signup})(App);
+export default connect(mapStateToProps, {signup, login})(App);
