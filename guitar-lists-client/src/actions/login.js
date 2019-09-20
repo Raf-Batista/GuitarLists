@@ -1,6 +1,6 @@
 const login = (userInfo) => {
   return dispatch => {
-    return fetch('http://localhost:3001/login', {
+    return fetch('http://localhost:3000/login', {
       method: 'POST',
       body: JSON.stringify(userInfo),
       headers:{
@@ -8,6 +8,7 @@ const login = (userInfo) => {
       }
     }).then(response => response.json())
     .then(data => {
+      console.log(data)
       if(data.email){
         dispatch({type: 'LOGIN', payload: data})
       } else {

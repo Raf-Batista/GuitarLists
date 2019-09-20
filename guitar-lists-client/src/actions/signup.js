@@ -2,7 +2,7 @@ const signup = (userInfo) => {
   return dispatch => {
     return fetch('http://localhost:3000/users', {
       method: 'POST',
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify({user: userInfo}),
       headers:{
         'Content-Type': 'application/json'
       }

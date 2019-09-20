@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = { email: '', password: '' }
+    this.state = {email: '', password: '' }
+
   }
 
   handleOnChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
- }
+  }
 
   handleOnSubmit = (event) => {
    event.preventDefault()
+   console.log(this.state)
    this.props.signup(this.state)
    .then(userInfo => {
 
