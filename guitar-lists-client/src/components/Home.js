@@ -27,9 +27,7 @@ class Home extends Component {
      password: ''
    })
  }
-
-
-
+ 
   render(){
     return(
       <div>
