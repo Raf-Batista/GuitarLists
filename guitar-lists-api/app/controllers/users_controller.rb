@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         render json: @user
       else
-        render json: {errors: @user.errors.full_messages}
+        render json: { errors: @user.errors.full_messages }
       end
     end
 

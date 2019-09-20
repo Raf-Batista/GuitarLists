@@ -1,6 +1,6 @@
 const signup = (userInfo) => {
   return dispatch => {
-    return fetch('http://localhost:3001/login', {
+    return fetch('http://localhost:3000/users', {
       method: 'POST',
       body: JSON.stringify(userInfo),
       headers:{
@@ -10,6 +10,7 @@ const signup = (userInfo) => {
     .then(data => {
       console.log(data)
     })
+    .catch(error => console.log(error))
   }
 }
 
