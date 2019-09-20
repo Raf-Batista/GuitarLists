@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import sellers from './sellers';
+import users from './users';
 import guitars from './guitars';
 
 const rootReducer =  combineReducers({
-  sellers,
+  users,
   guitars
 });
 

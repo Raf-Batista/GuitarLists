@@ -1,10 +1,10 @@
-const sellers = (state = [], action) => {
+const users = (state = [], action) => {
   switch(action.type) {
-    case 'ADD_SELLERS':
+    case 'ADD_USERS':
       return action.payload
     default:
       return state
   }
 }
 
-export default sellers
+export default users

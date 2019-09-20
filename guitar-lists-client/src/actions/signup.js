@@ -1,4 +1,4 @@
-const login = (userInfo) => {
+const signup = (userInfo) => {
   return dispatch => {
     return fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -13,4 +13,4 @@ const login = (userInfo) => {
   }
 }
 
-export default login
+export default signup

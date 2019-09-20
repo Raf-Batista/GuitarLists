@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import fetchSellers from '../actions/fetchSellers';
+import fetchUsers from '../actions/fetchUsers';
 
-class SellersContainer extends Component {
+class UsersContainer extends Component {
   constructor(props) {
     super(props)
   }
   componentDidMount(){
-    this.props.fetchSellers()
+    this.props.fetchUsers()
   }
 
   render(){
@@ -19,7 +19,7 @@ class SellersContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { sellers: state.sellers }
+  return { users: state.users }
 }
 
-export default connect(mapStateToProps, { fetchSellers })(SellersContainer)
+export default connect(mapStateToProps, { fetchUsers })(UsersContainer)
