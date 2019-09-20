@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import signup from '../actions/signup'
 
 class Home extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class Home extends Component {
      password: ''
    })
  }
- 
+
   render(){
     return(
       <div>

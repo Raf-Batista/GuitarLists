@@ -8,6 +8,7 @@ import Session from './components/Session'
 import UsersContainer from './containers/UsersContainer';
 import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
+import signup from '../actions/signup'
 
 class App extends Component {
   render(){
@@ -15,7 +16,7 @@ class App extends Component {
       <div>
       <NavBar />
         <Switch>
-          <Route exact path='/' render={routeProps => <Home session={this.props.session} {...routeProps}/>}/>
+          <Route exact path='/' render={routeProps => <Home session={this.props.session} signup = {this.props.signup}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/login' component={Session}/>
         </Switch>
@@ -30,4 +31,4 @@ const mapStateToProps = (state) => {
   return {session: state.session}
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {signup})(App);
