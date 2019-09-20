@@ -1,7 +1,7 @@
-const sessions = (state = {}, action) => {
+const session = (state = {}, action) => {
   switch(action.type) {
     case 'LOGIN':
-      return {user: action.payload}
+      return action.payload
     case 'LOGOUT':
         return {}
     default:
@@ -9,4 +9,4 @@ const sessions = (state = {}, action) => {
   }
 }
 
-export default sessions
+export default session

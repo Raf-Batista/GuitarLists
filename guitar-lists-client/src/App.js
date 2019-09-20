@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar'
@@ -7,20 +7,27 @@ import About from './components/About'
 import Session from './components/Session'
 import UsersContainer from './containers/UsersContainer';
 import GuitarsContainer from './containers/GuitarsContainer';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div>
-    <NavBar />
-      <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/about' component={About}/>
-        <Route exact path='/login' component={Session}/>
-      </Switch>
-      <UsersContainer />
-      <GuitarsContainer />
-    </div>
-  );
+class App extends Component {
+  render(){
+    return (
+      <div>
+      <NavBar />
+        <Switch>
+          <Route exact path='/' render={routeProps => <Home session={this.props.session} {...routeProps}/>}/>
+          <Route exact path='/about' component={About}/>
+          <Route exact path='/login' component={Session}/>
+        </Switch>
+        <UsersContainer />
+        <GuitarsContainer />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {session: state.session}
+}
+
+export default connect(mapStateToProps)(App);
