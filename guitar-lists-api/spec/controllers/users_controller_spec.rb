@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe SellersController do
+RSpec.describe UsersController do
 
     describe 'Get #index' do
-      let!(:sellers) do
+      let!(:users) do
         3.times do |index|
-          seller = Seller.create(username: "test#{index+1}", password: "test123")
-          seller.guitars.build(model: "test-model#{index+1}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
-          seller.guitars.build(model: "test-model#{index+10}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+          user = User.create(username: "test#{index+1}", password: "test123")
+          user.guitars.build(model: "test-model#{index+1}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+          user.guitars.build(model: "test-model#{index+10}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
         end
       end
 
@@ -17,7 +17,7 @@ RSpec.describe SellersController do
         expect(response).to have_http_status(:success)
       end
 
-      it 'should return the correct number of sellers' do
+      it 'should return the correct number of users' do
         json_response = JSON.parse(response.body)
         expect(json_response.size).to eq(3)
       end
@@ -39,31 +39,31 @@ RSpec.describe SellersController do
   end
 
   describe 'Get #show' do
-    let!(:seller) do
-      seller = Seller.create(username: "test", password: "test123")
-      seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
-      seller.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+    let!(:user) do
+      user = User.create(username: "test", password: "test123")
+      user.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+      user.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
     end
 
     it 'returns HTTP success' do
-       get :show, params: {id: Seller.first.id}
+       get :show, params: {id: User.first.id}
       expect(response).to have_http_status(:success)
     end
 
     it 'does not return created_at and updated_at' do
-      get :show, params: {id: Seller.first.id}
+      get :show, params: {id: User.first.id}
       json_response = JSON.parse(response.body)
       expect(json_response.keys).to match(["id", "username", "guitars"])
     end
 
     it 'returns an array of guitars' do
-      get :show, params: {id: Seller.first.id}
+      get :show, params: {id: User.first.id}
       json_response = JSON.parse(response.body)
       expect(json_response["guitars"].class).to eq(Array)
     end
 
     it 'returns an correct number of guitars' do
-      get :show, params: {id: Seller.first.id}
+      get :show, params: {id: User.first.id}
       json_response = JSON.parse(response.body)
       expect(json_response["guitars"].size).to eq(2)
     end
@@ -71,31 +71,31 @@ RSpec.describe SellersController do
 
   describe 'Post #create' do
     it 'successfully creates a seller ' do
-      post :create, params: { seller: {username: 'test', password: 'test123'} }
-      expect(Seller.all.size).to eq(1)
+      post :create, params: { user: {username: 'test', password: 'test123'} }
+      expect(User.all.size).to eq(1)
     end
 
-    it 'logs in a seller after create ' do
-      post :create, params: { seller: {username: 'test', password: 'test123'} }
-      expect(session[:seller_id]).to eq(1)
+    it 'logs in a user after create ' do
+      post :create, params: { user: {username: 'test', password: 'test123'} }
+      expect(session[:user_id]).to eq(1)
     end
 
-    it 'renders newly created seller ' do
-      post :create, params: { seller: {username: 'test', password: 'test123'} }
+    it 'renders newly created user ' do
+      post :create, params: { user: {username: 'test', password: 'test123'} }
       json_response = JSON.parse(response.body)
       expect(json_response["username"]).to eq('test')
     end
 
-    it 'renders user error message when creating seller that exists' do
-      Seller.create(username: 'test', password: 'test123')
-      post :create, params: { seller: {username: 'test', password: 'test123'} }
+    it 'renders user error message when creating user that exists' do
+      User.create(username: 'test', password: 'test123')
+      post :create, params: { user: {username: 'test', password: 'test123'} }
       json_response = JSON.parse(response.body)
 
       expect(json_response["errors"][0]).to eq('Username has already been taken')
     end
 
     it 'renders password error message when password is too short' do
-      post :create, params: { seller: {username: 'test', password: 'test'} }
+      post :create, params: { user: {username: 'test', password: 'test'} }
       json_response = JSON.parse(response.body)
       expect(json_response["errors"][0]).to eq('Password is too short (minimum is 5 characters)')
     end
@@ -103,37 +103,37 @@ RSpec.describe SellersController do
 
   describe 'Patch #update' do
     before(:example) {session.clear}
-    
+
     it 'successfully updates username' do
-      Seller.create(username: 'before', password: 'test123')
-      session[:seller_id] = Seller.first.id
-      patch :update, params: { id: 1, seller: {username: 'after'} }
-      expect(Seller.first.username).to eq('after')
+      User.create(username: 'before', password: 'test123')
+      session[:user_id] = User.first.id
+      patch :update, params: { id: 1, user: {username: 'after'} }
+      expect(User.first.username).to eq('after')
     end
 
     it 'successfully updates password' do
-      Seller.create(username: 'before', password: 'test123')
-      session[:seller_id] = Seller.first.id
-      patch :update, params: { id: 1, seller: {password: 'password_has_changed'} }
-      expect(Seller.first.authenticate('password_has_changed')).to be_truthy
+      User.create(username: 'before', password: 'test123')
+      session[:user_id] = User.first.id
+      patch :update, params: { id: 1, user: {password: 'password_has_changed'} }
+      expect(User.first.authenticate('password_has_changed')).to be_truthy
     end
 
     it 'renders updated seller' do
-      Seller.create(username: 'before', password: 'test123')
-      session[:seller_id] = Seller.first.id
-      patch :update, params: { id: 1, seller: {username: 'after'} }
+      User.create(username: 'before', password: 'test123')
+      session[:user_id] = User.first.id
+      patch :update, params: { id: 1, user: {username: 'after'} }
       json_response = JSON.parse(response.body)
       expect(json_response["username"]).to eq('after')
     end
 
     it 'Will not update username if not logged in as seller' do
-      Seller.create(username: 'first', password: 'test123')
-      Seller.create(username: 'second', password: 'test123')
-      session[:seller_id] = Seller.last.id
-      patch :update, params: { id: 1, seller: {username: 'username_has_been_changed'} }, session: { user_id: 2 }
+      User.create(username: 'first', password: 'test123')
+      User.create(username: 'second', password: 'test123')
+      session[:user_id] = User.last.id
+      patch :update, params: { id: 1, user: {username: 'username_has_been_changed'} }, session: { user_id: 2 }
 
       json_response = JSON.parse(response.body)
-      expect(Seller.first.username).to eq('first')
+      expect(User.first.username).to eq('first')
       expect(json_response["errors"]).to eq('You are not logged in')
     end
 
@@ -141,19 +141,19 @@ RSpec.describe SellersController do
 
   describe 'Delete #destroy' do
     it 'successfully deletes a seller' do
-      Seller.create(username: 'test', password: 'test123')
+      User.create(username: 'test', password: 'test123')
       delete :destroy, params: {id: 1}
-      expect(Seller.all.size).to eq(0)
+      expect(User.all.size).to eq(0)
     end
 
     it 'renders a JSON message after deleting a seller' do
-      Seller.create(username: 'test', password: 'test123')
+      User.create(username: 'test', password: 'test123')
       delete :destroy, params: {id: 1}
       json_response = JSON.parse(response.body)
       expect(json_response["message"]).to eq('Your account has been deleted')
     end
     it "renders a JSON message when trying to delete seller that doesn't exist" do
-      Seller.delete_all
+      User.delete_all
       delete :destroy, params: {id: 1}
       json_response = JSON.parse(response.body)
       expect(json_response["message"]).to eq('There was an error')

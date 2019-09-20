@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
   def create
-    @seller = Seller.find_by(username: params[:username])
-    if @seller && @seller.authenticate(params[:password])
-      session[:seller_id] = @seller.id
-      render json: {loggedIn: true, sellerId: @seller.id}
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      render json: {loggedIn: true, userId: @user.id}
     else
       render json: {loggedIn: false, errors: "an error occured"}
     end

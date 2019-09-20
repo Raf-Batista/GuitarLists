@@ -10,11 +10,11 @@ class GuitarsController < ApplicationController
   end
 
   def create
-    if params[:seller_id].to_i != session[:seller_id]
+    if params[:user_id].to_i != session[:user_id]
       render json: {errors: 'You are not logged in'} and return
     else
       @guitar = Guitar.new(guitar_params)
-      @guitar.seller = Seller.find(params[:seller_id])
+      @guitar.user = User.find(params[:user_id])
     end
     if @guitar.save
       render json: @guitar
@@ -25,7 +25,7 @@ class GuitarsController < ApplicationController
 
   def update
     @guitar = Guitar.find(params[:id])
-    if @guitar.seller_id != session[:seller_id]
+    if @guitar.user_id != session[:user_id]
         render json: {errors: 'You are not logged in'} and return
     elsif @guitar.update(guitar_params)
       render json: @guitar

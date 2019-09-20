@@ -1,9 +1,9 @@
-class SellersController < ApplicationController
+class UsersController < ApplicationController
 
   def index
-    @sellers = Seller.all
+    @users = User.all
 
-    render json: @sellers.to_json(
+    render json: @users.to_json(
       include: {
         #JSON will return guitars that belong to sellers
         guitars: {
@@ -18,8 +18,8 @@ class SellersController < ApplicationController
   end
 
   def show
-    @seller = Seller.find(params[:id])
-    render json: @seller.to_json(
+    @user = User.find(params[:id])
+    render json: @user.to_json(
       include: {
         guitars: {
           except: [:created_at, :updated_at]
@@ -29,27 +29,27 @@ class SellersController < ApplicationController
   end
 
     def create
-      @seller = Seller.new(seller_params)
-      if @seller.save
-        session[:seller_id] = @seller.id
-        render json: @seller
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        render json: @user
       else
-        render json: {errors: @seller.errors.full_messages}
+        render json: {errors: @user.errors.full_messages}
       end
     end
 
     def update
-      @seller = Seller.find(params[:id])
-      if @seller.id == session[:seller_id]
-        @seller.update(seller_params)
-        render json: @seller
+      @user = User.find(params[:id])
+      if @user.id == session[:user_id]
+        @user.update(user_params)
+        render json: @user
       else
         render json: {errors: "You are not logged in"}
       end
     end
 
     def destroy
-      if Seller.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
+      if User.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
         render json: {message: 'Your account has been deleted'}
       else
         render json: {message: 'There was an error'}
@@ -58,7 +58,7 @@ class SellersController < ApplicationController
 
     private
 
-    def seller_params
-      params.require(:seller).permit(:username, :password)
+    def user_params
+      params.require(:user).permit(:username, :password)
     end
 end

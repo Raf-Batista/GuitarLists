@@ -1,5 +1,5 @@
 class Guitar < ApplicationRecord
-  belongs_to :seller
+  belongs_to :user
 
   validates :model, presence: true
   validates :spec, presence: true
