@@ -8,7 +8,7 @@ import Session from './components/Session'
 import UsersContainer from './containers/UsersContainer';
 import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
-import signup from '../actions/signup'
+import signup from './actions/signup'
 
 class App extends Component {
   render(){

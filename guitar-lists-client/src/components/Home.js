@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Home extends Component {
   constructor(props) {
@@ -49,4 +48,4 @@ class Home extends Component {
 }
 
 
-export default connect(null, {signup})(Home)
+export default Home
