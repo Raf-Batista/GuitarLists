@@ -8,7 +8,12 @@ const login = (userInfo) => {
       }
     }).then(response => response.json())
     .then(data => {
-      console.log(data)
+      if(data.email){
+        dispatch({type: 'LOGIN', payload: data})
+      } else {
+        return data.errors
+      }
+
     })
   }
 }

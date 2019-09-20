@@ -7,6 +7,14 @@ const signup = (userInfo) => {
         'Content-Type': 'application/json'
       }
     }).then(response => response.json())
+      .then(data => {
+        if(data.email){
+          dispatch({type: 'LOGIN', payload: data})
+        } else {
+          return data.errors
+        }
+
+      })
     .catch(error => console.log(error))
   }
 }
