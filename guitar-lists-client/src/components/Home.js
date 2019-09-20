@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import signup from '../actions/signup'
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props)
     this.state = { username: '', password: '' }
@@ -15,7 +16,8 @@ export default class Home extends Component {
 
   handleOnSubmit = (event) => {
    event.preventDefault()
-   
+   this.props.signup(this.state)
+
    this.setState({
      username: '',
      password: ''
@@ -42,3 +44,6 @@ export default class Home extends Component {
     )
   }
 }
+
+
+export default connect(null, {signup})(Home)
