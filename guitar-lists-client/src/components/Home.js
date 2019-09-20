@@ -17,12 +17,18 @@ class Home extends Component {
   handleOnSubmit = (event) => {
    event.preventDefault()
    this.props.signup(this.state)
+   .then(userInfo => {
+
+    console.log(userInfo)
+   })
 
    this.setState({
      username: '',
      password: ''
    })
  }
+
+
 
   render(){
     return(
