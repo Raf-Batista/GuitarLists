@@ -77,7 +77,8 @@ RSpec.describe UsersController do
 
     it 'logs in a user after create ' do
       post :create, params: { user: {email: 'test@email.com', username: 'test', password: 'test123'} }
-      expect(session[:user_id]).to eq(1)
+      json_response = JSON.parse(response.body)
+      expect(json_response["token"]).to be_truthy
     end
 
     it 'renders newly created user ' do
