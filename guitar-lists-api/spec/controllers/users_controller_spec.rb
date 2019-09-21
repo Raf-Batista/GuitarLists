@@ -43,6 +43,8 @@ RSpec.describe UsersController do
       user = User.create(email: "test@email.com", username: 'test', password: "test123")
       user.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       user.guitars.build(model: "test-model-2", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+      payload = {email: user.email, username: user.username}
+      @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
     end
 
     it 'returns HTTP success' do
@@ -102,38 +104,36 @@ RSpec.describe UsersController do
   end
 
   describe 'Patch #update' do
-    before(:example) {session.clear}
+    before(:example) do
+      @user = User.create(email: 'before@email.com', username: 'test', password: 'test123')
+      payload = {email: @user.email, username: @user.username}
+      @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
+    end
 
     it 'successfully updates username' do
-      User.create(email: 'before@email.com', username: 'test', password: 'test123')
-      session[:user_id] = User.first.id
-      patch :update, params: { id: 1, user: {email: 'after@email.com'} }
+      patch :update, params: { id: 1, user: {email: 'after@email.com'}, token: @token}
       expect(User.first.email).to eq('after@email.com')
     end
 
     it 'successfully updates password' do
       User.create(email: 'before@email.com', username: 'test', password: 'test123')
-      session[:user_id] = User.first.id
-      patch :update, params: { id: 1, user: {password: 'password_has_changed'} }
+      patch :update, params: { id: 1, user: {password: 'password_has_changed'}, token: @token }
       expect(User.first.authenticate('password_has_changed')).to be_truthy
     end
 
     it 'renders updated seller' do
       User.create(email: 'before@email.com', username: 'test', password: 'test123')
-      session[:user_id] = User.first.id
-      patch :update, params: { id: 1, user: {email: 'after@email.com'} }
+      patch :update, params: { id: 1, user: {email: 'after@email.com'}, token: @token }
       json_response = JSON.parse(response.body)
       expect(json_response["email"]).to eq('after@email.com')
     end
 
     it 'Will not update username if not logged in as seller' do
-      User.create(email: 'first@email.com', username: 'test', password: 'test123')
-      User.create(email: 'second@email.com', username: 'test2', password: 'test123')
-      session[:user_id] = User.last.id
-      patch :update, params: { id: 1, user: {email: 'username_has_been_changed'} }, session: { user_id: 2 }
+      User.create(email: 'not_allowed@email.com', username: 'test2', password: 'test123')
+      patch :update, params: { id: 2, user: {email: 'username_has_been_changed'} , token: @token }
 
       json_response = JSON.parse(response.body)
-      expect(User.first.email).to eq('first@email.com')
+      expect(User.first.email).to eq('before@email.com')
       expect(json_response["errors"]).to eq('You are not logged in')
     end
 

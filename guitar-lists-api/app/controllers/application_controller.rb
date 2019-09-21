@@ -8,4 +8,18 @@ class ApplicationController < ActionController::API
 
     token
   end
+
+  def verify(user, token)
+    if !token
+      return false
+    end
+    
+    decoded_token = JWT.decode token, ENV["HMAC_SECRET"], true, { algorithm: 'HS256' }
+
+    user["email"] == decoded_token[0]["email"] &&
+    user["username"] == decoded_token[0]["username"] ?
+    true :
+    false
+
+  end
 end
