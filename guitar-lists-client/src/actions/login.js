@@ -8,11 +8,11 @@ const login = (userInfo) => {
       }
     }).then(response => response.json())
     .then(data => {
-      console.log(data)
-      if(data.email){
-        dispatch({type: 'LOGIN', payload: data})
+      if(data.token){
+        localStorage.setItem('token', data.token)
+        dispatch({type: 'LOGIN', payload: data.email})
       } else {
-        return data.errors
+        return alert('invalid credentials')
       }
 
     })

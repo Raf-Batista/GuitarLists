@@ -1,11 +1,15 @@
+require 'jwt'
+
 class SessionsController < ApplicationController
+
   def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      render json: {loggedIn: true, userId: @user.id}
+      payload = {email: @user.email}
+      token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
+      render json: {email: @user.email, token: token}
     else
-      render json: {loggedIn: false, errors: "an error occured"}
+      render json: {error: "Invalid credentials"}
     end
   end
 
