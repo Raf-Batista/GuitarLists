@@ -18,13 +18,4 @@ RSpec.describe SessionsController, type: :controller do
       expect(json_response["errors"]).to be_truthy
     end
   end
-
-  describe "GET #destroy" do
-    it "clears the session" do
-      session[:user_id] = 1
-      get :destroy
-      expect(session[:user_id]).to eq(nil)
-    end
-  end
-
 end
