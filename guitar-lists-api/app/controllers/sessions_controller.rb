@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
       render json: {email: @user.email, token: token}
     else
-      render json: {error: "Invalid credentials"}
+      render json: {errors: "Invalid credentials"}
     end
   end
 

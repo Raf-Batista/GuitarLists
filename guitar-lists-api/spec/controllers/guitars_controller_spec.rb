@@ -4,7 +4,7 @@ RSpec.describe GuitarsController do #, type: :request do
     describe 'Get #index' do
       let!(:users) do
         3.times do |index|
-          user = User.create(email: "test#{index+1}@email.com", password: "test123")
+          user = User.create(email: "test#{index+1}@email.com", username: 'test', password: "test123")
           user.guitars.build(model: "test-model#{index+1}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
           user.guitars.build(model: "test-model#{index+10}", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
         end
@@ -34,7 +34,7 @@ RSpec.describe GuitarsController do #, type: :request do
 
     describe 'Get #show' do
       let!(:guitar) do
-        seller = User.create(email: "test@email.com", password: "test123")
+        seller = User.create(email: "test@email.com", username: 'test', password: "test123")
         seller.guitars.build(model: "test-model-1", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       end
 
@@ -62,7 +62,7 @@ RSpec.describe GuitarsController do #, type: :request do
 
     describe 'Post #create' do
       before(:example) do
-        User.create(email: "test@email.com", password: "test123")
+        User.create(email: "test@email.com", username: 'test', password: "test123")
         session[:user_id] = User.last.id
       end
 
@@ -100,7 +100,7 @@ RSpec.describe GuitarsController do #, type: :request do
     describe 'Patch #update' do
 
       before(:example) do
-        seller = User.create(email: "test@email.com", password: "test123")
+        seller = User.create(email: "test@email.com", username: 'test', password: "test123")
         seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
         session[:user_id] = User.last.id
       end

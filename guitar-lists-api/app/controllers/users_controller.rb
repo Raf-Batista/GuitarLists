@@ -31,8 +31,7 @@ class UsersController < ApplicationController
     def create
       @user = User.new(user_params)
       if @user.save
-        session[:user_id] = @user.id
-        render json: {email: @user.email}
+        render json: {user: {email: @user.email, username: @user.username}}
       else
         render json: { errors: @user.errors.full_messages }
       end
@@ -59,6 +58,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :username, :password)
     end
 end
