@@ -106,12 +106,12 @@ RSpec.describe UsersController do
   describe 'Patch #update' do
     before(:example) do
       @user = User.create(email: 'before@email.com', username: 'test', password: 'test123')
-      payload = {email: @user.email, username: @user.username}
+      payload = {id: @user.id, email: @user.email, username: @user.username}
       @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
     end
 
     it 'successfully updates username' do
-      patch :update, params: { id: 1, user: {email: 'after@email.com'}, token: @token}
+      patch :update, params: { id: @user.id, user: {email: 'after@email.com'}, token: @token}
       expect(User.first.email).to eq('after@email.com')
     end
 
@@ -140,23 +140,36 @@ RSpec.describe UsersController do
   end
 
   describe 'Delete #destroy' do
-    it 'successfully deletes a seller' do
+    before(:example) do
+      @user = User.create(email: 'test@email.com', username: 'test', password: 'test123')
+      payload = {id: @user.id, email: @user.email, username: @user.username}
+      @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
+    end
+
+    it 'successfully deletes a user' do
+      User.create(email: 'test@email.com', username: 'test', password: 'test123')
+      delete :destroy, params: {id: 1, token: @token}
+      expect(User.all.size).to eq(0)
+    end
+
+    it 'does not delete another user' do
       User.create(email: 'test@email.com', username: 'test', password: 'test123')
       delete :destroy, params: {id: 1}
-      expect(User.all.size).to eq(0)
+      expect(User.all.size).to eq(1)
     end
 
     it 'renders a JSON message after deleting a seller' do
       User.create(email: 'test@email.com', username: 'test', password: 'test123')
-      delete :destroy, params: {id: 1}
+      delete :destroy, params: {id: 1, token: @token}
       json_response = JSON.parse(response.body)
       expect(json_response["message"]).to eq('Your account has been deleted')
     end
+
     it "renders a JSON message when trying to delete seller that doesn't exist" do
       User.delete_all
       delete :destroy, params: {id: 1}
       json_response = JSON.parse(response.body)
-      expect(json_response["message"]).to eq('There was an error')
+      expect(json_response["errors"]).to eq('There was an error')
     end
   end
 end

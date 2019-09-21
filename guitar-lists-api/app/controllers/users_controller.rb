@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
     def update
       @user = User.find(params[:id])
-      if verify(@user, params["token"])
+      if verify(@user.id, params[:token])
         @user.update(user_params)
         render json: @user
       else
@@ -49,10 +49,11 @@ class UsersController < ApplicationController
     end
 
     def destroy
+      if !verify(params[:id], params[:token])
+        render json: {errors: 'There was an error'} and return
+      end
       if User.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
         render json: {message: 'Your account has been deleted'}
-      else
-        render json: {message: 'There was an error'}
       end
     end
 
