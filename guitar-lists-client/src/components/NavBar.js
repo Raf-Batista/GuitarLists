@@ -2,19 +2,44 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
 class NavBar extends Component {
-  handleOnClick = () => {
+  constructor(props){
+    super(props)
+    this.state = {email: '', password: ''}
+  }
+  handleOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleLogin = (event) => {
+    event.preventDefault()
+    this.props.login(this.state, this.props.location, this.props.history)
+  }
+
+  handleLogout = () => {
     this.props.logout(this.props.location, this.props.history)
   }
   render(){
     let button;
     if(this.props.currentUser.username){
-      button = <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' onClick={this.handleOnClick} to="#">
+      button = <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' onClick={this.handleLogout} to="#">
         Logout
       </NavLink>
     } else {
-      button = <NavLink exact activeClassName = 'active-link' className = 'login nav-link' to='/login'>
-        Login
-      </NavLink>
+      button =
+      <div className = "loginForm">
+      <label>Login</label>
+        <form onSubmit={this.handleLogin} >
+          <label name="email">Email</label>
+          <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
+
+          <label name="password">Password </label>
+          <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
+
+          <input type="submit" />
+        </form>
+      </div>
     }
     return(
       <React.Fragment>

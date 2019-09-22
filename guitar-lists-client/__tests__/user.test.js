@@ -19,18 +19,8 @@ describe(
       await page.type('input[name=username]', 'test')
       await page.type('input[name=password]', 'password')
       await page.click('input[type=submit]')
-      await page.setRequestInterception(true);
-      page.on('request', request => {
-          if (request.url === 'http://localhost:3001/users') {
-              request.respond({
-                  content: 'application/json',
-                  headers: {"Access-Control-Allow-Origin": "*"},
-                  body: JSON.stringify({email:'test@email.com', username: 'test'})
-              });
-          }
-          else {
-              request.continue();
-          }
+
+
       });
 
       let text = await page.evaluate(() => document.body.textContent)
