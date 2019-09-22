@@ -21,6 +21,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
+          <Route exact path='/guitars' component={GuitarsContainer}/>
         </Switch>
         <UsersContainer />
         <GuitarsContainer />
