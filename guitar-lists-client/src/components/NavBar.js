@@ -40,10 +40,10 @@ class NavBar extends Component {
       <div className = "loginForm">
         <form onSubmit={this.handleLogin} >
           <label name="email">Email</label>
-          <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
+          <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
 
           <label name="password">Password </label>
-          <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
+          <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
 
           <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
         </form>
