@@ -1,4 +1,4 @@
-const login = (userInfo) => {
+const login = (userInfo, history) => {
   return dispatch => {
     return fetch('http://localhost:3000/login', {
       method: 'POST',
@@ -10,6 +10,7 @@ const login = (userInfo) => {
     .then(data => {
       if(data.token){
         localStorage.setItem('token', data.token)
+        history.push('/')
         dispatch({type: 'LOGIN', payload: {id: data.id, email: data.email, username: data.username}})
       } else {
         return alert('invalid credentials')

@@ -15,12 +15,11 @@ class Login extends Component {
 
   handleOnSubmit = (event) => {
     event.preventDefault()
-    this.props.login(this.state)
+    this.props.login(this.state, this.props.history)
   }
+
   render(){
-    if(this.props.currentUser.username){
-      this.props.history.push('/')
-    }
+
     return(
       <div>
         <form onSubmit={this.handleOnSubmit} className="loginForm">
