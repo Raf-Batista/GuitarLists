@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar'
 import Home from './components/Home';
 import About from './components/About'
-import Login from './components/Login'
 import UsersContainer from './containers/UsersContainer';
 import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
@@ -22,7 +21,6 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/login' render={routeProps => <Login currentUser={this.props.currentUser} login = {this.props.login} {...routeProps}/>}/>/>
         </Switch>
         <UsersContainer />
         <GuitarsContainer />
