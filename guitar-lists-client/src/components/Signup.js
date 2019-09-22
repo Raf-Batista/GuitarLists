@@ -15,10 +15,11 @@ class Home extends Component {
 
   handleOnSubmit = (event) => {
    event.preventDefault()
-   console.log(this.state)
    this.props.signup(this.state)
    .then(userInfo => {
+     if(!userInfo.errors){
 
+     }
     console.log(userInfo)
    })
 

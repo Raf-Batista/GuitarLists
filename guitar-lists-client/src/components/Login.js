@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Session extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {email: '', password: ''}
@@ -15,12 +16,11 @@ export default class Session extends Component {
   handleOnSubmit = (event) => {
     event.preventDefault()
     this.props.login(this.state)
-    this.setState({
-      email: '',
-      password: ''
-    })
   }
   render(){
+    if(this.props.currentUser.username){
+      this.props.history.push('/')
+    }
     return(
       <div>
         <form onSubmit={this.handleOnSubmit}>
@@ -36,3 +36,5 @@ export default class Session extends Component {
     )
   }
 }
+
+export default withRouter(Login)
