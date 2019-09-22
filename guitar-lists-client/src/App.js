@@ -10,8 +10,13 @@ import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
 import signup from './actions/signup';
 import login from './actions/login';
+import session from './actions/session';
 
 class App extends Component {
+  componentDidMount () {
+    this.props.session()
+  }
+
   render(){
     return (
       <div>
@@ -32,4 +37,4 @@ const mapStateToProps = (state) => {
   return {session: state.session}
 }
 
-export default connect(mapStateToProps, {signup, login})(App);
+export default connect(mapStateToProps, {signup, login, session})(App);
