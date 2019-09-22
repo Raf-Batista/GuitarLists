@@ -15,7 +15,7 @@ class Home extends Component {
       greeting =  <Signup signup={this.props.signup}/>
     }
     return(
-      <div>
+      <div id="home">
         <h1>Welcome to GuitarLists</h1>
         {greeting}
       </div>

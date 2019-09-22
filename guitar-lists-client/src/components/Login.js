@@ -23,7 +23,7 @@ class Login extends Component {
     }
     return(
       <div>
-        <form onSubmit={this.handleOnSubmit}>
+        <form onSubmit={this.handleOnSubmit} className="loginForm">
           <label name="email">Email</label>
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
 
