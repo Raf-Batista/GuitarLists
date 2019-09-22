@@ -22,6 +22,12 @@ describe(
       await page.waitFor('#home')
     })
 
+    it('should logout', async () => {
+      await page.waitFor('#root > div > nav > div > a.logout.nav-link')
+      await page.click('#root > div > nav > div > a.logout.nav-link')
+      await page.waitFor('#home')
+    })
+
 
   },
   timeout
