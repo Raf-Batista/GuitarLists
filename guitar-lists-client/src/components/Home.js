@@ -3,7 +3,10 @@ import Signup from './Signup';
 
 class Home extends Component {
   componentDidMount () {
-    this.props.loginCurrentUser()
+    if(!this.props.currentUser.username){
+      this.props.loginCurrentUser()
+    }
+
   }
 
   render(){
