@@ -10,6 +10,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def token
+    decoded_token = JWT.decode params[:token], ENV["HMAC_SECRET"], true, { algorithm: 'HS256' }
+
+    render json: {email: decoded_token.first["email"], username: decoded_token.first["username"], id: decoded_token.first["id"]}
+  end
+
   def destroy
     session.clear
   end
