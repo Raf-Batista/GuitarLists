@@ -24,8 +24,6 @@ class App extends Component {
           <Route exact path='/users' component={UsersContainer}/>
           <Route exact path='/guitars' component={GuitarsContainer}/>
         </Switch>
-        <UsersContainer />
-        <GuitarsContainer />
       </div>
     );
   }

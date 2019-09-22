@@ -11,7 +11,7 @@ class GuitarsContainer extends Component {
   }
   render(){
     return(
-      <p></p>
+      <p>Guitars Container</p>
     )
   }
 }

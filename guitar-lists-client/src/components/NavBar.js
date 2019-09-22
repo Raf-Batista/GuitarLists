@@ -25,7 +25,7 @@ class NavBar extends Component {
     this.props.logout(this.props.location, this.props.history)
   }
   render(){
-
+    /* Renders Login form or Logout Button */
     let button;
     if(this.props.currentUser.username){
       button =
@@ -53,14 +53,25 @@ class NavBar extends Component {
     return(
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark ">
+        {/* Guitar Logo */}
         <NavLink exact activeClassName = 'active-link' className = 'home navbar-brand' to='/'>
           <i className="fas fa-guitar"></i>
           GuitarLists
         </NavLink>
+
           <div className="nav mr-auto">
+            <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/guitars'>
+              Guitars
+            </NavLink>
+
+            <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/users'>
+              Sellers
+            </NavLink>
+
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
+
             {button}
             </div>
         </nav>
