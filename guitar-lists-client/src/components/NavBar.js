@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
 class NavBar extends Component {
+  handleOnClick = () => {
+    this.props.logout()
+  }
   render(){
     let button;
-    if(this.props.currentUser){
-      button =
-      <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' to='/logout'>
-          Logout
+    if(this.props.currentUser.username){
+      button = <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' onClick={this.props.logout} to="#">
+        Logout
       </NavLink>
     } else {
       button = <NavLink exact activeClassName = 'active-link' className = 'login nav-link' to='/login'>

@@ -9,7 +9,7 @@ class Home extends Component {
   render(){
     let greeting = '';
 
-    if(this.props.currentUser) {
+    if(this.props.currentUser.username) {
       greeting = <p>Welcome {this.props.currentUser.username}</p>
     } else {
       greeting =  <Signup signup={this.props.signup}/>

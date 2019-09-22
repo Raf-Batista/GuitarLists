@@ -11,13 +11,14 @@ import { connect } from 'react-redux';
 import signup from './actions/signup';
 import login from './actions/login';
 import loginCurrentUser from './actions/loginCurrentUser';
+import logout from './actions/logout';
 
 class App extends Component {
 
   render(){
     return (
       <div>
-      <NavBar currentUser={this.props.currentUser}/>
+      <NavBar currentUser={this.props.currentUser} logout={this.props.logout}/>
         <Switch>
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
@@ -34,4 +35,4 @@ const mapStateToProps = (state) => {
   return {currentUser: state.currentUser}
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout})(App);
