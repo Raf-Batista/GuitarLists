@@ -18,25 +18,11 @@ describe(
       await page.type('input[name=email]', 'test@email.com')
       await page.type('input[name=username]', 'test')
       await page.type('input[name=password]', 'password')
-      await page.click('input[type=submit]')
-
-
-      });
-
-      let text = await page.evaluate(() => document.body.textContent)
-      expect(text).toContain('Welcome test')
-
+      await page.click('button[type=submit]')
+      await page.waitFor('#home')
     })
 
-    it('should redirect to the sellers page after signing up', async () => {
-      await page.waitFor('.signup')
-      await page.type('input[name=username]', 'test')
-      await page.type('input[name=password]', 'test123')
-      await page.click('submit')
 
-      expect(page.url).toMatch('http://localhost:3001/sellers/1')
-
-    })
   },
   timeout
 )
