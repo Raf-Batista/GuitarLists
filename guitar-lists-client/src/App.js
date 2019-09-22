@@ -17,7 +17,7 @@ class App extends Component {
   render(){
     return (
       <div>
-      <NavBar />
+      <NavBar currentUser={this.props.currentUser}/>
         <Switch>
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
