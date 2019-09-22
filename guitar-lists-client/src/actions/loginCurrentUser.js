@@ -1,4 +1,4 @@
-const session = () => {
+const loginCurrentUser = () => {
   return dispatch => {
     return fetch('http://localhost:3000/session', {
       method: 'POST',
@@ -19,4 +19,4 @@ const session = () => {
   }
 }
 
-export default session
+export default loginCurrentUser

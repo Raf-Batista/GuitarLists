@@ -9,7 +9,6 @@ class UsersContainer extends Component {
   componentDidMount(){
     this.props.fetchUsers()
   }
-
   render(){
     return(
       <p></p>
