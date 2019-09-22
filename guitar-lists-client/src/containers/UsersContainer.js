@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Users from '../components/Users';
 import { connect } from 'react-redux'
 import fetchUsers from '../actions/fetchUsers';
 
@@ -11,7 +12,7 @@ class UsersContainer extends Component {
   }
   render(){
     return(
-      <p></p>
+      <p><Users users={this.props.users}/></p>
     )
 
   }
