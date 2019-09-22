@@ -28,9 +28,13 @@ class NavBar extends Component {
 
     let button;
     if(this.props.currentUser.username){
-      button = <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' onClick={this.handleLogout} to="#">
-        Logout
-      </NavLink>
+      button =
+      <button
+      name="logout"
+      className = 'logout btn btn-primary'
+      onClick={this.handleLogout}>
+      Logout
+      </button>
     } else {
       button =
       <div className = "loginForm">
