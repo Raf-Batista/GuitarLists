@@ -62,8 +62,9 @@ RSpec.describe GuitarsController do #, type: :request do
 
     describe 'Post #create' do
       before(:example) do
-        User.create(email: "test@email.com", username: 'test', password: "test123")
-        session[:user_id] = User.last.id
+        @user = User.create(email: "test@email.com", username: 'test', password: "test123")
+        payload = {id: @user.id, email: @user.email, username: @user.username}
+        @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
       end
 
       after(:example) do
@@ -72,11 +73,12 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'successfully creates a guitar' do
-        post :create, params: {user_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        post :create, params: {user_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}, token: @token}
         expect(User.first.guitars.first).to eq(Guitar.first)
       end
+
       it 'Renders JSON data after creating a guitar' do
-        post :create, params: {user_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}}
+        post :create, params: {user_id: 1, guitar: {model: 'new_guitar', spec: 'new_spec', price: 5, condition: 'new', location: 'somewhere'}, token: @token}
 
         json_response = JSON.parse(response.body)
         expect(json_response["model"]).to eq("new_guitar")
@@ -84,14 +86,20 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'Renders error message when creating guitar unsuccessful' do
-        post :create, params: { user_id: 1, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
+        post :create, params: { user_id: 1, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' }, token: @token }
         json_response = JSON.parse(response.body)
         expect(json_response[0]).to eq("Model can't be blank")
         expect(json_response[1]).to eq("Spec can't be blank")
       end
 
       it 'will not create a guitar if not logged in' do
-        post :create, params: { user_id: 100, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
+        post :create, params: { user_id: 1, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to eq("You are not logged in")
+      end
+
+      it 'will not create a guitar with invalid token' do
+        post :create, params: { user_id: 2, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
         json_response = JSON.parse(response.body)
         expect(json_response["errors"]).to eq("You are not logged in")
       end

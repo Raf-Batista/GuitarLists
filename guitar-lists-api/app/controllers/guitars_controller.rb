@@ -10,7 +10,7 @@ class GuitarsController < ApplicationController
   end
 
   def create
-    if params[:user_id].to_i != session[:user_id]
+    if !verify(params[:user_id], params[:token])
       render json: {errors: 'You are not logged in'} and return
     else
       @guitar = Guitar.new(guitar_params)
