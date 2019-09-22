@@ -17,7 +17,7 @@ class App extends Component {
       <div>
       <NavBar />
         <Switch>
-          <Route exact path='/' render={routeProps => <Home session={this.props.session} signup = {this.props.signup} {...routeProps}/>}/>
+          <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/login' render={routeProps => <Session session={this.props.session} login = {this.props.login} {...routeProps}/>}/>/>
         </Switch>

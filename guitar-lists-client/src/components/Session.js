@@ -24,14 +24,12 @@ export default class Session extends Component {
     return(
       <div>
         <form onSubmit={this.handleOnSubmit}>
-          <label name="email">
-            Email
+          <label name="email">Email</label>
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
-          </label>
-          <label name="password">
-            Password
+
+          <label name="password">Password </label>
           <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
-          </label>
+
           <input type="submit" />
         </form>
       </div>

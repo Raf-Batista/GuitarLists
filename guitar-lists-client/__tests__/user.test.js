@@ -15,8 +15,9 @@ describe(
 
     it('should sign up a User', async () => {
       await page.waitFor('.signup')
+      await page.type('input[name=email]', 'test@email.com')
       await page.type('input[name=username]', 'test')
-      await page.type('input[name=password]', 'test123')
+      await page.type('input[name=password]', 'password')
       await page.click('input[type=submit]')
       await page.setRequestInterception(true);
       page.on('request', request => {

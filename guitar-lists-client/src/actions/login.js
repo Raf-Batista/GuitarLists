@@ -10,7 +10,7 @@ const login = (userInfo) => {
     .then(data => {
       if(data.token){
         localStorage.setItem('token', data.token)
-        dispatch({type: 'LOGIN', payload: data.email})
+        dispatch({type: 'LOGIN', payload: {id: data.id, email: data.email, username: data.username}})
       } else {
         return alert('invalid credentials')
       }
