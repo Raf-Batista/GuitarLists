@@ -15,12 +15,17 @@ class NavBar extends Component {
   handleLogin = (event) => {
     event.preventDefault()
     this.props.login(this.state, this.props.location, this.props.history)
+    this.setState({
+      email: '',
+      password: ''
+    })
   }
 
   handleLogout = () => {
     this.props.logout(this.props.location, this.props.history)
   }
   render(){
+
     let button;
     if(this.props.currentUser.username){
       button = <NavLink exact activeClassName = 'active-link' className = 'logout nav-link' onClick={this.handleLogout} to="#">
@@ -29,7 +34,6 @@ class NavBar extends Component {
     } else {
       button =
       <div className = "loginForm">
-      <label>Login</label>
         <form onSubmit={this.handleLogin} >
           <label name="email">Email</label>
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
@@ -37,10 +41,11 @@ class NavBar extends Component {
           <label name="password">Password </label>
           <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
 
-          <input type="submit" />
+          <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
         </form>
       </div>
     }
+
     return(
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark ">
