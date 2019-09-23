@@ -8,8 +8,10 @@ class Guitars extends Component {
     return(
       <div id="guitars">
         {this.props.guitars.map(guitar => {
-            url=`guitars/${guitar.id}`
-            return <NavLink key={guitar.id} exact 
+            url=`/users/${guitar.user_id}/guitars/${guitar.id}`
+            return <NavLink
+            key={guitar.id} 
+            exact
             activeClassName = 'active-link'
             className = 'home navbar-brand'
             to={{pathname: url, state: {guitar: guitar}}}>

@@ -9,7 +9,14 @@ class Users extends Component {
       <div id="users">
         {this.props.users.map(user => {
           url=`users/${user.id}`
-          return <NavLink key={user.id} exact activeClassName = 'active-link' className = 'home navbar-brand' to={{pathname: url, state: {user: user}}}>{user.username}</NavLink>
+            return <NavLink
+            key={user.id}
+            exact
+            activeClassName = 'active-link'
+            className = 'home navbar-brand'
+            to={{pathname: url, state: {user: user}}}>
+            {user.username}
+          </NavLink>
         })}
       </div>
     )
