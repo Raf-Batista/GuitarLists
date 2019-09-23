@@ -19,13 +19,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user.to_json(
-      include: {
-        guitars: {
-          except: [:created_at, :updated_at]
-          }
-        },
-        except: [:created_at, :updated_at, :password_digest])
+    if @user
+      render json: @user.to_json(
+        include: {
+          guitars: {
+            except: [:created_at, :updated_at]
+            }
+          },
+          except: [:created_at, :updated_at, :password_digest])
+    else
+        render json: {errors: 'User not found'}
+    end
   end
 
     def create

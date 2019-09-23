@@ -5,7 +5,6 @@ class GuitarsController < ApplicationController
   end
 
   def show
-#    binding.pry
     @guitar = Guitar.find_by(id: params[:id])
     if @guitar && @guitar.user_id == params[:user_id].to_i
       username = @guitar.user.username
