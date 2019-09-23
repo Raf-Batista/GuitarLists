@@ -6,7 +6,7 @@ class GuitarForm extends Component {
     return(
       <div>
         {
-          this.props.currentUser.username ?
+          this.props.currentUser.username ? // if user logged in, render form, if not they are redirected to home page
           <div id="guitarForm">
             Guitar Form
           </div> :

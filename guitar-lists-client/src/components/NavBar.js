@@ -27,7 +27,7 @@ class NavBar extends Component {
   render(){
     /* Renders Login form or Logout Button */
     let button;
-    if(this.props.currentUser.username){
+    this.props.currentUser.username ?
       button =
       <button
       name="logout"
@@ -35,7 +35,7 @@ class NavBar extends Component {
       onClick={this.handleLogout}>
       Logout
       </button>
-    } else {
+          :
       button =
       <div className = "loginForm">
         <form onSubmit={this.handleLogin} >
@@ -48,7 +48,7 @@ class NavBar extends Component {
           <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
         </form>
       </div>
-    }
+    
 
     return(
       <React.Fragment>
