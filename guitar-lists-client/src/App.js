@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import Home from './components/Home';
 import About from './components/About'
 import UsersContainer from './containers/UsersContainer';
+import User from './components/User';
 import GuitarsContainer from './containers/GuitarsContainer';
 import { connect } from 'react-redux';
 import signup from './actions/signup';
@@ -22,6 +23,7 @@ class App extends Component {
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/users' component={UsersContainer}/>
+          <Route exact path='/users/:id' component={User}/>
           <Route exact path='/guitars' component={GuitarsContainer}/>
         </Switch>
       </div>
