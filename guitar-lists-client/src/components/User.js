@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom';
 
 class User extends Component {
   constructor(props) {
@@ -7,6 +7,8 @@ class User extends Component {
     this.state = {user: ''}
   }
   componentDidMount(){
+    // If user did not come to this page via link, fetch user data
+    // based on id in params, if user came via link there will user data already
     if(!this.props.location.state) {
       const id = this.props.match.params.id
       fetch(`http://localhost:3000/users/${id}`)
@@ -15,7 +17,7 @@ class User extends Component {
         this.setState({
           user: user
         })
-      })
+      }).catch(error => console.log(error))
     } else {
       this.setState({
         user: this.props.location.state.user
@@ -35,7 +37,6 @@ class User extends Component {
           <NavLink
             key={guitar.id}
             activeClassName = 'active-link'
-            className = 'home navbar-brand'
             exact
             to={{pathname: url, state: {guitar: guitar}}}>
             {guitar.model}  ${guitar.price}

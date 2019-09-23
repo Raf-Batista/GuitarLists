@@ -6,7 +6,9 @@ class GuitarsController < ApplicationController
 
   def show
     @guitar = Guitar.find(params[:id])
-    render json: @guitar.to_json(except: [:created_at, :updated_at])
+    username = @guitar.user.username
+    render json: {user: username, model: @guitar.model, spec: @guitar.spec, price: @guitar.price, location: @guitar.location, condition: @guitar.condition, user_id: @guitar.user_id},
+      status: 200
   end
 
   def create
