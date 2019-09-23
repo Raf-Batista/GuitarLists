@@ -16,13 +16,6 @@ class Home extends Component {
   handleOnSubmit = (event) => {
    event.preventDefault()
    this.props.signup(this.state)
-   .then(userInfo => {
-     if(!userInfo.errors){
-
-     }
-    console.log(userInfo)
-   })
-
    this.setState({
      email: '',
      password: ''
