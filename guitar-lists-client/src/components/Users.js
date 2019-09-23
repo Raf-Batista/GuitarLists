@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import User from '../components/User';
+import { NavLink } from 'react-router-dom';
 
 class Users extends Component {
 
