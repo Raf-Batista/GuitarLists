@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Guitars from '../components/Guitars'
 
 class GuitarsContainer extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class GuitarsContainer extends Component {
 
   render(){
     return(
-      <p>Guitars Container</p>
+      <Guitars guitars={this.props.guitars} />
     )
   }
 }
