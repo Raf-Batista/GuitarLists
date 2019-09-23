@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 class User extends Component {
   constructor(props) {
     super(props)
-    this.state = {user: ''}
+    this.state = {user: '', errors: ''}
   }
   componentDidMount(){
     // If user did not come to this page via link, fetch user data
@@ -13,9 +13,10 @@ class User extends Component {
       const id = this.props.match.params.id
       fetch(`http://localhost:3000/users/${id}`)
       .then(response => response.json())
-      .then(user => {
+      .then(data => {
         this.setState({
-          user: user
+          user: data,
+          errors: data.errors
         })
       }).catch(error => console.log(error))
     } else {
@@ -29,22 +30,29 @@ class User extends Component {
 
     return(
       <div>
-      <p>{this.state.user.username}</p>
-      {/* render can run before component did mount, the conditional prevents Typerror undefined */}
-      {this.state.user.guitars && this.state.user.guitars.map(guitar => {
-        const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
-        return <div>
-          <NavLink
-            key={guitar.id}
-            activeClassName = 'active-link'
-            exact
-            to={{pathname: url, state: {guitar: guitar}}}>
-            {guitar.model}  ${guitar.price}
-          </NavLink>
-
-
+        <div>
+          {this.state.errors ? <p>{this.state.errors}</p> :
+          <div>
+          <p>{this.state.user.username}</p>
+          {/* Render can run before component did mount, the conditional prevents Typerror undefined
+              This code will run if fetch returns a user, will render errors above if could not fin user
+          */}
+          {this.state.user.guitars && this.state.user.guitars.map(guitar => {
+            const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
+            return <div>
+              <NavLink
+                key={guitar.id}
+                activeClassName = 'active-link'
+                exact
+                to={{pathname: url, state: {guitar: guitar}}}>
+                {guitar.model}  ${guitar.price}
+              </NavLink>
+            </div>
+          })}
+          </div>
+         }
         </div>
-      })}
+
       </div>
     )
   }
