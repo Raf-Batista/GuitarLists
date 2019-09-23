@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
 class User extends Component {
-  componentDidMount(){
-//    const { handle } = this.props.match.params
-  }
 
   render(){
+    const user = this.props.location.state.user
+
     return(
       <div>
-        <p>{console.log(this.props)}</p>
+        <p>{user.username}</p>
       </div>
     )
   }
