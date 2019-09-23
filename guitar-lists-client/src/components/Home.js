@@ -16,9 +16,7 @@ class Home extends Component {
       <div id="home">
         {
           this.props.currentUser.username ? // if a user is found in redux state, redirect them to User's show page, else render signup form
-          <Redirect
-            to={{pathname: `/users/${this.props.currentUser.id}`}}>
-            </Redirect> :
+          <Redirect to={{pathname: `/users/${this.props.currentUser.id}`}} /> :
           <div>
             <h1>Welcome to GuitarLists</h1>
             <Signup signup={this.props.signup}/>
