@@ -17,7 +17,6 @@ class Guitar extends Component {
       fetch(`http://localhost:3000/users/${userId}/guitars/${guitarId}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({
           guitar: data,
           errors: data.errors
@@ -36,11 +35,7 @@ class Guitar extends Component {
         {
           this.state.errors ? <p>{this.state.errors}</p> : // render errors if guitar not found or doesn't belong to user
           <div>
-          <NavLink
-            to={{pathname: `/users/${this.state.guitar.user}`}}>
-            {this.state.guitar.user}
-            </NavLink>
-          <p>{this.state.guitar.model}</p>
+            <p>{this.state.guitar.model}</p>
           </div>
         }
       </div>
