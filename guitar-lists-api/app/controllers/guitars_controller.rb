@@ -5,10 +5,21 @@ class GuitarsController < ApplicationController
   end
 
   def show
-    @guitar = Guitar.find(params[:id])
-    username = @guitar.user.username
-    render json: {user: username, model: @guitar.model, spec: @guitar.spec, price: @guitar.price, location: @guitar.location, condition: @guitar.condition, user_id: @guitar.user_id},
-      status: 200
+#    binding.pry
+    @guitar = Guitar.find_by(id: params[:id])
+    if @guitar && @guitar.user_id == params[:user_id].to_i
+      username = @guitar.user.username
+      render json: {user: username,
+        model: @guitar.model,
+        spec: @guitar.spec,
+        price: @guitar.price,
+        location: @guitar.location,
+        condition: @guitar.condition,
+        user_id: @guitar.user_id},
+        status: 200
+    else
+      render json: {errors: 'Not Found'}
+    end
   end
 
   def create
