@@ -25,19 +25,21 @@ class NavBar extends Component {
     this.props.logout(this.props.location, this.props.history)
   }
   render(){
-    /* Renders Login form or Logout Button */
     let button;
-    this.props.currentUser.username ?
-      button =
-      <button
-      name="logout"
-      className = 'logout btn btn-primary'
-      onClick={this.handleLogout}>
-      Logout
-      </button>
-          :
-      button =
-      <div className = "loginForm">
+    let formButton;
+    if(this.props.currentUser.username) {
+      button = <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button>
+
+      formButton = <div><NavLink
+                      exact
+                      activeClassName='active-link'
+                      className = 'newGuitarForm nav-link'
+                      to={{pathname: `/users/${this.props.currentUser.id}/guitars/new`}}>
+                      Post
+                      </NavLink>
+                  </div>
+    } else {
+      button = <div className = "loginForm"> {/* render login form when logged in */}
         <form onSubmit={this.handleLogin} >
           <label name="email">Email</label>
           <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
@@ -48,8 +50,7 @@ class NavBar extends Component {
           <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
         </form>
       </div>
-    
-
+    }
     return(
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark ">
@@ -71,7 +72,7 @@ class NavBar extends Component {
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
-
+            {formButton}
             {button}
             </div>
         </nav>
