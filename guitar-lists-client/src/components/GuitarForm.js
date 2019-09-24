@@ -8,7 +8,19 @@ class GuitarForm extends Component {
         {
           this.props.currentUser.username ? // if user logged in, render form, if not they are redirected to home page
           <div id="guitarForm">
-            Guitar Form
+            <form>
+              <label>Model:</label>
+              <input type="text" />
+              <label>Spec:</label>
+              <input type="text" />
+              <label>Price:</label>
+              <input type="text" />
+              <label>Condition:</label>
+              <input type="text" />
+              <label>Location:</label>
+              <input type="text" />
+              <button type="submit">Post Guitar for sale</button>
+            </form>
           </div> :
           <Redirect to='/' />
         }
