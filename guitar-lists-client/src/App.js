@@ -21,6 +21,7 @@ class App extends Component {
   componentDidMount(){
     this.props.fetchUsers()
     this.props.fetchGuitars()
+    this.props.loginCurrentUser()
   }
 
   render(){

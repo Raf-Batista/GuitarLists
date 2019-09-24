@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class User extends Component {
   constructor(props) {
@@ -60,4 +61,4 @@ class User extends Component {
   }
 }
 
-export default withRouter(User)
+export default connect()(withRouter(User))

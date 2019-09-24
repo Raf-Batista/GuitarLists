@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import Signup from './Signup';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Home extends Component {
-  componentDidMount () {
-    if(!this.props.currentUser.username){
-      this.props.loginCurrentUser()
-    }
-
-  }
-
   render(){
-
     return(
       <div id="home">
         {
@@ -27,4 +20,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default connect()(Home)
