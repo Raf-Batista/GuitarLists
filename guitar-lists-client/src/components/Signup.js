@@ -7,13 +7,13 @@ class Home extends Component {
 
   }
 
-  handleOnChange = (event) => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleOnSubmit = (event) => {
+  handleSubmit = (event) => {
    event.preventDefault()
    this.props.signup(this.state)
    this.setState({
@@ -26,15 +26,15 @@ class Home extends Component {
     return(
       <div className="signup">
         <h2>Sign Up</h2>
-        <form onSubmit={this.handleOnSubmit} className="signup">
+        <form onSubmit={this.handleSubmit} className="signup">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" value={ this.state.email } onChange={ this.handleOnChange }/>
+          <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange }/>
 
           <label htmlFor="username">Username</label>
-          <input type="text" name="username" value={ this.state.username } onChange={ this.handleOnChange }/>
+          <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange }/>
 
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" value={ this.state.password } onChange={ this.handleOnChange }/>
+          <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange }/>
 
           <input type="submit" />
         </form>

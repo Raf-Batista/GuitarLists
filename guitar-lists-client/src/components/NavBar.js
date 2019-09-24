@@ -6,7 +6,7 @@ class NavBar extends Component {
     super(props)
     this.state = {email: '', password: ''}
   }
-  handleOnChange = (event) => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -43,10 +43,10 @@ class NavBar extends Component {
       loginForm = <div className = "loginForm"> {/* render login form when logged in */}
         <form onSubmit={this.handleLogin} >
           <label name="email">Email</label>
-          <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange}/>
+          <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
 
           <label name="password">Password </label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange}/>
+          <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
 
           <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
         </form>
