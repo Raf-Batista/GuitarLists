@@ -16,6 +16,7 @@ import logout from './actions/logout';
 import fetchUsers from './actions/fetchUsers';
 import fetchGuitars from './actions/fetchGuitars';
 import GuitarForm from './components/GuitarForm';
+import createGuitar from './actions/createGuitar';
 
 class App extends Component {
   componentDidMount(){
@@ -32,7 +33,7 @@ class App extends Component {
           <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars}{...routeProps}/>}/>
-          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser}{...routeProps}/>}/>
+          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId' component={Guitar}/>
           <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users}{...routeProps}/>}/>
           <Route exact path='/users/:id' component={User}/>
@@ -50,4 +51,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, fetchUsers, fetchGuitars})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, fetchUsers, fetchGuitars, createGuitar})(App);
