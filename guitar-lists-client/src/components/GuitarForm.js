@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class GuitarForm extends Component {
   constructor(props) {
@@ -8,7 +8,9 @@ class GuitarForm extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.createGuitar(this.state)
+//    console.log(this.props)
+    this.props.createGuitar(this.state, this.props.match.params.id, this.props.history)
+
     this.setState({
       model: '', spec: '',
       price: '',
@@ -49,4 +51,4 @@ class GuitarForm extends Component {
   }
 }
 
-export default GuitarForm
+export default withRouter(GuitarForm)
