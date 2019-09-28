@@ -69,7 +69,6 @@ RSpec.describe GuitarsController do #, type: :request do
 
       after(:example) do
         Guitar.delete_all
-        session.clear
       end
 
       it 'successfully creates a guitar' do
@@ -93,13 +92,13 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'will not create a guitar if not logged in' do
-        post :create, params: { user_id: 1, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
+        post :create, params: { user_id: 1, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' }}
         json_response = JSON.parse(response.body)
         expect(json_response["errors"]).to eq("You are not logged in")
       end
 
       it 'will not create a guitar with invalid token' do
-        post :create, params: { user_id: 2, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' } }
+        post :create, params: { user_id: 2, guitar: { model: '', spec: '', price: 5, condition: 'new', location: 'somewhere' }, token: @token }
         json_response = JSON.parse(response.body)
         expect(json_response["errors"]).to eq("You are not logged in")
       end

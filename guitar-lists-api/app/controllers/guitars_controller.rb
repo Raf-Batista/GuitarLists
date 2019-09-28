@@ -1,13 +1,13 @@
 class GuitarsController < ApplicationController
   def index
     @guitars = Guitar.all
-    render json: @guitars.to_json(except: [:created_at, :updated_at])
+    render json: @guitars.to_json(except: [:created_at, :updated_at]), status: 200
   end
 
   def show
     @guitar = Guitar.find_by(id: params[:id])
     if @guitar && @guitar.user_id == params[:user_id].to_i
-      render json: @guitar, status: 200
+      render json: @guitar.to_json(except: [:created_at, :updated_at]), status: 200
     else
       render json: {errors: 'Not Found'}
     end
@@ -18,6 +18,8 @@ class GuitarsController < ApplicationController
       @guitar = Guitar.new(guitar_params)
       @guitar.user = User.find(params[:user_id])
       @guitar.save ? render(json: @guitar) : render(json: @guitar.errors.full_messages)
+    else
+      render json: {errors: "You are not logged in"}
     end
   end
 
