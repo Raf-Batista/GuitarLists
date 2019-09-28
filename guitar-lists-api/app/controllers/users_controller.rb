@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     def create
       @user = User.new(user_params)
       if @user.save
+        UserMailer.welcome(@user).deliver_now
         token = login(@user)
         render json: {email: @user.email, username: @user.username, token: token}
       else
