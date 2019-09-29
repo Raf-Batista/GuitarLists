@@ -22,10 +22,5 @@ RSpec.describe User, type: :model do
 
       expect(user.valid?).to eq(false)
     end
-
-    it 'sends a welcome email after creating a user' do
-      user = User.create(email: 'first@email.com', password: 'abc123')
-      expect(ActionMailer::Base.deliveries.count).to eq(1)
-    end
   end
 end

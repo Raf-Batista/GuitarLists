@@ -77,6 +77,11 @@ RSpec.describe UsersController do
       expect(User.all.size).to eq(1)
     end
 
+    it 'sends a welcome email after creating a user' do
+      post :create, params: { user: {email: 'test@email.com', username: 'test', password: 'test123'} }
+      expect(ActionMailer::Base.deliveries.last.to[0]).to eq('test@email.com')
+    end
+
     it 'logs in a user after create ' do
       post :create, params: { user: {email: 'test@email.com', username: 'test', password: 'test123'} }
       json_response = JSON.parse(response.body)
