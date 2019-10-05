@@ -34,7 +34,7 @@ RSpec.describe UserMailer, type: :mailer do
       seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
       seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       message = "this is a test message"
-      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      UserMailer.message_user(user, message, seller, seller.guitars.last).deliver_now
       mail = ActionMailer::Base.deliveries.last
       expect(mail.subject).to eq("Message about #{seller.guitars.last.model}")
     end 
@@ -44,7 +44,7 @@ RSpec.describe UserMailer, type: :mailer do
       seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
       seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       message = "this is a test message"
-      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      UserMailer.message_user(user, message, seller, seller.guitars.last ).deliver_now
       mail = ActionMailer::Base.deliveries.last
       expect(mail.to[0]).to eq(seller.email)
     end 
@@ -54,7 +54,7 @@ RSpec.describe UserMailer, type: :mailer do
       seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
       seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       message = "this is a test message"
-      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      UserMailer.message_user(user, message, seller, seller.guitars.last ).deliver_now
       mail = ActionMailer::Base.deliveries.last
       expect(mail.from[0]).to eq(user.email)
     end 
@@ -65,7 +65,7 @@ RSpec.describe UserMailer, type: :mailer do
       seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
       seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
       message = "this is a test message"
-      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      UserMailer.message_user(user, message, seller, seller.guitars.last ).deliver_now
       mail = ActionMailer::Base.deliveries.last
       expect(mail.body.encoded).to eq(message)
     end 
