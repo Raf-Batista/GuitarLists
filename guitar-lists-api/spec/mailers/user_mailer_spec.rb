@@ -36,7 +36,7 @@ RSpec.describe UserMailer, type: :mailer do
       message = "this is a test message"
       UserMailer.message_user(user, message, seller, seller.guitars.last).deliver_now
       mail = ActionMailer::Base.deliveries.last
-      expect(mail.subject).to eq("Message about #{seller.guitars.last.model}")
+      expect(mail.subject).to eq("Message from #{user.email} about #{seller.guitars.last.model}")
     end 
 
     it "is sent to the user selling the guitar" do
@@ -67,7 +67,7 @@ RSpec.describe UserMailer, type: :mailer do
       message = "this is a test message"
       UserMailer.message_user(user, message, seller, seller.guitars.last ).deliver_now
       mail = ActionMailer::Base.deliveries.last
-      expect(mail.body.encoded).to eq(message)
+      expect(mail.body.encoded).to match(message)
     end 
   end 
 end

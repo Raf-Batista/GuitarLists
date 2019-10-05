@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
     @message = message
     @seller = seller 
     @guitar = guitar
-    mail(to: @seller.email, subject: "Message from #{@user.email} about #{@guitar.model}")
+    mail(from: @user.email, to: @seller.email, subject: "Message from #{@user.email} about #{@guitar.model}")
   end 
 end
