@@ -48,5 +48,26 @@ RSpec.describe UserMailer, type: :mailer do
       mail = ActionMailer::Base.deliveries.last
       expect(mail.to[0]).to eq(seller.email)
     end 
+
+    it "is sent from the user buying the guitar" do
+      user = User.create(email: 'buyer@example.com', username: 'buyer', password: 'password')
+      seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
+      seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+      message = "this is a test message"
+      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.from[0]).to eq(user.email)
+    end 
+
+
+    it "is is sent with the correct message" do
+      user = User.create(email: 'buyer@example.com', username: 'buyer', password: 'password')
+      seller = User.create(email: 'seller@example.com', username: 'seller', password: 'password')
+      seller.guitars.build(model: "test-model", spec: "test-specs", price: 5, condition: "new", location: "somewhere").save
+      message = "this is a test message"
+      UserMailer.message(user, message, seller, seller.guitars.last ).deliver_now
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.body.encoded).to eq(message)
+    end 
   end 
 end
