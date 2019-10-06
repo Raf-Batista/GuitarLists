@@ -17,6 +17,7 @@ import fetchUsers from './actions/fetchUsers';
 import fetchGuitars from './actions/fetchGuitars';
 import GuitarForm from './components/GuitarForm';
 import createGuitar from './actions/createGuitar';
+import GuitarEditForm from './components/GuitarEditForm';
 
 class App extends Component {
   componentDidMount(){
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path='/about' component={About}/>
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars}{...routeProps}/>}/>
           <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
+          <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm currentUser={this.props.currentUser} {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId' component={Guitar}/>
           <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users}{...routeProps}/>}/>
           <Route exact path='/users/:id' component={User}/>

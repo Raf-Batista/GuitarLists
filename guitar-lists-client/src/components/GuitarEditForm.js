@@ -7,7 +7,7 @@ class GuitarEditForm extends Component {
 
     render(){
         return(
-            GuitarEditForm
+            <p>GuitarEditForm</p>
         )
     }
 }
