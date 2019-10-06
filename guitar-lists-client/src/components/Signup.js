@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Home extends Component {
 
   handleSubmit = (event) => {
    event.preventDefault()
-   this.props.signup(this.state)
+   this.props.signup(this.state, this.props.history)
    this.setState({
      email: '',
      password: ''
@@ -44,4 +45,4 @@ class Home extends Component {
 }
 
 
-export default Home
+export default withRouter(Home)

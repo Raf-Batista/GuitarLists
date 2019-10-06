@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       if @user.save
         UserMailer.welcome(@user).deliver_now
         token = login(@user)
-        render json: {email: @user.email, username: @user.username, token: token}
+        render json: {email: @user.email, username: @user.username, token: token, id: @user.id}
       else
         render json: { errors: @user.errors.full_messages }
       end
