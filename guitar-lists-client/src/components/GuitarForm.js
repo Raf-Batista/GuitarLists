@@ -8,7 +8,6 @@ class GuitarForm extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-//    console.log(this.props)
     this.props.createGuitar(this.state, this.props.match.params.id, this.props.history)
 
     this.setState({

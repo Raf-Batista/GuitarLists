@@ -17,7 +17,7 @@ class GuitarsContainer extends Component {
   render(){
     const {query} = this.state;
     const lowercasedQuery = query.toLowerCase();
-    const filteredGuitars = this.props.guitars.filter(guitar => {
+    const filteredGuitars = this.props.guitars.filter(guitar => { 
       if(guitar.model.includes(lowercasedQuery)) {
         return guitar
       }
