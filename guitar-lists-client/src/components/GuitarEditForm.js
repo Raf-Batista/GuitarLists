@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter, Redirect } from 'react';
 
 class GuitarEditForm extends Component {
     constructor(props) {
         super(props)
+    }
+    componentDidMount() {
+        
     }
 
     render(){
@@ -12,4 +16,4 @@ class GuitarEditForm extends Component {
     }
 }
 
-export default GuitarEditForm 
+export default withRouter(GuitarEditForm) 
