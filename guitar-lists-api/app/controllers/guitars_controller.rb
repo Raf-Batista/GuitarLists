@@ -24,6 +24,7 @@ class GuitarsController < ApplicationController
   end
 
   def update
+    binding.pry
     @guitar = Guitar.find(params[:id])
     if @guitar.user_id != session[:user_id]
         render json: {errors: 'You are not logged in'} and return

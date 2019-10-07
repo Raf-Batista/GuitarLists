@@ -21,11 +21,16 @@ class GuitarEditForm extends Component {
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.editGuitar(this.state, this.props.history)
+    }
+
     render(){
         return(
             <div>
             {this.props.currentUser.username ?  
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label htmlFor="model" name="model">Model:</label>
                 <input type="text" name="model" value={this.state.guitar.model} onChange={this.handleChange}/>
 
