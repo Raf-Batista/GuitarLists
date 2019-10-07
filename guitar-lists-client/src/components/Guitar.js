@@ -28,6 +28,11 @@ class Guitar extends Component {
       })
     }
   }
+
+  handleClick = () => {
+    const {userId, guitarId} = this.props.match 
+    this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
+  }
   render(){
 
     return(
@@ -40,6 +45,7 @@ class Guitar extends Component {
             <p>{this.state.guitar.price}</p>
             <p>{this.state.guitar.condition}</p>
             <p>{this.state.guitar.location}</p>
+            <button onClick={this.handleClick}>Edit</button>
           </div>
         }
       </div>
