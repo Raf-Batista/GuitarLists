@@ -6,13 +6,20 @@ class GuitarEditForm extends Component {
         super(props)
     }
     componentDidMount() {
-        
+        const {userId, guitarId} = this.props.match.params
+        this.props.guitars.find(guitar => {
+            if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
+                console.log(guitar)
+                return guitar
+              }
+        })
     }
 
     render(){
         return(
             <div>
-            {this.props.currentUser.username ?  <p>GuitarEditForm</p> :
+            {this.props.currentUser.username ?  
+            <p>GuitarEditForm</p> :
                <Redirect to='/' />
             }
        </div>
