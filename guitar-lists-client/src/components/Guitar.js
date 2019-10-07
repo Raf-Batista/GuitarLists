@@ -45,7 +45,11 @@ class Guitar extends Component {
             <p>{this.state.guitar.price}</p>
             <p>{this.state.guitar.condition}</p>
             <p>{this.state.guitar.location}</p>
-            <button onClick={this.handleClick}>Edit</button>
+            {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
+              <button onClick={this.handleClick}>Edit</button> : 
+              null
+            }
+            
           </div>
         }
       </div>
