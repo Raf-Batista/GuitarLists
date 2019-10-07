@@ -12,10 +12,10 @@ class GuitarEditForm extends Component {
     render(){
         return(
             <div>
-                 {this.props.currentUser.username ?  <p>GuitarEditForm</p> :
-                    <Redirect to='/' />
-                 }
-            </div>
+            {this.props.currentUser.username ?  <p>GuitarEditForm</p> :
+               <Redirect to='/' />
+            }
+       </div>
         )
     }
 }
