@@ -15,7 +15,7 @@ class User extends Component {
     */
     if(!this.props.location.state) { // will run if props not found from NavLink
       const id = this.props.match.params.id
-      fetch(`http://localhost:3000/users/${id}`)
+      fetch(`http://localhost:3000/users/${id}`) // Tried to fetch from redux store but state was empty when going to this route from browser, maybe try moving fetchUsers() to UsersContainer
       .then(response => response.json())
       .then(data => {
         this.setState({
