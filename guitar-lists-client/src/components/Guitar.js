@@ -30,7 +30,7 @@ class Guitar extends Component {
   }
 
   handleClick = () => {
-    const {userId, guitarId} = this.props.match 
+    const {userId, guitarId} = this.props.match.params 
     this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
   }
   render(){
