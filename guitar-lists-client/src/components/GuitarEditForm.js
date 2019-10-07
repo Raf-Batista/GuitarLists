@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class GuitarEditForm extends Component {
     constructor(props) {
