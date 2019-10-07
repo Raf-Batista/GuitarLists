@@ -4,6 +4,12 @@ const guitars = (state = [], action) => {
       return action.payload
     case 'ADD_GUITAR':
       return [...state, action.payload]
+    case 'EDIT_GUITAR': 
+      return state.map(guitar => 
+          guitar.id === action.payload.id ? 
+            {guitar: action.payload} : 
+            guitar
+        ) 
     default:
       return state
   }
