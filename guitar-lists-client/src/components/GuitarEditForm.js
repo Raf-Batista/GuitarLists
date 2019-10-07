@@ -15,28 +15,34 @@ class GuitarEditForm extends Component {
         })
     }
 
+    handleChange = (event) => {
+        this.setState({
+            guitar: {...this.state.guitar, [event.target.name]: event.target.value}
+        })
+    }
+
     render(){
         return(
             <div>
             {this.props.currentUser.username ?  
             <form>
                 <label htmlFor="model" name="model">Model:</label>
-                <input type="text" name="model" value={this.state.guitar.model}/>
+                <input type="text" name="model" value={this.state.guitar.model} onChange={this.handleChange}/>
 
                 <label htmlFor="spec" name="spec">Spec:</label>
-                <input type="text" name="spec" value={this.state.guitar.spec}/>
+                <input type="text" name="spec" value={this.state.guitar.spec} onChange={this.handleChange}/>
 
 
                 <label htmlFor="price" name="price">Price:</label>
-                <input type="text" name="price" value={this.state.guitar.price}/>
+                <input type="text" name="price" value={this.state.guitar.price} onChange={this.handleChange}/>
 
 
                 <label htmlFor="condition" name="condition">Condition:</label>
-                <input type="text" name="condition" value={this.state.guitar.condition}/>
+                <input type="text" name="condition" value={this.state.guitar.condition} onChange={this.handleChange}/>
 
                  
                 <label htmlFor="location" name="location">Location:</label>
-                <input type="text" name="location" value={this.state.guitar.location}/>
+                <input type="text" name="location" value={this.state.guitar.location} onChange={this.handleChange}/>
 
                 <button type="submit">Edit Guitar</button>
             </form> :
