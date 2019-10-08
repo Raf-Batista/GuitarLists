@@ -107,9 +107,10 @@ RSpec.describe GuitarsController do #, type: :request do
     describe 'Patch #update' do
 
       before(:example) do
-        seller = User.create(email: "test@email.com", username: 'test', password: "test123")
-        seller.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
-        session[:user_id] = User.last.id
+        @user = User.create(email: "test@email.com", username: 'test', password: "test123")
+        @user.guitars.build(model: "before_model", spec: "before_spec", price: 5, condition: "new", location: "somewhere").save
+        payload = {id: @user.id, email: @user.email, username: @user.username}
+        @token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
       end
 
       after(:example) do
@@ -118,24 +119,24 @@ RSpec.describe GuitarsController do #, type: :request do
       end
 
       it 'successfully updates a guitar' do
-        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update'} }
+        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update'}, token: @token }
         expect(Guitar.first.model).to eq('after_update')
       end
 
       it 'successfully updates multiple attributes' do
-        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update', spec: 'after_spec'} }
+        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update', spec: 'after_spec'}, token: @token }
         expect(Guitar.first.model).to eq('after_update')
         expect(Guitar.first.spec).to eq('after_spec')
       end
 
       it 'renders JSON data after updating' do
-        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update'} }
+        patch :update, params: { user_id: 1, id: 1, guitar: {model: 'after_update'}, token: @token }
         json_response = JSON.parse(response.body)
         expect(json_response["model"]).to eq('after_update')
       end
 
       it "renders 'model can't be blank' error message" do
-        patch :update, params: { user_id: 1, id: 1, guitar: {model: ''} }
+        patch :update, params: { user_id: 1, id: 1, guitar: {model: ''}, token: @token }
         json_response = JSON.parse(response.body)
         expect(json_response["errors"][0]).to eq("Model can't be blank")
       end
