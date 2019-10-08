@@ -35,6 +35,7 @@ class GuitarsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     if Guitar.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
       render json: {message: 'Guitar was deleted'}
     else
