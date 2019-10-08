@@ -10,6 +10,10 @@ const guitars = (state = [], action) => {
             action.payload : 
             guitar
         ) 
+    case 'DELETE_GUITAR': 
+      return state.map(guitar => 
+          guitar.id !== action.payload.id 
+        ) 
     default:
       return state
   }
