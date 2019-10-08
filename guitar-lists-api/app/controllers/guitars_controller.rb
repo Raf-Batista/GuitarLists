@@ -34,8 +34,8 @@ class GuitarsController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(params[:user_id])
-    guitar = Guitar.find_by(params[:id])
+    user = User.find_by(id: params[:user_id])
+    guitar = Guitar.find_by(id: params[:id])
     if user.id == guitar.user_id 
       Guitar.delete(params[:id])
       render json: {message: 'Guitar was deleted'}
