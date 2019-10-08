@@ -10,8 +10,8 @@ const deleteGuitar = (userId, guitarId, history) => {
             }).then(response => response.json())
               .then(data => {
                 if(!data.errors){
-                  dispatch({type: 'EDIT_GUITAR', payload: data});
-                history.push(`/users/${data.user_id}/guitars/${data.id}`)
+                  dispatch({type: 'DELETE_GUITAR', payload: data});
+                history.push(`/users/${data.user_id}`)
                 } else {
                   return data.errors
                 }
