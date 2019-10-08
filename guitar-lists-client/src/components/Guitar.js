@@ -29,7 +29,7 @@ class Guitar extends Component {
     }
   }
 
-  handleClick = () => {
+  handleEdit = () => {
     const {userId, guitarId} = this.props.match.params 
     this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
   }
@@ -70,7 +70,9 @@ class Guitar extends Component {
             <p>{this.state.guitar.condition}</p>
             <p>{this.state.guitar.location}</p>
             {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
-              <button onClick={this.handleClick}>Edit</button> : 
+              <div>
+                <button onClick={this.handleEdit}>Edit</button>
+              </div> : 
               <form onSubmit={this.handleEmail}>
                 <label htmlFor="message" name="message">Message:</label>
                 <input type="text" name="message" onChange={this.handleChange} value={this.state.message} />
