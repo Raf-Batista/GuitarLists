@@ -36,7 +36,7 @@ class Guitar extends Component {
 
   handleDelete = (event) => {
     event.preventDefault()
-    this.props.deleteGuitar(this.props.currentUser, this.props.match.params.guitarId)
+    this.props.deleteGuitar(this.props.currentUser.id, this.props.match.params.guitarId, this.props.history)
   }
 
   handleChange = (event) => {
