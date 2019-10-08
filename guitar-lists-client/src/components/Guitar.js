@@ -34,6 +34,11 @@ class Guitar extends Component {
     this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
   }
 
+  handleDelete = (event) => {
+    event.preventDefault()
+    this.props.deleteGuitar(this.props.currentUser, this.props.match.params.guitarId)
+  }
+
   handleChange = (event) => {
     this.setState({
       message: event.target.value
@@ -42,20 +47,20 @@ class Guitar extends Component {
 
   handleEmail = (event) => {
     event.preventDefault() 
-    const seller = this.props.match.params.userId 
-    const guitar = this.state.guitar
-    const user = this.props.currentUser
-    const message = this.state.message
-
-    fetch('http://localhost:3000/message', {
-      method: 'POST',
-      body: JSON.stringify({message: this.state.message, seller: seller, guitar: guitar, user: user, token: localStorage.getItem('token')}),
-      headers:{
-        'Content-Type': 'application/json'
-      }
+    if(window.confirm('Send Email to this Seller?')) {
+      fetch('http://localhost:3000/message', {
+        method: 'POST',
+        body: JSON.stringify({message: this.state.message, seller: this.props.match.params.userId , guitar: this.state.guitar, user: this.props.currentUser, token: localStorage.getItem('token')}),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(console.log('success'))
+      .catch(errors => console.log(errors))
+    }
+    this.setState({
+      message: ''
     })
-    .then(console.log('success'))
-    .catch(errors => console.log(errors))
   }
 
   render(){
@@ -72,10 +77,11 @@ class Guitar extends Component {
             {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
               <div>
                 <button onClick={this.handleEdit}>Edit</button>
+                <button onClick={this.handleDelete}>Delete</button>
               </div> : 
               <form onSubmit={this.handleEmail}>
                 <label htmlFor="message" name="message">Message:</label>
-                <input type="text" name="message" onChange={this.handleChange} value={this.state.message} />
+                <input type="text" name="message" onChange={this.handleChange} value={this.state.message} required/>
                 <button type="submit">Email</button>
               </form>
             }
