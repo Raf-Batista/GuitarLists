@@ -41,7 +41,21 @@ class Guitar extends Component {
   }
 
   handleEmail = (event) => {
-    event.preventDefault()
+    event.preventDefault() 
+    const seller = this.props.match.params.userId 
+    const guitar = this.state.guitar
+    const user = this.props.currentUser
+    const message = this.state.message
+
+    fetch('http://localhost:3000/message', {
+      method: 'POST',
+      body: JSON.stringify({message: this.state.message, seller: seller, guitar: guitar, user: user, token: localStorage.getItem('token')}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(console.log('success'))
+    .catch(errors => console.log(errors))
   }
 
   render(){

@@ -63,7 +63,12 @@ class UsersController < ApplicationController
     end
 
     def message 
-      binding.pry
+      if verify(params[:user][:id], params[:token])
+          user = User.find_by(id: exiparams[:user][:id])
+          seller = User.find_by(id: params[:seller])
+          guitar = Guitar.find_by(id: params[:guitar][:id])
+          UserMailer.message_user(user, params[:message], seller, guitar).deliver_now
+      end
     end 
 
     private
