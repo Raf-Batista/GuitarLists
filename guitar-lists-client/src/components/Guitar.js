@@ -57,10 +57,10 @@ class Guitar extends Component {
             <p>{this.state.guitar.location}</p>
             {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
               <button onClick={this.handleClick}>Edit</button> : 
-              <form>
+              <form onSubmit={this.handleEmail}>
                 <label htmlFor="message" name="message">Message:</label>
                 <input type="text" name="message" onChange={this.handleChange} value={this.state.message} />
-                <button onClick={this.handleEmail}>Email</button>
+                <button type="submit">Email</button>
               </form>
             }
             

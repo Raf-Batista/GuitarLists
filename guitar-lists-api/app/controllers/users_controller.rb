@@ -62,6 +62,10 @@ class UsersController < ApplicationController
       end
     end
 
+    def message 
+      binding.pry
+    end 
+
     private
 
     def user_params
