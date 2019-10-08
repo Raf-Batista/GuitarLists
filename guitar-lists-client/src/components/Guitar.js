@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 class Guitar extends Component {
   constructor(props) {
     super(props)
-    this.state = {guitar: '', errors: ''}
+    this.state = {guitar: '', errors: '', message: ''}
   }
   componentDidMount(){
     /*
@@ -33,8 +33,18 @@ class Guitar extends Component {
     const {userId, guitarId} = this.props.match.params 
     this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
   }
-  render(){
 
+  handleChange = (event) => {
+    this.setState({
+      message: event.target.value
+    })
+  }
+
+  handleEmail = (event) => {
+    event.preventDefault()
+  }
+
+  render(){
     return(
       <div>
         {
@@ -47,7 +57,11 @@ class Guitar extends Component {
             <p>{this.state.guitar.location}</p>
             {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
               <button onClick={this.handleClick}>Edit</button> : 
-              null
+              <form>
+                <label htmlFor="message" name="message">Message:</label>
+                <input type="text" name="message" onChange={this.handleChange} value={this.state.message} />
+                <button onClick={this.handleEmail}>Email</button>
+              </form>
             }
             
           </div>

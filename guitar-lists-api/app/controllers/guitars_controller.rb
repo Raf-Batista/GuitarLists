@@ -28,7 +28,7 @@ class GuitarsController < ApplicationController
     if !verify(params[:user_id], params[:token])
         render json: {errors: 'You are not logged in'} and return
     elsif @guitar.user_id == params[:guitar][:user_id] && @guitar.update(guitar_params)
-      render json: @guitar
+      render json: @guitar.to_json(except: [:created_at, :updated_at]), status: 200
     else
       render json: {errors: @guitar.errors.full_messages}
     end
