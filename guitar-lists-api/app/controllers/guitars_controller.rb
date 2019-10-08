@@ -35,12 +35,14 @@ class GuitarsController < ApplicationController
   end
 
   def destroy
-    binding.pry
-    if Guitar.delete(params[:id]) != 0 # Deleting a record that doesn't exist will return a 0
+    user = User.find_by(params[:user_id])
+    guitar = Guitar.find_by(params[:id])
+    if user.id == guitar.user_id 
+      Guitar.delete(params[:id])
       render json: {message: 'Guitar was deleted'}
-    else
+    else 
       render json: {errors: 'There was an error'}
-    end
+    end 
   end
 
   private

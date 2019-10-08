@@ -3,7 +3,7 @@ const deleteGuitar = (userId, guitarId, history) => {
         if(localStorage.getItem('token')){
             return fetch(`http://localhost:3000/users/${userId}/guitars/${guitarId}`, {
               method: 'DELETE',
-              body: JSON.stringify({userId: userId, guitarId: guitarId, token: localStorage.getItem('token')}),
+              body: JSON.stringify({user_id: userId, id: guitarId, token: localStorage.getItem('token')}),
               headers:{
                 'Content-Type': 'application/json'
               }
