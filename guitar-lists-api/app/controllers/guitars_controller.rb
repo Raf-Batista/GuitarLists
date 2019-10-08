@@ -24,11 +24,10 @@ class GuitarsController < ApplicationController
   end
 
   def update
-   # binding.pry
     @guitar = Guitar.find(params[:id])
-    if @guitar.user_id != session[:user_id]
+    if !verify(params[:user_id], params[:token])
         render json: {errors: 'You are not logged in'} and return
-    elsif @guitar.update(guitar_params)
+    elsif @guitar.user_id == params[:guitar][:user_id] && @guitar.update(guitar_params)
       render json: @guitar
     else
       render json: {errors: @guitar.errors.full_messages}

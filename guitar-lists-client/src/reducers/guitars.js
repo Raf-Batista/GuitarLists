@@ -7,7 +7,7 @@ const guitars = (state = [], action) => {
     case 'EDIT_GUITAR': 
       return state.map(guitar => 
           guitar.id === action.payload.id ? 
-            {guitar: action.payload} : 
+            action.payload : 
             guitar
         ) 
     default:
