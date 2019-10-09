@@ -4,7 +4,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 class GuitarForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {model: '', spec: '', price: '', condition: '', location: ''}
+    this.state = {model: '', spec: '', price: '', condition: '', location: '', image: ''}
   }
   handleSubmit = (event) => {
     event.preventDefault()
@@ -40,6 +40,9 @@ class GuitarForm extends Component {
               <input name="condition" type="text" value={this.state.condition} onChange={this.handleChange}/>
               <label name="location">Location:</label>
               <input name="location" type="text" value={this.state.location} onChange={this.handleChange}/>
+              <label name="image">Upload Image:</label>
+              <input name="image" type="file" value={this.state.image} onChange={this.handleChange}/>
+
               <button type="submit">Post Guitar for sale</button>
             </form>
           </div> :
