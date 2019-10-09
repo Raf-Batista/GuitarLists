@@ -14,6 +14,7 @@ class GuitarsController < ApplicationController
   end
 
   def create
+    binding.pry
     if verify(params[:user_id], params[:token])
       @guitar = Guitar.new(guitar_params)
       @guitar.user = User.find(params[:user_id])
@@ -47,6 +48,6 @@ class GuitarsController < ApplicationController
   private
 
   def guitar_params
-    params.require(:guitar).permit(:model, :spec, :price, :condition, :location)
+    params.require(:guitar).permit(:model, :spec, :price, :condition, :location, :image)
   end
 end
