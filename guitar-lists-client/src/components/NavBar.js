@@ -53,13 +53,14 @@ class NavBar extends Component {
       </div>
     }
     return(
-      <React.Fragment>
-        <nav className="navbar navbar-dark bg-dark ">
-        {/* Guitar Logo */}
-        <NavLink exact activeClassName = 'active-link' className = 'home navbar-brand' to='/'>
-          <i className="fas fa-guitar"></i>
-          GuitarLists
-        </NavLink>
+      <div>
+        <nav className="navbar navbar-dark bg-dark">
+          <div className="container">
+          {/* Guitar Logo */}
+          <NavLink exact activeClassName = 'active-link' className = 'home navbar-brand' to='/'>
+            <i className="fas fa-guitar"></i>
+            GuitarLists
+          </NavLink>
 
           <div className="nav mr-auto">
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/guitars'>
@@ -77,8 +78,9 @@ class NavBar extends Component {
             {button}
             {loginForm}
             </div>
+          </div>
         </nav>
-      </React.Fragment>
+      </div>
     )
   }
 }
