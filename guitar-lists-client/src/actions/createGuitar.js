@@ -1,5 +1,4 @@
 const createGuitar = (guitar, userId, history) => {
-  console.log('hey')
   return dispatch => {
     if(localStorage.getItem('token')){
       return fetch(`http://localhost:3000/users/${userId}/guitars`, {
