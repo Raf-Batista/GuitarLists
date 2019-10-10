@@ -9,7 +9,10 @@ class UsersContainer extends Component {
   render(){
     return(
       <div className="container">
-          <Users users={this.props.users}/>
+          <div className="jumbotron text-center">
+            <h1>Sellers</h1>
+            <Users users={this.props.users}/>
+          </div>
       </div>
     )
 
