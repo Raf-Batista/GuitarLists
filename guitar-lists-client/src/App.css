@@ -1,11 +1,3 @@
-
-/* 
-.about {
-  display: inline;
-  margin-right: auto;
+.jumbotron {
+  min-height: 600px;
 }
-
-.login {
-  display: inline;
-  margin-right: auto;
-} */
