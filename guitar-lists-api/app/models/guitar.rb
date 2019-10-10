@@ -1,5 +1,6 @@
 class Guitar < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
 
   validates :model, presence: true
   validates :spec, presence: true

@@ -4,11 +4,12 @@ import { withRouter, Redirect } from 'react-router-dom';
 class GuitarForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {model: '', spec: '', price: '', condition: '', location: '', image: ''}
+    this.state = {model: '', spec: '', price: '', condition: '', location: ''}
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.createGuitar(this.state, this.props.match.params.id, this.props.history)
+    const image = document.querySelector('#image').files[0]
+    this.props.createGuitar(this.state, this.props.match.params.id, this.props.history, image)
 
     this.setState({
       model: '', spec: '',
@@ -29,7 +30,7 @@ class GuitarForm extends Component {
         {
           this.props.currentUser.username ? // if user logged in, render form, if not they are redirected to home page
           <div id="guitarForm">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} >
               <label name="model">Model:</label>
               <input name="model" type="text" value={this.state.model} onChange={this.handleChange}/>
               <label name="spec">Spec:</label>
@@ -41,7 +42,7 @@ class GuitarForm extends Component {
               <label name="location">Location:</label>
               <input name="location" type="text" value={this.state.location} onChange={this.handleChange}/>
               <label name="image">Upload Image:</label>
-              <input name="image" type="file" value={this.state.image} onChange={this.handleChange}/>
+              <input name="image" id="image" type="file" />
 
               <button type="submit">Post Guitar for sale</button>
             </form>

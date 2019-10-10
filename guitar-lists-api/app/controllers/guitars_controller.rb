@@ -14,7 +14,7 @@ class GuitarsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # need to parse params[:guitar] with JSON.parse()
     if verify(params[:user_id], params[:token])
       @guitar = Guitar.new(guitar_params)
       @guitar.user = User.find(params[:user_id])

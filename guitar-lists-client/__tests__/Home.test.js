@@ -3,7 +3,7 @@ const timeout = 5000
 describe(
   '/ (Home Page)',
   () => {
-    let page
+    let page 
     beforeAll(async () => {
       page = await global.__BROWSER__.newPage()
       await page.goto('http://localhost:3001')

@@ -19,7 +19,7 @@ import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
 import createGuitar from './actions/createGuitar';
-import GuitarEditForm from './components/GuitarEditForm';
+import GuitarEditForm from './components/GuitarEditForm'; 
 
 class App extends Component {
   componentDidMount(){
