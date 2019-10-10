@@ -10,12 +10,12 @@ class Guitars extends Component {
         {this.props.guitars.map(guitar => {
             url=`/users/${guitar.user_id}/guitars/${guitar.id}`
             return <NavLink
-            key={guitar.id} 
-            exact
-            activeClassName = 'active-link'
-            className = 'home navbar-brand'
-            to={{pathname: url, state: {guitar: guitar}}}>
-            {guitar.model}
+              key={guitar.id} 
+              exact
+              activeClassName = 'active-link'
+              className = 'home navbar-brand d-block'
+              to={{pathname: url, state: {guitar: guitar}}}>
+              {guitar.model}
             </NavLink>
           })
         }
