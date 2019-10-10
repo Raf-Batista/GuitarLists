@@ -68,7 +68,7 @@ class Guitar extends Component {
       <div className="container">
         {
           this.state.errors ? <p>{this.state.errors}</p> : // render errors if guitar not found or doesn't belong to user
-          <div>
+          <div className="mt-2">
             <p>{this.state.guitar.model}</p>
             <p>{this.state.guitar.spec}</p>
             <p>{this.state.guitar.price}</p>

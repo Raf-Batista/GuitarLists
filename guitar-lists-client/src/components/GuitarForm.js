@@ -25,22 +25,51 @@ class GuitarForm extends Component {
   }
   render(){
     return(
-      <div>
+      <div className="container">
         {
           this.props.currentUser.username ? // if user logged in, render form, if not they are redirected to home page
-          <div id="guitarForm">
+          <div className="jumbotron text-center" id="guitarForm">
+          <h1>Post a Guitar for Sale</h1>
             <form onSubmit={this.handleSubmit}>
-              <label name="model">Model:</label>
-              <input name="model" type="text" value={this.state.model} onChange={this.handleChange}/>
-              <label name="spec">Spec:</label>
-              <input name="spec" type="text" value={this.state.spec} onChange={this.handleChange}/>
-              <label name="price">Price:</label>
-              <input name="price" type="text" value={this.state.price} onChange={this.handleChange}/>
-              <label name="condition">Condition:</label>
-              <input name="condition" type="text" value={this.state.condition} onChange={this.handleChange}/>
-              <label name="location">Location:</label>
-              <input name="location" type="text" value={this.state.location} onChange={this.handleChange}/>
-              <button type="submit">Post Guitar for sale</button>
+              <div className="form-group row mt-5">
+                <label className="col-sm-2 col-form-label" name="model" >Model:</label>
+                <div className="col-sm-10">
+                  <input className="form-control" name="model" type="text" value={this.state.model} onChange={this.handleChange}/>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label" name="spec" >Spec:</label>
+                <div className="col-sm-10">
+                <input className="form-control" name="spec" type="text" value={this.state.spec} onChange={this.handleChange}/>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label" name="price" >Price:</label>
+                <div className="col-sm-10">
+                <input className="form-control" name="price" type="text" value={this.state.price} onChange={this.handleChange}/>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label" name="condition" >Condition:</label>
+                <div className="col-sm-10">
+                <input className="form-control" name="condition" type="text" value={this.state.condition} onChange={this.handleChange}/>
+                </div>
+              </div>
+      
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label" name="location" >Location:</label>
+                <div className="col-sm-10">
+                <input className="form-control" name="location" type="text" value={this.state.location} onChange={this.handleChange}/>
+                </div>
+              </div>
+
+              <div className="text-center mt-5">
+                  <input className="btn btn-primary" type="submit" value="Post" />
+              </div>
+         
             </form>
           </div> :
           <Redirect to='/' />

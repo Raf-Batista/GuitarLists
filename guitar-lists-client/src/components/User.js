@@ -37,7 +37,7 @@ class User extends Component {
         {
           this.state.errors ? 
           <p>{this.state.errors}</p> : // return errors if user not found
-            <div>
+            <div className="mt-2">
               <p>{this.state.user.username}</p>
               {/* Render can run before componentDidMount, the conditional checks if user.guitars is truthy before calling map
                   This code will run if fetch returns a user, will render errors above if could not find user */}
