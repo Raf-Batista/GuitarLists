@@ -76,8 +76,8 @@ class NavBar extends Component {
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
-            </div>
             {newGuitarButton}
+            </div>
             {logoutButton}
             {loginForm}
           </div>
