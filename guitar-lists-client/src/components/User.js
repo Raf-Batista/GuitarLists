@@ -31,19 +31,18 @@ class User extends Component {
   }
 
   render(){
-
     return(
       <div className="container">
         {
           this.state.errors ? 
           <p>{this.state.errors}</p> : // return errors if user not found
-            <div className="mt-2">
-              <p>{this.state.user.username}</p>
+            <div className="jumbotron">
+              <h1>{this.state.user.username}</h1>
               {/* Render can run before componentDidMount, the conditional checks if user.guitars is truthy before calling map
                   This code will run if fetch returns a user, will render errors above if could not find user */}
-              {this.state.user.guitars && this.state.user.guitars.map(guitar => {
+                  {this.state.user.guitars && this.state.user.guitars.map(guitar => {
                 const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
-                return <div>
+                return <div className="mt-4">
                   <NavLink
                     key={guitar.id}
                     activeClassName = 'active-link'
