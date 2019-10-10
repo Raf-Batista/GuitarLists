@@ -13,7 +13,7 @@ class Users extends Component {
             key={user.id}
             exact
             activeClassName = 'active-link'
-            className = 'home navbar-brand'
+            className = 'home navbar-brand d-block'
             to={{pathname: url, state: {user: user}}}>
             {user.username}
           </NavLink>
