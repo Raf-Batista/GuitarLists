@@ -37,6 +37,9 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^24.9.0",
+    "babel-preset-react-app": "^9.0.2",
     "selenium-standalone": "^6.16.0"
   }
 }
