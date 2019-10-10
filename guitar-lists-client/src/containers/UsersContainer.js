@@ -15,7 +15,6 @@ class UsersContainer extends Component {
           </div>
       </div>
     )
-
   }
 }
 

@@ -28,30 +28,53 @@ class GuitarEditForm extends Component {
 
     render(){
         return(
-            <div>
-            {this.props.currentUser.username ?  
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="model" name="model">Model:</label>
-                <input type="text" name="model" value={this.state.guitar.model} onChange={this.handleChange}/>
+            <div className="container">
+                {this.props.currentUser.username ?  // renders form if logged in
+                <div className="jumbotron text-center">
+                    <h1>Edit Guitar</h1>
+                    <form onSubmit={this.handleSubmit}>
+                    <div className="form-group row mt-5">
+                        <label className="col-sm-2 col-form-label" name="model" >Model:</label>
+                        <div className="col-sm-10">
+                            <input className="form-control" name="model" type="text" value={this.state.guitar.model} onChange={this.handleChange}/>
+                        </div>
+                    </div>
 
-                <label htmlFor="spec" name="spec">Spec:</label>
-                <input type="text" name="spec" value={this.state.guitar.spec} onChange={this.handleChange}/>
+                    <div className="form-group row mt-5">
+                        <label className="col-sm-2 col-form-label" name="spec" >Spec:</label>
+                        <div className="col-sm-10">
+                            <input className="form-control" name="spec" type="text" value={this.state.guitar.spec} onChange={this.handleChange}/>
+                        </div>
+                    </div>
 
+                    <div className="form-group row mt-5">
+                        <label className="col-sm-2 col-form-label" name="price" >Price:</label>
+                        <div className="col-sm-10">
+                            <input className="form-control" name="price" type="text" value={this.state.guitar.price} onChange={this.handleChange}/>
+                        </div>
+                    </div>
 
-                <label htmlFor="price" name="price">Price:</label>
-                <input type="text" name="price" value={this.state.guitar.price} onChange={this.handleChange}/>
+                    <div className="form-group row mt-5">
+                        <label className="col-sm-2 col-form-label" name="condition" >Condition:</label>
+                        <div className="col-sm-10">
+                            <input className="form-control" name="condition" type="text" value={this.state.guitar.condition} onChange={this.handleChange}/>
+                        </div>
+                    </div>
 
+                    <div className="form-group row mt-5">
+                        <label className="col-sm-2 col-form-label" name="location" >Location:</label>
+                        <div className="col-sm-10">
+                            <input className="form-control" name="location" type="text" value={this.state.guitar.location} onChange={this.handleChange}/>
+                        </div>
+                    </div>
 
-                <label htmlFor="condition" name="condition">Condition:</label>
-                <input type="text" name="condition" value={this.state.guitar.condition} onChange={this.handleChange}/>
+                    <div className="text-center mt-5">
+                    <input className="btn btn-primary" type="submit" value="Edit" />
+                </div>
 
-                 
-                <label htmlFor="location" name="location">Location:</label>
-                <input type="text" name="location" value={this.state.guitar.location} onChange={this.handleChange}/>
-
-                <button type="submit">Edit Guitar</button>
-            </form> :
-               <Redirect to='/' />
+                    </form>
+                </div> :
+            <Redirect to='/' />
             }
        </div>
         )
