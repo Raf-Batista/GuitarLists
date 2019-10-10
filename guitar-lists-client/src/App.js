@@ -20,6 +20,7 @@ import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
 import createGuitar from './actions/createGuitar';
 import GuitarEditForm from './components/GuitarEditForm';
+import Error from './components/Error';
 
 class App extends Component {
   componentDidMount(){
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar currentUser={this.props.currentUser} deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
           <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users}{...routeProps}/>}/>
           <Route exact path='/users/:id' component={User}/>
+          <Route component={Error}/>
         </Switch>
       </div>
     );
