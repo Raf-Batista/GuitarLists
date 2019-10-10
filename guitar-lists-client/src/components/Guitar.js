@@ -68,12 +68,12 @@ class Guitar extends Component {
       <div className="container">
         {
           this.state.errors ? <p>{this.state.errors}</p> : // render errors if guitar not found or doesn't belong to user
-          <div className="mt-2">
-            <p>{this.state.guitar.model}</p>
-            <p>{this.state.guitar.spec}</p>
-            <p>{this.state.guitar.price}</p>
-            <p>{this.state.guitar.condition}</p>
-            <p>{this.state.guitar.location}</p>
+          <div className="jumbotron text-center">
+            <p>Model: {this.state.guitar.model}</p>
+            <p>Spec: {this.state.guitar.spec}</p>
+            <p>Price: {this.state.guitar.price}</p>
+            <p>Condition: {this.state.guitar.condition}</p>
+            <p>Location: {this.state.guitar.location}</p>
             {this.props.currentUser.id === parseInt(this.props.match.params.userId) ? 
               <div>
                 <button onClick={this.handleEdit}>Edit</button>
@@ -81,8 +81,8 @@ class Guitar extends Component {
               </div> : 
               <form onSubmit={this.handleEmail}>
                 <label htmlFor="message" name="message">Message:</label>
-                <input type="text" name="message" onChange={this.handleChange} value={this.state.message} required/>
-                <button type="submit">Email</button>
+                <input className="ml-2 mt-2" type="text" name="message" onChange={this.handleChange} value={this.state.message} required/>
+                <button className="btn btn-primary btn-sm ml-2" type="submit">Email</button>
               </form>
             }
             
