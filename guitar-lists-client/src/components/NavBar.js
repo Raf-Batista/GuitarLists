@@ -25,22 +25,23 @@ class NavBar extends Component {
     this.props.logout(this.props.location, this.props.history)
   }
   render(){
-    let button;
+    let logoutButton;
     let loginForm;
-    let formButton;
-    if(this.props.currentUser.username) {
-      button = <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button>
+    let newGuitarButton;
+    if(this.props.currentUser.username) { {/* render log out button if logged in */}
+      logoutButton = <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button>
 
-      formButton = <div><NavLink
-                      exact
-                      activeClassName='active-link'
-                      className = 'newGuitarForm nav-link'
-                      to={{pathname: `/users/${this.props.currentUser.id}/guitars/new`}}>
-                      Post
+      newGuitarButton = <div> {/* render button to create a new guitar if logged in */}
+                     <NavLink
+                        exact
+                        activeClassName='active-link'
+                        className = 'newGuitarForm nav-link'
+                        to={{pathname: `/users/${this.props.currentUser.id}/guitars/new`}}>
+                        Post
                       </NavLink>
                   </div>
     } else {
-      loginForm = <div className = "loginForm"> {/* render login form when logged in */}
+      loginForm = <div className = "loginForm"> {/* render login form when not logged in */}
         <form onSubmit={this.handleLogin} >
           <label name="email">Email</label>
           <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
@@ -74,8 +75,8 @@ class NavBar extends Component {
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
-            {formButton}
-            {button}
+            {newGuitarButton}
+            {logoutButton}
             {loginForm}
             </div>
           </div>
