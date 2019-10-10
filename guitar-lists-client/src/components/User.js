@@ -33,29 +33,28 @@ class User extends Component {
   render(){
 
     return(
-      <div>
-        <div>
-          {
-            this.state.errors ? <p>{this.state.errors}</p> : // return errors if user not found
-              <div>
-                <p>{this.state.user.username}</p>
-                {/* Render can run before componentDidMount, the conditional checks if user.guitars is truthy before calling map
-                    This code will run if fetch returns a user, will render errors above if could not find user */}
-                {this.state.user.guitars && this.state.user.guitars.map(guitar => {
-                  const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
-                  return <div>
-                    <NavLink
-                      key={guitar.id}
-                      activeClassName = 'active-link'
-                      exact
-                      to={{pathname: url, state: {guitar: guitar}}}>
-                      {guitar.model}  ${guitar.price}
-                    </NavLink>
-                  </div>
-                })}
+      <div className="container">
+        {
+          this.state.errors ? 
+          <p>{this.state.errors}</p> : // return errors if user not found
+            <div>
+              <p>{this.state.user.username}</p>
+              {/* Render can run before componentDidMount, the conditional checks if user.guitars is truthy before calling map
+                  This code will run if fetch returns a user, will render errors above if could not find user */}
+              {this.state.user.guitars && this.state.user.guitars.map(guitar => {
+                const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
+                return <div>
+                  <NavLink
+                    key={guitar.id}
+                    activeClassName = 'active-link'
+                    exact
+                    to={{pathname: url, state: {guitar: guitar}}}>
+                    {guitar.model}  ${guitar.price}
+                  </NavLink>
                 </div>
-         }
-        </div>
+              })}
+              </div>
+        }
       </div>
     )
   }

@@ -23,10 +23,12 @@ class GuitarsContainer extends Component {
       }
     })
     return(
-      <div>
+      <div className="container">
+        <div className="mt-2">
         <label>Search</label>
-        <input type="text" name="search" onChange={this.handleOnChange} value={this.state.query}/>
-        <Guitars guitars={filteredGuitars}/>
+          <input type="text" name="search" onChange={this.handleOnChange} value={this.state.query}/>
+          <Guitars guitars={filteredGuitars}/>
+        </div>
       </div>
     )
   }

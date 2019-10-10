@@ -6,7 +6,7 @@ class Guitars extends Component {
   render(){
     let url;
     return(
-      <div id="guitars">
+      <div className="container" id="guitars">
         {this.props.guitars.map(guitar => {
             url=`/users/${guitar.user_id}/guitars/${guitar.id}`
             return <NavLink
