@@ -41,17 +41,18 @@ class NavBar extends Component {
                       </NavLink>
                   </div>
     } else {
-      loginForm = <div className = "loginForm"> {/* render login form when not logged in */}
-        <form onSubmit={this.handleLogin} >
-          <label name="email">Email</label>
-          <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
+      loginForm = 
+        <div> {/* render login form when not logged in */}
+          <form onSubmit={this.handleLogin} >
+            <label name="email" className="text-light mx-2">Email</label>
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
 
-          <label name="password">Password </label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+            <label name="password" className="text-light mx-2">Password </label>
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
 
-          <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
-        </form>
-      </div>
+            <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
+          </form>
+        </div>
     }
     return(
       <div>
@@ -75,10 +76,10 @@ class NavBar extends Component {
             <NavLink exact activeClassName = 'active-link' className = 'about nav-link' to='/about'>
               About
             </NavLink>
+            </div>
             {newGuitarButton}
             {logoutButton}
             {loginForm}
-            </div>
           </div>
         </nav>
       </div>
