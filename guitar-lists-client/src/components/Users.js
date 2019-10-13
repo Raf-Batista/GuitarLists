@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Users extends Component {
 
@@ -23,4 +24,10 @@ class Users extends Component {
   }
 }
 
-export default Users
+const mapStateToProp = (state) => {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProp)(Users)

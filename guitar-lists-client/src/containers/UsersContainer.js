@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import Users from '../components/Users';
+import fetchUsers from '../actions/fetchUsers';
+import { connect } from 'react-redux';
 
 class UsersContainer extends Component {
   constructor(props) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers()
   }
 
   render(){
@@ -18,4 +24,4 @@ class UsersContainer extends Component {
   }
 }
 
-export default (UsersContainer)
+export default connect(null, { fetchUsers })(UsersContainer)
