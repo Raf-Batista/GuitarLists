@@ -14,7 +14,7 @@ import login from './actions/login';
 import loginCurrentUser from './actions/loginCurrentUser';
 import logout from './actions/logout';
 import fetchUsers from './actions/fetchUsers';
-import fetchGuitars from './actions/fetchGuitars';
+//import fetchGuitars from './actions/fetchGuitars';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
@@ -25,7 +25,7 @@ import Error from './components/Error';
 class App extends Component {
   componentDidMount(){
     this.props.fetchUsers()
-    this.props.fetchGuitars()
+  //  this.props.fetchGuitars()
     this.props.loginCurrentUser()
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
           <Route exact path='/about' component={About}/>
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars}{...routeProps}/>}/>
           <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
-          <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm currentUser={this.props.currentUser} guitars={this.props.guitars} editGuitar={this.props.editGuitar} {...routeProps}/>}/>
+          <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm currentUser={this.props.currentUser} editGuitar={this.props.editGuitar} {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar currentUser={this.props.currentUser} deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
           <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users}{...routeProps}/>}/>
           <Route exact path='/users/:id' component={User}/>
@@ -57,4 +57,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, fetchUsers, fetchGuitars, createGuitar, editGuitar, deleteGuitar})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, fetchUsers, createGuitar, editGuitar, deleteGuitar})(App);

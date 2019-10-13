@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import Guitars from '../components/Guitars'
+import { connect } from 'react-redux';
+import fetchGuitars from '../actions/fetchGuitars';
 
 class GuitarsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {query: '', guitars: this.props.guitars}
+  }
+
+  componentDidMount() {
+    this.props.fetchGuitars()
   }
 
   handleOnChange = (event) => {
@@ -35,4 +41,10 @@ class GuitarsContainer extends Component {
   }
 }
 
-export default (GuitarsContainer)
+const mapStateToProps = (state) => {
+  return {
+    guitars: state.guitars
+  }
+}
+
+export default connect(mapStateToProps, { fetchGuitars })(GuitarsContainer)

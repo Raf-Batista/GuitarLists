@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class GuitarEditForm extends Component {
     constructor(props) {
@@ -8,11 +9,15 @@ class GuitarEditForm extends Component {
     }
     componentDidMount() {
         const {userId, guitarId} = this.props.match.params
-        this.props.guitars.find(guitar => {
-            if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
-                this.setState({guitar: guitar})
-              }
+        // this.props.guitars.find(guitar => {
+        //     if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
+        //         this.setState({guitar: guitar})
+        //       }
+        // })
+        this.setState({
+            guitar: this.props.location.state.guitar
         })
+        console.log(this.props)
     }
 
     handleChange = (event) => {
@@ -81,4 +86,11 @@ class GuitarEditForm extends Component {
     }
 }
 
-export default withRouter(GuitarEditForm) 
+const mapStateToProps = (state) => {
+    return {
+        guitars: state.guitars
+    }
+  }
+  
+  export default withRouter(connect(mapStateToProps)(GuitarEditForm))
+  

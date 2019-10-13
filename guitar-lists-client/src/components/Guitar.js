@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Guitar extends Component {
   constructor(props) {
@@ -31,7 +32,10 @@ class Guitar extends Component {
 
   handleEdit = () => {
     const {userId, guitarId} = this.props.match.params 
-    this.props.history.push(`/users/${userId}/guitars/${guitarId}/edit`)
+    this.props.history.push({
+      pathname: `/users/${userId}/guitars/${guitarId}/edit`,
+      state: {guitar: this.state.guitar}
+    })     
   }
 
   handleDelete = (event) => {
@@ -93,4 +97,8 @@ class Guitar extends Component {
   }
 }
 
-export default withRouter(Guitar)
+const mapStateToProps = (state) => {
+  return {guitars: state.guitars}
+}
+
+export default withRouter(connect(mapStateToProps)(Guitar))
