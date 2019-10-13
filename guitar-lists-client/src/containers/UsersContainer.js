@@ -24,4 +24,10 @@ class UsersContainer extends Component {
   }
 }
 
-export default connect(null, { fetchUsers })(UsersContainer)
+const mapStateToProps = (state) => {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProps, { fetchUsers })(UsersContainer)
