@@ -8,16 +8,30 @@ class GuitarEditForm extends Component {
         this.state = {guitar: ''}
     }
     componentDidMount() {
-        const {userId, guitarId} = this.props.match.params
-        // this.props.guitars.find(guitar => {
-        //     if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
-        //         this.setState({guitar: guitar})
-        //       }
-        // })
-        this.setState({
-            guitar: this.props.location.state.guitar
-        })
-        console.log(this.props)
+        if(this.props.guitars.length){ // array will be empty if user enters route from browser
+            const {userId, guitarId} = this.props.match.params
+            this.props.guitars.find(guitar => {
+                if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
+                    this.setState({guitar: guitar})
+                  }
+            })
+            this.setState({
+                guitar: this.props.location.state.guitar
+            })
+        } else {
+            const {userId, guitarId} = this.props.match.params
+            fetch(`http://localhost:3000/users/${userId}/guitars/${guitarId}`) 
+            .then(response => response.json())
+            .then(guitar => {
+                this.setState({
+                    guitar: guitar
+                })
+            })
+            .catch(errors => {
+                console.log(errors)
+            })
+        }
+    
     }
 
     handleChange = (event) => {
@@ -79,7 +93,7 @@ class GuitarEditForm extends Component {
 
                     </form>
                 </div> :
-            <Redirect to='/' />
+            null /* this line was <Redirect to='/' />, if user enters URL through browser the user was redirected, with null the page loads */
             }
        </div>
         )

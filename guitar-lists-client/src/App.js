@@ -13,8 +13,8 @@ import signup from './actions/signup';
 import login from './actions/login';
 import loginCurrentUser from './actions/loginCurrentUser';
 import logout from './actions/logout';
-//import fetchUsers from './actions/fetchUsers';
-//import fetchGuitars from './actions/fetchGuitars';
+import fetchUsers from './actions/fetchUsers';
+import fetchGuitars from './actions/fetchGuitars';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
@@ -24,8 +24,12 @@ import Error from './components/Error';
 
 class App extends Component {
   componentDidMount(){
-  //  this.props.fetchUsers()
-  //  this.props.fetchGuitars()
+    /*
+      With the way the app is set up. Home redirects to User show. fetchUsers() and fetchGuitars() runs in the containers everytime it is mounted
+      User show will not have Users or Guitars in store, so the methods below will update the store initially
+    */
+    this.props.fetchUsers()
+    this.props.fetchGuitars()
     this.props.loginCurrentUser()
   }
 
@@ -57,4 +61,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
