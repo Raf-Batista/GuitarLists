@@ -11,7 +11,7 @@ const guitars = (state = [], action) => {
             guitar
         ) 
     case 'DELETE_GUITAR': 
-      return state.filter(guitar => guitar.id !== action.payload.guitarId)
+      return state.filter(guitar => guitar.id !== action.payload)
     default:
       return state
   }

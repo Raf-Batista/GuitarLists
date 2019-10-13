@@ -10,7 +10,7 @@ const createGuitar = (guitar, userId, history) => {
       }).then(response => response.json())
         .then(data => {
           if(!data.errors){
-            dispatch({type: 'CREATE', payload: data});
+            dispatch({type: 'ADD_GUITAR', payload: data});
           history.push(`/users/${data.user_id}/guitars/${data.id}`)
           } else {
             return data.errors

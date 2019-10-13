@@ -6,11 +6,13 @@ import fetchGuitars from '../actions/fetchGuitars';
 class GuitarsContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = {query: '', guitars: this.props.guitars}
+    this.state = {query: '', guitars: ''}
   }
 
-  componentDidMount() {
-    this.props.fetchGuitars()
+  componentDidUpdate(prevProps) {
+    if (this.props.guitars !== prevProps.guitars) {
+      console.log('hey')
+    }
   }
 
   handleOnChange = (event) => {

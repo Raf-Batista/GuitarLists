@@ -93,7 +93,11 @@ class GuitarEditForm extends Component {
 
                     </form>
                 </div> :
-            null /* this line was <Redirect to='/' />, if user enters URL through browser the user was redirected, with null the page loads */
+            null 
+            /* 
+              this line was <Redirect to='/' />, if user enters URL through browser the user was redirected, with null the page 
+                refreshes but you can enter any user id in url and page will still load
+            */
             }
        </div>
         )

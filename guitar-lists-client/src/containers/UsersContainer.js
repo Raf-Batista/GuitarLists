@@ -8,10 +8,6 @@ class UsersContainer extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.fetchUsers()
-  }
-
   render(){
     return(
       <div className="container">

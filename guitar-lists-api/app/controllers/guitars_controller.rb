@@ -17,7 +17,7 @@ class GuitarsController < ApplicationController
     if verify(params[:user_id], params[:token])
       @guitar = Guitar.new(guitar_params)
       @guitar.user = User.find(params[:user_id])
-      @guitar.save ? render(json: @guitar) : render(json: @guitar.errors.full_messages)
+      @guitar.save ? render(json: @guitar.to_json(except: [:created_at, :updated_at])) : render(json: @guitar.errors.full_messages)
     else
       render json: {errors: "You are not logged in"}
     end
