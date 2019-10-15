@@ -1,4 +1,4 @@
-const login = (userInfo, location, history) => {
+const login = (userInfo, location, history, users) => {
   return dispatch => {
     return fetch('http://localhost:3000/login', {
       method: 'POST',
@@ -13,7 +13,13 @@ const login = (userInfo, location, history) => {
         if(location.pathname !== '/'){
           history.push('/')
         }
-        dispatch({type: 'LOGIN', payload: {id: data.id, email: data.email, username: data.username}})
+        const user = users.find(user => {
+          if(user.id === data.id) {
+            return user
+          }
+        })
+
+        dispatch({type: 'LOGIN', payload: user})
       } else {
         return alert('invalid credentials')
       }

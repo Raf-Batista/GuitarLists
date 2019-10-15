@@ -14,7 +14,7 @@ class NavBar extends Component {
 
   handleLogin = (event) => {
     event.preventDefault()
-    this.props.login(this.state, this.props.location, this.props.history)
+    this.props.login(this.state, this.props.location, this.props.history, this.props.users)
     this.setState({
       email: '',
       password: ''
