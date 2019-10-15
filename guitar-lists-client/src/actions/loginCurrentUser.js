@@ -1,6 +1,9 @@
 const loginCurrentUser = () => {
   return dispatch => {
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('currentUser')){
+      dispatch({type: 'LOGIN', payload: JSON.parse(localStorage.getItem('currentUser'))})
+    } 
+    else if(localStorage.getItem('token')){
       return fetch('http://localhost:3000/session', {
         method: 'POST',
         body: JSON.stringify({token: localStorage.getItem('token')}),

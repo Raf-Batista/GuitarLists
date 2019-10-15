@@ -14,18 +14,20 @@ class User extends Component {
     The else will run which takes data from props passed in to state from NavLink
     */
     if(!this.props.location.state) { // will run if props not found from NavLink
-      const id = this.props.match.params.id
-      fetch(`http://localhost:3000/users/${id}`) // Tried to fetch from redux store but state was empty when going to this route from browser, maybe try moving fetchUsers() to UsersContainer
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          user: data,
-          errors: data.errors
-        })
-      }).catch(error => console.log(error))
+      this.setState({
+        user: this.props.currentUser
+      })
     } else {
       this.setState({
         user: this.props.location.state.user
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.currentUser !== prevProps.currentUser) {
+      this.setState({
+        user: this.props.currentUser
       })
     }
   }
@@ -34,8 +36,7 @@ class User extends Component {
     return(
       <div className="container">
         {
-          this.state.errors ? 
-          <p>{this.state.errors}</p> : // return errors if user not found
+          this.state.user ? 
             <div className="jumbotron text-center">
               <h1>{this.state.user.username}</h1>
               {/* Render can run before componentDidMount, the conditional checks if user.guitars is truthy before calling map
@@ -52,7 +53,7 @@ class User extends Component {
                   </NavLink>
                 </div>
               })}
-              </div>
+            </div> : null
         }
       </div>
     )

@@ -19,6 +19,8 @@ const login = (userInfo, location, history, users) => {
           }
         })
 
+        localStorage.setItem('currentUser', JSON.stringify(user))
+
         dispatch({type: 'LOGIN', payload: user})
       } else {
         return alert('invalid credentials')
