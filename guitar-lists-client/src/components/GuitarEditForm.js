@@ -18,12 +18,13 @@ class GuitarEditForm extends Component {
                 guitar: this.props.location.state.guitar
             })
         } 
+        console.log(this.props)
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.guitars !== prevProps.guitars) {
             this.props.currentUser.guitars.find(guitar => {
-                if(guitar.id === parseInt(this.props.match.params.guitarId)) {
+                if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
                     this.setState({
                         guitar: guitar
                     })
