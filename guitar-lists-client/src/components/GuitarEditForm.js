@@ -8,30 +8,28 @@ class GuitarEditForm extends Component {
         this.state = {guitar: ''}
     }
     componentDidMount() {
-        if(this.props.guitars.length){ // array will be empty if user enters route from browser
-            const {userId, guitarId} = this.props.match.params
-            this.props.guitars.find(guitar => {
-                if(guitar.user_id === parseInt(userId) && guitar.id === parseInt(guitarId)) { 
+        if(this.props.currentUser.guitars){ // array will be empty if user enters route from browser
+            this.props.currentUser.guitars.find(guitar => {
+                if(guitar.id === parseInt(this.props.match.params.guitarId)) { 
                     this.setState({guitar: guitar})
                   }
             })
             this.setState({
                 guitar: this.props.location.state.guitar
             })
-        } else {
-            const {userId, guitarId} = this.props.match.params
-            fetch(`http://localhost:3000/users/${userId}/guitars/${guitarId}`) 
-            .then(response => response.json())
-            .then(guitar => {
-                this.setState({
-                    guitar: guitar
-                })
-            })
-            .catch(errors => {
-                console.log(errors)
+        } 
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.guitars !== prevProps.guitars) {
+            this.props.currentUser.guitars.find(guitar => {
+                if(guitar.id === parseInt(this.props.match.params.guitarId)) {
+                    this.setState({
+                        guitar: guitar
+                    })
+                }
             })
         }
-    
     }
 
     handleChange = (event) => {
