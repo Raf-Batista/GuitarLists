@@ -9,7 +9,7 @@ const login = (userInfo, location, history, users) => {
     }).then(response => response.json())
     .then(data => {
       if(data.token){
-        localStorage.setItem('token', data.token)
+        // localStorage.setItem('token', data.token)
         if(location.pathname !== '/'){
           history.push('/')
         }
