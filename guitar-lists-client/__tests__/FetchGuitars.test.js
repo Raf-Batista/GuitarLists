@@ -11,14 +11,13 @@ describe('async actions', () => {
     fetchMock.restore()
   })
 
+  const mockResults = ['guitars1', 'guitars2'] 
+
   it('creates ADD_GUITARS when fetching guitars', () => {
-    fetchMock.getOnce('http://localhost:3000/guitars', {
-      body: { guitars: ['guitars1', 'guitars2'] },
-      headers: { 'content-type': 'application/json' }
-    })
+    fetchMock.getOnce('http://localhost:3000/guitars', mockResults)
 
     const expectedActions = [
-      { type: 'ADD_GUITARS', payload: { guitars: ['guitars1', 'guitars2'] } }
+      { type: 'ADD_GUITARS', payload: mockResults } 
     ]
     const store = mockStore({ guitars: [] })
 
