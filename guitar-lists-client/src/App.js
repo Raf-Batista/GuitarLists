@@ -43,7 +43,7 @@ class App extends Component {
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars} {...routeProps}/>}/>
           <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm currentUser={this.props.currentUser} editGuitar={this.props.editGuitar} {...routeProps}/>}/>
-          <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar currentUser={this.props.currentUser} deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
+          <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar currentUser={this.props.currentUser} guitars={this.props.guitars} deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
           <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users} {...routeProps}/>}/>
           <Route exact path='/users/:id' render={routeProps => <User currentUser={this.props.currentUser} users={this.props.users}{...routeProps}/>}/>
           <Route component={Error}/>
