@@ -19,7 +19,7 @@ describe('async actions', () => {
     const expectedActions = [
       { type: 'ADD_USERS', payload: mockResults } 
     ]
-    const store = mockStore({ guitars: [] })
+    const store = mockStore({ users: [] })
 
     return store.dispatch(fetchUsers()).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
