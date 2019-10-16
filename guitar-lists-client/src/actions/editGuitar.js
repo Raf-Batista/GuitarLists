@@ -1,4 +1,4 @@
-const editGuitar = (guitar, history) => {
+const editGuitar = (guitar, history, currentUser) => {
     return dispatch => {
         if(localStorage.getItem('token')){
             return fetch(`http://localhost:3000/users/${guitar.user_id}/guitars/${guitar.id}`, {
@@ -10,8 +10,12 @@ const editGuitar = (guitar, history) => {
             }).then(response => response.json())
               .then(data => {
                 if(!data.errors){
+                  // find a better way to implement this, push is fine as it is efficient
+                  currentUser.guitars = currentUser.guitars.filter(guitar => guitar.id !== data.id)  
+                  currentUser.guitars.push(data)
+                  localStorage.setItem('currentUser', JSON.stringify(currentUser))
                   dispatch({type: 'EDIT_GUITAR', payload: data});
-                history.push(`/users/${data.user_id}/guitars/${data.id}`)
+                  history.push(`/users/${data.user_id}/guitars/${data.id}`)
                 } else {
                   return data.errors
                 }

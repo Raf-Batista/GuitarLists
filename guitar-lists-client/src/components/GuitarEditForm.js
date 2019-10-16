@@ -41,7 +41,7 @@ class GuitarEditForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.editGuitar(this.state.guitar, this.props.history)
+        this.props.editGuitar(this.state.guitar, this.props.history, this.props.currentUser)
     }
 
     render(){
