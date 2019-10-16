@@ -11,6 +11,7 @@ const signup = (userInfo, history) => {
         if(data.email){
           localStorage.setItem('token', data.token)
           history.push(`/users/${data.id}`)
+          dispatch({type: 'ADD_USER', payload: data})
           dispatch({type: 'LOGIN', payload: data})
         } else {
           return data.errors

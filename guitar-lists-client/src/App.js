@@ -38,7 +38,7 @@ class App extends Component {
       <div>
       <NavBar currentUser={this.props.currentUser} logout={this.props.logout} login={this.props.login} users={this.props.users}/>
         <Switch>
-          <Route exact path='/' render={routeProps => <Home signup = {this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser}{...routeProps}/>}/>
+          <Route exact path='/' render={routeProps => <Home signup ={this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser} {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars} {...routeProps}/>}/>
           <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
