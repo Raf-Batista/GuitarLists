@@ -29,7 +29,7 @@ class GuitarsContainer extends Component {
           <h1>Guitars For Sale</h1>
           <label className="m-2">Search</label>
           <input  type="text" name="search" onChange={this.handleOnChange} value={this.state.query} placeholder="Search for a Guitar"/>
-          <Guitars guitars={filteredGuitars}/>
+          <Guitars guitars={filteredGuitars} />
         </div>
       </div>
     )
@@ -38,7 +38,8 @@ class GuitarsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guitars: state.guitars
+    guitars: state.guitars,
+    currentUser: state.currentUser
   }
 }
 

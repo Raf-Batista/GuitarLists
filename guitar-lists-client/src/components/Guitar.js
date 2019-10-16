@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Guitar extends Component {
   constructor(props) {
@@ -99,5 +100,11 @@ class Guitar extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    guitars: state.guitars
+  }
+}
 
-export default withRouter(Guitar)
+export default withRouter(connect(mapStateToProps)(Guitar))
