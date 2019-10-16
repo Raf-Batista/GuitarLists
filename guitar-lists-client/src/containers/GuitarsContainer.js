@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import Guitars from '../components/Guitars'
-import { connect } from 'react-redux';
-import fetchGuitars from '../actions/fetchGuitars';
 
 class GuitarsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {query: '', guitars: ''}
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.guitars !== prevProps.guitars) {
-      console.log('hey')
-    }
   }
 
   handleOnChange = (event) => {
@@ -26,7 +18,7 @@ class GuitarsContainer extends Component {
     const {query} = this.state;
     const lowercasedQuery = query.toLowerCase();
     const filteredGuitars = this.props.guitars.filter(guitar => { 
-      if(guitar.model.includes(lowercasedQuery)) {
+      if(guitar.model.toLowerCase().includes(lowercasedQuery)) {
         return guitar
       }
     })
@@ -43,10 +35,4 @@ class GuitarsContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    guitars: state.guitars
-  }
-}
-
-export default connect(mapStateToProps, { fetchGuitars })(GuitarsContainer)
+export default GuitarsContainer

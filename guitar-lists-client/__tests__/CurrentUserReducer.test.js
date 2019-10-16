@@ -2,7 +2,7 @@ import reducer from '../src/reducers/currentUser';
 
 describe('Users Reducer', () => {
     it('should return the initial state', () => {
-        expect(reducer(undefined, {})).toEqual({})
+        expect(reducer(undefined, {})).toEqual({"currentUser": null})
     })
 
     it('should add user to the state', () => {

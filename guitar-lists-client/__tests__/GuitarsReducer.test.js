@@ -14,6 +14,6 @@ describe('Guitars Reducer', () => {
     })
 
     it('should delete a guitar', () => {
-        expect(reducer([{id: 1, model: 'delete'}], {type: 'DELETE_GUITAR', payload: {guitarId: 1}})).toEqual([])
+        expect(reducer([{id: 1, model: 'delete'}], {type: 'DELETE_GUITAR', payload:  1})).toEqual([])
     })
 })

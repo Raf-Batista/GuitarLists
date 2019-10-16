@@ -7,11 +7,15 @@ class User extends Component {
     this.state = {user: '', errors: ''}
   }
   componentDidMount(){
-    this.props.users.find(user => {
-      if(user.id === parseInt(this.props.match.params.id)){
-        this.setState({ user: user })
-      }
-    })
+    if(this.props.currentUser.id === parseInt(this.props.match.params.id)) {
+      this.setState({user: this.props.currentUser})
+    } else {
+      this.props.users.find(user => {
+        if(user.id === parseInt(this.props.match.params.id)){
+          this.setState({ user: user })
+        }
+      })
+    }
   }
 
   componentDidUpdate(prevProps) {

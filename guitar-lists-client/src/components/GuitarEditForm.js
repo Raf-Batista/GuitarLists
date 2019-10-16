@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class GuitarEditForm extends Component {
     constructor(props) {
@@ -107,5 +106,5 @@ const mapStateToProps = (state) => {
     }
   }
   
-  export default withRouter(connect(mapStateToProps)(GuitarEditForm))
+  export default withRouter(GuitarEditForm)
   

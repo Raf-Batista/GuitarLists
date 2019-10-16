@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 class GuitarForm extends Component {
   constructor(props) {
@@ -86,4 +85,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(GuitarForm))
+export default withRouter(GuitarForm)
