@@ -1,4 +1,4 @@
-import reducer from '../src/reducers/users';
+import reducer from '../../src/reducers/users';
 
 describe('Users Reducer', () => {
     it('should return the initial state', () => {
