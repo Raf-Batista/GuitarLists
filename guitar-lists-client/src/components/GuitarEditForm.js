@@ -5,33 +5,31 @@ import { connect } from 'react-redux';
 class GuitarEditForm extends Component {
     constructor(props) {
         super(props)
-        this.state = {guitar: ''}
+        this.state = { guitar: {model: '', spec: '', price: '', condition: '', location: ''} }
     }
+
     componentDidMount() {
         if(this.props.currentUser.guitars){ // array will be empty if user enters route from browser
             this.props.currentUser.guitars.find(guitar => {
                 if(guitar.id === parseInt(this.props.match.params.guitarId)) { 
-                    this.setState({guitar: guitar})
+                    this.setState({ guitar: guitar })
                   }
             })
             this.setState({
                 guitar: this.props.location.state.guitar
             })
         } 
-        console.log(this.props)
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.guitars !== prevProps.guitars) {
             this.props.currentUser.guitars.find(guitar => {
                 if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
-                    this.setState({
-                        guitar: guitar
-                    })
+                    this.setState({ guitar: guitar })
                 }
             })
         }
-    }
+   }
 
     handleChange = (event) => {
         this.setState({
