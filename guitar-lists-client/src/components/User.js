@@ -8,15 +8,25 @@ class User extends Component {
     this.state = {user: '', errors: ''}
   }
   componentDidMount(){
+    const user = this.props.users.find(user => {
+      if(user.id === parseInt(this.props.match.params.id)){
+        return user
+      }
+    })
     this.setState({
-      user: this.props.currentUser
+      user: user
     })
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.currentUser !== prevProps.currentUser) {
+    if(this.props.users !== prevProps.users) {
+      const user = this.props.users.find(user => {
+        if(user.id === parseInt(this.props.match.params.id)){
+          return user
+        }
+      })
       this.setState({
-        user: this.props.currentUser
+        user: user
       })
     }
   }
@@ -47,8 +57,5 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {users: state.users}
-}
 
-export default connect(mapStateToProps)(withRouter(User))
+export default withRouter(User)
