@@ -8,32 +8,20 @@ class User extends Component {
     this.state = {user: '', errors: ''}
   }
   componentDidMount(){
-    if(this.props.currentUser.id === parseInt(this.props.match.params.id)) {
-      this.setState({user: this.props.currentUser})
-    } else {
-      this.props.users.find(user => {
+    let user = this.props.users.find(user => {
         if(user.id === parseInt(this.props.match.params.id)){
-          this.setState({ user: user })
+          return user
         }
       })
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if(this.props.users !== prevProps.users) {
-      this.props.users.find(user => {
-        if(user.id === parseInt(this.props.match.params.id)){
-          this.setState({ user: user })
-        }
-      })
-    }
+    user.guitars = this.props.guitars.filter(guitar => guitar.user_id === user.id)
+    this.setState({user: user})
   }
 
   render(){
     return(
       <div className="container">
         {
-          this.state.user ? 
+          this.state.user.username ? 
             <div className="jumbotron text-center">
               <h1>{this.state.user.username}</h1>
               {/* The conditional checks if user.guitars is truthy before calling map */}
@@ -57,8 +45,8 @@ class User extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser,
-    users: state.users
+    users: state.users, 
+    guitars: state.guitars
   }
 }
 

@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Users from '../components/Users';
 import { connect } from 'react-redux';
+import fetchUsers from '../actions/fetchUsers';
 
 class UsersContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {query: '', users: ''}
+  }
+
+  componentDidMount() {
+    if(!this.props.users.length) { // if array is empty, send request to fetch users
+      this.props.fetchUsers()
+    }
   }
 
   handleOnChange = (event) => {
@@ -43,4 +50,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(UsersContainer)
+export default connect(mapStateToProps, {fetchUsers})(UsersContainer)

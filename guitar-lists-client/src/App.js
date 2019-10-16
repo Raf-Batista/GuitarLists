@@ -13,7 +13,6 @@ import signup from './actions/signup';
 import login from './actions/login';
 import loginCurrentUser from './actions/loginCurrentUser';
 import logout from './actions/logout';
-import fetchUsers from './actions/fetchUsers';
 import fetchGuitars from './actions/fetchGuitars';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
@@ -28,7 +27,7 @@ class App extends Component {
       With the way the app is set up. Home redirects to User show. fetchUsers() and fetchGuitars() runs in the containers everytime it is mounted
       User show will not have Users or Guitars in store, so the methods below will update the store initially
     */
-    this.props.fetchUsers()
+   // this.props.fetchUsers()
     this.props.fetchGuitars()
     this.props.loginCurrentUser()
   }
@@ -44,7 +43,7 @@ class App extends Component {
           <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm  createGuitar={this.props.createGuitar} {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm  editGuitar={this.props.editGuitar} {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar  deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
-          <Route exact path='/users' render={routeProps => <UsersContainer  {...routeProps}/>}/>
+          <Route exact path='/users' render={routeProps => <UsersContainer {...routeProps}/>}/>
           <Route exact path='/users/:id' render={routeProps => <User  {...routeProps}/>}/>
           <Route component={Error}/>
         </Switch>
@@ -61,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar, fetchGuitars})(App);
