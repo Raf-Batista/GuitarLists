@@ -7,25 +7,19 @@ class User extends Component {
     this.state = {user: '', errors: ''}
   }
   componentDidMount(){
-    const user = this.props.users.find(user => {
+    this.props.users.find(user => {
       if(user.id === parseInt(this.props.match.params.id)){
-        return user
+        this.setState({ user: user })
       }
-    })
-    this.setState({
-      user: user
     })
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.users !== prevProps.users) {
-      const user = this.props.users.find(user => {
+      this.props.users.find(user => {
         if(user.id === parseInt(this.props.match.params.id)){
-          return user
+          this.setState({ user: user })
         }
-      })
-      this.setState({
-        user: user
       })
     }
   }

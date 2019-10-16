@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 class Guitar extends Component {
   constructor(props) {
@@ -8,27 +7,19 @@ class Guitar extends Component {
     this.state = {guitar: '', errors: '', message: ''}
   }
   componentDidMount(){
-    const guitar = this.props.guitars.find(guitar => {
+    this.props.guitars.find(guitar => {
       if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
-        return guitar
+        this.setState({ guitar: guitar })
       }
-    })
-
-    this.setState({
-      guitar: guitar
     })
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.guitars !== prevProps.guitars) {
-      const guitar = this.props.guitars.find(guitar => {
+      this.props.guitars.find(guitar => {
         if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
-          return guitar
+          this.setState({ guitar: guitar })
         }
-      })
-  
-      this.setState({
-        guitar: guitar
       })
     }
   }
