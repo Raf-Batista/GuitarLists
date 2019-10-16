@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Users from '../components/Users';
+import { connect } from 'react-redux';
 
 class UsersContainer extends Component {
   constructor(props) {
@@ -35,4 +36,11 @@ class UsersContainer extends Component {
   }
 }
 
-export default UsersContainer
+const mapStateToProps = (state) => {
+  return {
+    users: state.users
+  }
+}
+
+
+export default connect(mapStateToProps)(UsersContainer)

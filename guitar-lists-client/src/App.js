@@ -38,14 +38,14 @@ class App extends Component {
       <div>
       <NavBar currentUser={this.props.currentUser} logout={this.props.logout} login={this.props.login} users={this.props.users}/>
         <Switch>
-          <Route exact path='/' render={routeProps => <Home signup ={this.props.signup} loginCurrentUser={this.props.loginCurrentUser} currentUser={this.props.currentUser} {...routeProps}/>}/>
+          <Route exact path='/' render={routeProps => <Home signup ={this.props.signup}  {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/guitars' render={routeProps => <GuitarsContainer guitars={this.props.guitars} {...routeProps}/>}/>
-          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm currentUser={this.props.currentUser} createGuitar={this.props.createGuitar}{...routeProps}/>}/>
-          <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm currentUser={this.props.currentUser} editGuitar={this.props.editGuitar} {...routeProps}/>}/>
-          <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar currentUser={this.props.currentUser} guitars={this.props.guitars} deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
-          <Route exact path='/users' render={routeProps => <UsersContainer users={this.props.users} {...routeProps}/>}/>
-          <Route exact path='/users/:id' render={routeProps => <User currentUser={this.props.currentUser} users={this.props.users} guitars={this.props.guitars} {...routeProps}/>}/>
+          <Route exact path='/guitars' render={routeProps => <GuitarsContainer {...routeProps}/>}/>
+          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm  createGuitar={this.props.createGuitar}{...routeProps}/>}/>
+          <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm  editGuitar={this.props.editGuitar} {...routeProps}/>}/>
+          <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar  deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
+          <Route exact path='/users' render={routeProps => <UsersContainer  {...routeProps}/>}/>
+          <Route exact path='/users/:id' render={routeProps => <User  {...routeProps}/>}/>
           <Route component={Error}/>
         </Switch>
       </div>
