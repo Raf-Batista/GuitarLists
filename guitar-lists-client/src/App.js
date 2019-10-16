@@ -13,7 +13,6 @@ import signup from './actions/signup';
 import login from './actions/login';
 import loginCurrentUser from './actions/loginCurrentUser';
 import logout from './actions/logout';
-import fetchGuitars from './actions/fetchGuitars';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
@@ -28,7 +27,7 @@ class App extends Component {
       User show will not have Users or Guitars in store, so the methods below will update the store initially
     */
    // this.props.fetchUsers()
-    this.props.fetchGuitars()
+   // this.props.fetchGuitars()
     this.props.loginCurrentUser()
   }
 
@@ -60,4 +59,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar, fetchGuitars})(App);
+export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar})(App);
