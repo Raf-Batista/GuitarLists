@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       token = login(@user)
-      render json: {email: @user.email, username: @user.username, id: @user.id, token: token}
+      render json: {email: @user.email, username: @user.username, id: @user.id, guitars: @user.guitars, token: token}
     else
       render json: {errors: "Invalid credentials"}
     end

@@ -10,18 +10,18 @@ const login = (userInfo, location, history, users) => {
     .then(data => {
       if(data.token){
         // localStorage.setItem('token', data.token)
-        if(location.pathname !== '/'){
-          history.push('/')
-        }
-        const user = users.find(user => {
-          if(user.id === data.id) {
-            return user
-          }
-        })
+        // if(location.pathname !== '/'){
+        //   history.push('/')
+        // }
+        // const user = users.find(user => {
+        //   if(user.id === data.id) {
+        //     return user
+        //   }
+        // })
 
-        localStorage.setItem('currentUser', JSON.stringify(user))
+        // localStorage.setItem('currentUser', JSON.stringify(user))
 
-        dispatch({type: 'LOGIN', payload: user})
+        dispatch({type: 'LOGIN', payload: data})
       } else {
         return alert('invalid credentials')
       }
