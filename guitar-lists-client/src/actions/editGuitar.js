@@ -1,9 +1,9 @@
 const editGuitar = (guitar, history, currentUser) => {
     return dispatch => {
-        if(localStorage.getItem('token')){
+        if(currentUser.token){
             return fetch(`http://localhost:3000/users/${guitar.user_id}/guitars/${guitar.id}`, {
               method: 'PATCH',
-              body: JSON.stringify({guitar, token: localStorage.getItem('token')}),
+              body: JSON.stringify({guitar, token: currentUser.token}),
               headers:{
                 'Content-Type': 'application/json'
               }
