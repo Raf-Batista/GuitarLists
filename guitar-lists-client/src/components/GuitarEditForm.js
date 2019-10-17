@@ -10,7 +10,7 @@ class GuitarEditForm extends Component {
 
     componentDidMount() {
         this.props.guitars.find(guitar => {
-            if(guitar.user_id === this.props.currentUser.id && this.props.currentUser.id === parseInt(this.props.match.params.userId)) {
+            if(guitar.user_id === this.props.currentUser.id && guitar.id === parseInt(this.props.match.params.guitarId)) {
                 this.setState({
                     guitar: guitar
                 })
