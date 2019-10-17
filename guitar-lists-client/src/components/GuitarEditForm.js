@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class GuitarEditForm extends Component {
     constructor(props) {
@@ -8,27 +9,14 @@ class GuitarEditForm extends Component {
     }
 
     componentDidMount() {
-        if(this.props.currentUser.guitars){ // array will be empty if user enters route from browser
-            this.props.currentUser.guitars.find(guitar => {
-                if(guitar.id === parseInt(this.props.match.params.guitarId)) { 
-                    this.setState({ guitar: guitar })
-                  }
-            })
-            this.setState({
-                guitar: this.props.location.state.guitar
-            })
-        } 
+        this.props.guitars.find(guitar => {
+            if(guitar.user_id === this.props.currentUser.id && this.props.currentUser.id === parseInt(this.props.match.params.userId)) {
+                this.setState({
+                    guitar: guitar
+                })
+            }
+        })
     }
-
-    componentDidUpdate(prevProps) {
-        if(this.props.guitars !== prevProps.guitars) {
-            this.props.currentUser.guitars.find(guitar => {
-                if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
-                    this.setState({ guitar: guitar })
-                }
-            })
-        }
-   }
 
     handleChange = (event) => {
         this.setState({
@@ -102,9 +90,10 @@ class GuitarEditForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        currentUser: state.currentUser,
         guitars: state.guitars
     }
   }
   
-  export default withRouter(GuitarEditForm)
+  export default withRouter(connect(mapStateToProps)(GuitarEditForm))
   
