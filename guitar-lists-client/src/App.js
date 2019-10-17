@@ -13,7 +13,6 @@ import fetchGuitars from './actions/fetchGuitars';
 import fetchUsers from './actions/fetchUsers';
 import signup from './actions/signup';
 import login from './actions/login';
-import loginCurrentUser from './actions/loginCurrentUser';
 import logout from './actions/logout';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
@@ -31,16 +30,12 @@ class App extends Component {
    if(!this.props.guitars.length) {
     this.props.fetchGuitars()
    }
-   
-   if(!this.props.currentUser.username) {
-    this.props.loginCurrentUser()
-    }
-  }
+}
 
   render(){
     return (
       <div>
-      <NavBar currentUser={this.props.currentUser} logout={this.props.logout} login={this.props.login} users={this.props.users}/>
+      <NavBar currentUser={this.props.currentUser} logout={this.props.logout} login={this.props.login} />
         <Switch>
           <Route exact path='/' render={routeProps => <Home signup ={this.props.signup}  {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
@@ -65,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {signup, login, loginCurrentUser, logout, createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
+export default connect(mapStateToProps, {signup, login, logout, createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);

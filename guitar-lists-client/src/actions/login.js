@@ -1,8 +1,8 @@
-const login = (userInfo, location, history, users) => {
+const login = (currentUser) => {
   return dispatch => {
     return fetch('http://localhost:3000/login', {
       method: 'POST',
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(currentUser),
       headers:{
         'Content-Type': 'application/json'
       }
