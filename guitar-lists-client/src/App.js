@@ -24,13 +24,17 @@ import Error from './components/Error';
 
 class App extends Component {
   componentDidMount(){
-    /*
-      With the way the app is set up. Home redirects to User show. fetchUsers() and fetchGuitars() runs in the containers everytime it is mounted
-      User show will not have Users or Guitars in store, so the methods below will update the store initially
-    */
+   if(!this.props.users.length) {
     this.props.fetchUsers()
+   }
+
+   if(!this.props.guitars.length) {
     this.props.fetchGuitars()
+   }
+   
+   if(!this.props.currentUser.username) {
     this.props.loginCurrentUser()
+    }
   }
 
   render(){

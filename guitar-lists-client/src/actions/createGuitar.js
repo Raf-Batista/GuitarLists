@@ -14,7 +14,7 @@ const createGuitar = (guitar, currentUser, history) => {
             // localStorage.setItem('currentUser', JSON.stringify(currentUser))
             // currentUser.guitars.push(data)
             // dispatch({type: 'UPDATE_USER', payload: currentUser})
-            dispatch({type: 'ADD_GUITAR', payload: data});
+          dispatch({type: 'ADD_GUITAR', payload: data});
           history.push(`/users/${data.user_id}/guitars/${data.id}`)
           } else {
             return data.errors
