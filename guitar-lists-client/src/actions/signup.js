@@ -9,8 +9,6 @@ const signup = (userInfo, history) => {
     }).then(response => response.json())
       .then(data => {
         if(data.email){
-          // localStorage.setItem('token', data.token)
-          // history.push(`/users/${data.id}`)
           dispatch({type: 'ADD_USER', payload: data})
           dispatch({type: 'LOGIN', payload: data})
         } else {

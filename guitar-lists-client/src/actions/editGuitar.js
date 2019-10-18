@@ -10,10 +10,6 @@ const editGuitar = (guitar, history, currentUser) => {
             }).then(response => response.json())
               .then(data => {
                 if(!data.errors){
-                  // find a better way to implement this, push is fine as it is efficient
-                  // currentUser.guitars = currentUser.guitars.filter(guitar => guitar.id !== data.id)  
-                  // currentUser.guitars.push(data)
-                  // localStorage.setItem('currentUser', JSON.stringify(currentUser))
                   dispatch({type: 'EDIT_GUITAR', payload: data});
                   history.push(`/users/${data.user_id}/guitars/${data.id}`)
                 } else {
