@@ -12,6 +12,7 @@ import rootReducer from './reducers';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import Loader from './Loader';
 
 const persistConfig = {
   key: 'root',
@@ -31,7 +32,7 @@ let persistor = persistStore(store)
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<Loader />} persistor={persistor}>
         <App />
       </PersistGate>  
     </BrowserRouter>
