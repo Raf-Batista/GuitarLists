@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import signup from '../actions/signup';
 
 class Home extends Component {
   constructor(props) {
@@ -60,4 +62,4 @@ class Home extends Component {
 }
 
 
-export default withRouter(Home)
+export default withRouter(connect(null, {signup})(Home))

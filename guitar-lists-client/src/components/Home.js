@@ -12,7 +12,7 @@ class Home extends Component {
           <Redirect to={{pathname: `/users/${this.props.currentUser.id}`}} /> :
           <div className="jumbotron text-center">
             <h1>Welcome to GuitarLists</h1>
-            <Signup signup={this.props.signup}/>
+            <Signup />
           </div>
         }
       </div>
