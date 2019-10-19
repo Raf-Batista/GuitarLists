@@ -11,8 +11,6 @@ import Guitar from './components/Guitar';
 import GuitarsContainer from './containers/GuitarsContainer';
 import fetchGuitars from './actions/fetchGuitars';
 import fetchUsers from './actions/fetchUsers';
-import login from './actions/login';
-import logout from './actions/logout';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
@@ -34,7 +32,7 @@ class App extends Component {
   render(){
     return (
       <div>
-      <NavBar currentUser={this.props.currentUser} logout={this.props.logout} login={this.props.login} />
+      <NavBar />
         <Switch>
           <Route exact path='/' render={routeProps => <Home  {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
@@ -59,4 +57,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {login, logout, createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
+export default connect(mapStateToProps, {createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
