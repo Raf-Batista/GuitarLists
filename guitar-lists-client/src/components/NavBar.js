@@ -50,17 +50,19 @@ class NavBar extends Component {
               About
             </NavLink>
     
-            <NavLink /* render button to create a new guitar if logged in */
-              exact
-              activeClassName='active-link'
-              className = 'newGuitarForm nav-link'
-              to={`/users/${this.props.currentUser.id}/guitars/new`}>
-              Post
-            </NavLink>
             </div>
             {
               this.props.currentUser.username ? /* If user is logged in, render logout button*/
-               <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button> : 
+               <div className=" d-flex d-inline">
+                  <NavLink /* render button to create a new guitar if logged in */
+                    exact
+                    activeClassName='active-link'
+                    className = 'newGuitarForm nav-link'
+                    to={`/users/${this.props.currentUser.id}/guitars/new`}>
+                    Post
+                </NavLink>
+                <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button>
+               </div>  : 
                /* render login form when not logged in */
                <div>
                 <form onSubmit={this.handleLogin} >

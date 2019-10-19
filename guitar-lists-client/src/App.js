@@ -14,7 +14,6 @@ import fetchUsers from './actions/fetchUsers';
 import editGuitar from './actions/editGuitar';
 import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
-import createGuitar from './actions/createGuitar';
 import GuitarEditForm from './components/GuitarEditForm';
 import Error from './components/Error';
 
@@ -37,7 +36,7 @@ class App extends Component {
           <Route exact path='/' render={routeProps => <Home  {...routeProps}/>}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/guitars' render={routeProps => <GuitarsContainer {...routeProps}/>}/>
-          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm  createGuitar={this.props.createGuitar} {...routeProps}/>}/>
+          <Route exact path='/users/:id/guitars/new' render={routeProps => <GuitarForm {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId/edit' render={routeProps => <GuitarEditForm  editGuitar={this.props.editGuitar} {...routeProps}/>}/>
           <Route exact path='/users/:userId/guitars/:guitarId' render={routeProps => <Guitar  deleteGuitar={this.props.deleteGuitar} {...routeProps}/>}/>
           <Route exact path='/users' render={routeProps => <UsersContainer {...routeProps}/>}/>
@@ -57,4 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {createGuitar, editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
+export default connect(mapStateToProps, {editGuitar, deleteGuitar, fetchUsers, fetchGuitars})(App);
