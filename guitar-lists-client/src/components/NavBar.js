@@ -36,7 +36,7 @@ class NavBar extends Component {
                         exact
                         activeClassName='active-link'
                         className = 'newGuitarForm nav-link'
-                        to={{pathname: `/users/${this.props.currentUser.id}/guitars/new`}}>
+                        to={`/users/${this.props.currentUser.id}/guitars/new`}>
                         Post
                       </NavLink>
                   </div>
