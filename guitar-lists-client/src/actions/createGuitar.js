@@ -18,6 +18,8 @@ const createGuitar = (guitar, currentUser, history) => {
 
         })
       .catch(error => console.log(error))
+    } else {
+      console.log('An error has occured')
     }
 
   }
