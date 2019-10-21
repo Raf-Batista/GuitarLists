@@ -12,9 +12,6 @@ describe('async actions', () => {
   })
 
   const mockData = {id: 1, username: 'test', token: 'mock_token'}
-  const location = {pathname: '/mock'}
-  const history = ['/mock']
-  const users = [{id: 1, username: 'test'}]
 
   it('creates LOGIN when logging in', () => {
     fetchMock.postOnce('http://localhost:3000/login', mockData)
@@ -24,7 +21,7 @@ describe('async actions', () => {
     ]
     const store = mockStore({ currentUser: {} })
 
-    return store.dispatch(login(mockData, location, history, users)).then(() => {
+    return store.dispatch(login()).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
     })
   })

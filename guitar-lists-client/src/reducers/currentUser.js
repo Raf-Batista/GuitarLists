@@ -1,7 +1,3 @@
-// const initialState = { 
-//   currentUser: JSON.parse(localStorage.getItem('currentUser'))
-//   };
-
 const currentUser = (state = {}, action) => {
   switch(action.type) {
     case 'LOGIN':
