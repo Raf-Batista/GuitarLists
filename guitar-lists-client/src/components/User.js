@@ -24,14 +24,12 @@ class User extends Component {
           this.state.user.username ? 
             <div className="jumbotron text-center">
               <h1>{this.state.user.username}</h1>
-              {/* The conditional checks if user.guitars is truthy before calling map */}
-              {this.state.user.guitars && this.state.user.guitars.map(guitar => {
-                const url = `/users/${guitar.user_id}/guitars/${guitar.id}`
+              {this.state.user.guitars.map(guitar => {
                 return <div className="mt-4" key={ guitar.id}>
                   <NavLink
                     activeClassName = 'active-link'
                     exact
-                    to={{pathname: url, state: {guitar: guitar}}}>
+                    to={`/users/${guitar.user_id}/guitars/${guitar.id}`}>
                     {guitar.model}  ${guitar.price}
                   </NavLink>
                 </div>

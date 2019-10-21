@@ -52,7 +52,7 @@ class NavBar extends Component {
     
             </div>
             {
-              this.props.currentUser.username ? /* If user is logged in, render logout button*/
+              this.props.currentUser.username ? 
                <div className=" d-flex d-inline">
                   <NavLink /* render button to create a new guitar if logged in */
                     exact
@@ -61,10 +61,13 @@ class NavBar extends Component {
                     to={`/users/${this.props.currentUser.id}/guitars/new`}>
                     Post
                 </NavLink>
+
+                {/* If user is logged in, render logout button*/}
                 <button name="logout" className = 'logout btn btn-primary' onClick={this.handleLogout}> Logout </button>
+
                </div>  : 
-               /* render login form when not logged in */
-               <div>
+              
+               <div>  {/* render login form when not logged in */}
                 <form onSubmit={this.handleLogin} >
                   <label name="email" className="text-light mx-2">Email</label>
                   <input type="email" name="email" value={this.state.email} onChange={this.handleChange}/>

@@ -15,16 +15,6 @@ class Guitar extends Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
-    if(this.props.guitars !== prevProps.guitars) {
-      this.props.guitars.find(guitar => {
-        if(guitar.id === parseInt(this.props.match.params.guitarId) && guitar.user_id === parseInt(this.props.match.params.userId)) {
-          this.setState({ guitar: guitar })
-        }
-      })
-    }
-  }
-
   handleEdit = () => {
     const {userId, guitarId} = this.props.match.params 
     this.props.history.push({
@@ -63,7 +53,6 @@ class Guitar extends Component {
   }
   
   render(){ 
-    
     return(
      <div className="container">
         <div className="jumbotron text-center">

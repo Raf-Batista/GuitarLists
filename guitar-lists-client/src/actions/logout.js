@@ -1,5 +1,4 @@
 const logout = (location, history) => {
-  localStorage.clear()
   if(location.pathname !== '/'){
     history.push('/')
   }
