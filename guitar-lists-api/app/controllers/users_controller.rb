@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     end
 
     def message 
-      if verify(params[:user][:id], params[:token])
+      if verify(params[:user][:id], params[:user][:token])
           user = User.find_by(id: params[:user][:id])
           seller = User.find_by(id: params[:seller])
           guitar = Guitar.find_by(id: params[:guitar][:id])
