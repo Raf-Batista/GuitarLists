@@ -1,10 +1,6 @@
 # GuitarLists
 > Create guitars for sale.
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
 This is a CRUD application where users can create guitars for sale. Users can search for guitars by name and email sellers about a particular guitar.
 
 ![](header.png)
