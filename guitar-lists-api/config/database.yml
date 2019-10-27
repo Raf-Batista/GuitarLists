@@ -15,11 +15,16 @@
 # gem 'pg'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: guitar-lists-api
+  password: <%= ENV['GUITAR-LISTS-API_DATABASE_PASSWORD'] %>
+  
+
 
 development:
   <<: *default
@@ -81,5 +86,4 @@ test:
 production:
   <<: *default
   database: guitar-lists-api_production
-  username: guitar-lists-api
-  password: <%= ENV['GUITAR-LISTS-API_DATABASE_PASSWORD'] %>
+  host: localhost
