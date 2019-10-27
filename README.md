@@ -3,7 +3,7 @@
 
 This is a CRUD application where users can create guitars for sale. Users can search for guitars by name and email sellers about a particular guitar.
 
-![](header.png)
+![](guitar-lists.png)
 
 ## Installation
 
