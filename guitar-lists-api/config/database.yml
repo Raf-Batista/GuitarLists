@@ -22,7 +22,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
   username: guitar-lists-api
-  password: <%= ENV['GUITAR-LISTS-API_DATABASE_PASSWORD'] %>
+  password: <%= ENV['API_PASSWORD'] %>
   
 
 
