@@ -18,10 +18,8 @@ rails s
 ```
 
 Set up client
+```sh
 cd guitar-lists-client 
 npm test
 npm install
-
-npm start 
-rails s
 ```
