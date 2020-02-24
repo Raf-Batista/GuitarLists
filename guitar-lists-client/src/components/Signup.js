@@ -28,35 +28,19 @@ class Home extends Component {
 
   render(){
     return(
-      <div>
-        <h2>Sign Up</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group row mt-5">
-            <label className="col-sm-2 col-form-label" name="email">Email</label>
-              <div className="col-sm-10">
-                <input className="form-control" type="email" name="email" value={ this.state.email } onChange={ this.handleChange }/>
-              </div>
+        <form>
+          <span>Sign Up</span>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
-
-          <div className="form-group row mt-5">
-            <label className="col-sm-2 col-form-label" name="username">Username</label>
-              <div className="col-sm-10">
-                <input className="form-control" type="text" name="username" value={ this.state.username } onChange={ this.handleChange }/>
-              </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
           </div>
-
-          <div className="form-group row mt-5">
-            <label className="col-sm-2 col-form-label" name="password">Password</label>
-              <div className="col-sm-10">
-                <input className="form-control" type="password" name="password" value={ this.state.password } onChange={ this.handleChange }/>
-              </div>
-          </div>
-
-          <div className="text-center mt-5">
-            <input className="btn btn-primary" type="submit" value="Sign Up" />
-          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-      </div>
     )
   }
 }
