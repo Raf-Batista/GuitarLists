@@ -28,18 +28,21 @@ class Home extends Component {
 
   render(){
     return(
-        <form>
-          <span>Sign Up</span>
+        <form onSubmit={this.handleSubmit}>
+          <h3>Sign Up</h3>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="username" Username> </label>
+            <input onChange={this.handleChange} type="text" class="form-control" id="username" placeholder="Example" />
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+            <label for="email">Email address</label>
+            <input onChange={this.handleChange} type="email" class="form-control" id="email" placeholder="Example@email.com" />
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input onChange={this.handleChange} type="password" class="form-control" id="password" placeholder="Password" />
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
     )
   }

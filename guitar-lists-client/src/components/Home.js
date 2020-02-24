@@ -12,7 +12,7 @@ class Home extends Component {
           <Redirect to={`/users/${this.props.currentUser.id}`} /> :
           <div className="container">
             <div className="row">
-              <div className="col-8 d-sm-none d-md-block mt-5">
+              <div className="col-md-8 d-sm-none d-md-block mt-5">
                 <div id="guitars" className="carousel slide" data-ride="carousel"> 
 
                 <ol class="carousel-indicators">
@@ -51,7 +51,7 @@ class Home extends Component {
                   </a>
                 </div>
               </div>
-              <div className="col-4 mt-5">
+              <div className="col-md-4 col-sm-9 ml-sm-5 ml-md-auto mt-5">
                <Signup />
               </div>
             </div>
