@@ -16,6 +16,7 @@ import deleteGuitar from './actions/deleteGuitar';
 import GuitarForm from './components/GuitarForm';
 import GuitarEditForm from './components/GuitarEditForm';
 import Error from './components/Error';
+import fretboard from './fretboard.jpeg';
 
 class App extends Component {
   componentDidMount(){
