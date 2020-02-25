@@ -20,7 +20,6 @@ class Home extends Component {
                   <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                 </ol>
 
                   <div className="carousel-inner">
@@ -35,9 +34,6 @@ class Home extends Component {
                     </div>
                     <div className="carousel-item">
                       <img className="d-block w-100" src={process.env.PUBLIC_URL + '/images/guitar-4.jpeg'} />
-                    </div>
-                    <div className="carousel-item">
-                      <img className="d-block w-100" src={process.env.PUBLIC_URL + '/images/guitar-5.jpeg'} />
                     </div>
                   </div>
 
