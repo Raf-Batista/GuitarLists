@@ -9,3 +9,9 @@
 
 }
 
+.carousel-inner {
+    border: 5px;
+    border-color: #fff;
+    border-style: solid;
+}
+
