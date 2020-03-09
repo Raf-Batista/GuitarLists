@@ -32,15 +32,15 @@ class Home extends Component {
           <h3>Sign Up</h3>
           <div class="form-group">
             <label for="username" Username> </label>
-            <input onChange={this.handleChange} type="text" class="form-control" id="username" placeholder="Example" />
+            <input name="username" onChange={this.handleChange} type="text" class="form-control" id="username" placeholder="Example" />
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input onChange={this.handleChange} type="email" class="form-control" id="email" placeholder="Example@email.com" />
+            <input name="email" onChange={this.handleChange} type="email" class="form-control" id="email" placeholder="Example@email.com" />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input onChange={this.handleChange} type="password" class="form-control" id="password" placeholder="Password" />
+            <input name="password" onChange={this.handleChange} type="password" class="form-control" id="password" placeholder="Password" />
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
