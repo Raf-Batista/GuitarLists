@@ -55,7 +55,7 @@ class Guitar extends Component {
   render(){ 
     return(
      <div className="container">
-        <div className="jumbotron text-center">
+        <div className="text-center text-light">
           { // If state has a guitar then render div with guitar info. If not return null.
             this.state.guitar ? 
             <div>

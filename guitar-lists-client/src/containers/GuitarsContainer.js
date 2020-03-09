@@ -25,7 +25,7 @@ class GuitarsContainer extends Component {
     })
     return(
       <div className="container">
-        <div className="jumbotron text-center">
+        <div className="text-center text-light mt-5">
           <h1>Guitars For Sale</h1>
           <label className="m-2">Search</label>
           <input  type="text" name="search" onChange={this.handleOnChange} value={this.state.query} placeholder="Search for a Guitar"/>
