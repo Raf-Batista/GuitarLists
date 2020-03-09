@@ -19,11 +19,12 @@ class User extends Component {
 
   render(){
     return(
-      <div className="container">
+      <div className="container mt-5">
         {
           this.state.user.username ? 
-            <div className="jumbotron text-center">
-              <h1>{this.state.user.username}</h1>
+            <div className="text-center text-light">
+              <h2>{this.state.user.username}</h2>
+              <h3 className="mt-2">My Guitars</h3>
               {this.state.user.guitars.map(guitar => {
                 return <div className="mt-4" key={ guitar.id}>
                   <NavLink
