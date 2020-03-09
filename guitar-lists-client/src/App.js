@@ -19,14 +19,9 @@ import Error from './components/Error';
 import fretboard from './fretboard.jpeg';
 
 class App extends Component {
-  componentDidMount(){
-   if(!this.props.users.length) {
-    this.props.fetchUsers()
-   }
-
-   if(!this.props.guitars.length) {
-    this.props.fetchGuitars()
-   }
+  async componentDidMount(){
+    await this.props.fetchUsers(); 
+    await this.props.fetchGuitars();
 }
 
   render(){
