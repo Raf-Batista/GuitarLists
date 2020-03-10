@@ -8,7 +8,7 @@ class UsersContainer extends Component {
     this.state = {query: '', users: ''}
   }
 
-  handleOnChange = (event) => {
+  handleChange = (event) => {
     this.setState({
       query: event.target.value
     })
@@ -28,7 +28,7 @@ class UsersContainer extends Component {
           <div className="text-center text-light mt-5">
             <h1>Sellers</h1>
             <label className="m-2">Search</label>
-            <input  type="text" name="search" onChange={this.handleOnChange} value={this.state.query} placeholder="Search for a Seller"/> 
+            <input  type="text" name="search" onChange={this.handleChange} value={this.state.query} placeholder="Search for a Seller"/> 
             <Users users={filteredUsers}/>
           </div>
       </div>
