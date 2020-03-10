@@ -6,7 +6,26 @@
         background-position: top;
         background-size: cover;
     }
+}
 
+@media only screen and (max-width: 1199px) {
+    .login {
+        display: none;
+    }
+
+   body {
+       background-image: none;
+   }
+
+   html, body, #root, #root>div {
+    height: 100%;
+    background-color: black;
+  }
+
+}
+
+body {
+    background-color: black;
 }
 
 .carousel-inner {
@@ -27,3 +46,4 @@
 .nav-link:hover {
     color: #8c8e91;
 }
+

@@ -68,7 +68,7 @@ class NavBar extends Component {
                </div>  : 
               
                <div>  {/* render login form when not logged in */}
-                <form onSubmit={this.handleLogin} >
+                <form onSubmit={this.handleLogin} className="login">
                   <label name="email" className="text-light mx-2">Email</label>
                   <input className="space" type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
 
