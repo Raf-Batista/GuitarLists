@@ -11,8 +11,8 @@ class Users extends Component {
             return <NavLink
             key={user.id}
             exact
-            activeClassName = 'active-link'
-            className = 'home navbar-brand d-block'
+            activeClassName='active-link'
+            className='nav-link'
             to={`users/${user.id}`}>
             {user.username}
           </NavLink>

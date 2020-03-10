@@ -10,8 +10,8 @@ class Guitars extends Component {
             return <NavLink
               key={guitar.id} 
               exact
-              activeClassName = 'active-link'
-              className = 'home navbar-brand d-block'
+              activeClassName='active-link'
+              className='nav-link'
               to={`/users/${guitar.user_id}/guitars/${guitar.id}`}>
               {guitar.model}
             </NavLink>

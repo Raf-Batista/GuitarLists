@@ -75,7 +75,7 @@ class NavBar extends Component {
                   <label name="password" className="text-light mx-2">Password </label>
                   <input className="space" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
 
-                  <button className="btn btn-primary ml-2" name="login" type="submit">Login</button>
+                  <button className="btn btn-secondary ml-2" name="login" type="submit">Login</button>
                 </form>
               </div>
             }

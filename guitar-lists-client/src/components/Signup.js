@@ -42,7 +42,7 @@ class Home extends Component {
             <label for="password">Password</label>
             <input name="password" onChange={this.handleChange} type="password" className="form-control space" id="password" placeholder="Password" />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-secondary">Submit</button>
         </form>
     )
   }
