@@ -8,7 +8,7 @@ Submitted by: **Rafael Batista**
 ## Live Demo 
 https://guitar-lists-client.herokuapp.com/  
 
-# The live demo does not yet have the changes and updates that this repo has
+The live demo does not yet have the changes and updates that this repo has.
 
 ## User Stories
 \
