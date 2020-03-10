@@ -31,7 +31,7 @@ class Home extends Component {
         <form onSubmit={this.handleSubmit} className="text-white">
           <h3>Sign Up</h3>
           <div class="form-group">
-            <label for="username" Username> </label>
+            <label for="username">Username</label>
             <input name="username" onChange={this.handleChange} type="text" className="form-control space" id="username" placeholder="Example" />
           </div>
           <div class="form-group">
