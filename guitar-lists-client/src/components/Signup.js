@@ -28,7 +28,7 @@ class Home extends Component {
 
   render(){
     return(
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="text-white">
           <h3>Sign Up</h3>
           <div class="form-group">
             <label for="username" Username> </label>
