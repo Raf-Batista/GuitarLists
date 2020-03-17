@@ -68,14 +68,26 @@ class NavBar extends Component {
                </div>  : 
               
                <div>  {/* render login form when not logged in */}
+                
+
                 <form onSubmit={this.handleLogin} className="login">
-                  <label name="email" className="text-light mx-2">Email</label>
-                  <input className="space" type="email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                  <div class="form-row">
+                    
+                    <label name="email" className="text-light mx-2 mt-2">Email</label>
+                    <div class="col">
+                      <input className="form-control d-inline space" type="email" name="email" value={this.state.email} onChange={this.handleChange}/>  
+                    </div>
 
-                  <label name="password" className="text-light mx-2">Password </label>
-                  <input className="space" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                    <label name="password" className="text-light mx-2 mt-2">Password </label>
+                    <div class="col">               
+                      <input className="form-control d-inline space" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                    </div>
 
-                  <button className="btn btn-secondary ml-2" name="login" type="submit">Login</button>
+                    <span>
+                      <button className="btn btn-secondary ml-2" name="login" type="submit">Login</button>
+                    </span>
+                  
+                  </div>
                 </form>
               </div>
             }

@@ -13,14 +13,14 @@
         display: none;
     }
 
-   body {
+   /* body {
        background-image: none;
-   }
+   } */
 
-   html, body, #root, #root>div {
+   /* html, body, #root, #root>div {
     height: 100%;
     background-color: black;
-  }
+  } */
 
 }
 
